@@ -19,5 +19,8 @@
       "developmentTitle": "为开发者提供完整的接入文档",
       "developmentInfo": "不限定开发语言，基于 http 的授权模式，让开发者自由选择技术栈。"
     }
+  },
+  "action": {
+    "login": "登录"
   }
 }

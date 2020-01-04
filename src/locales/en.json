@@ -19,5 +19,8 @@
       "developmentTitle": "Provide complete access documentation for developers",
       "developmentInfo": "The development language is not limited, and the http-based authorization model allows developers to choose the technology stack freely."
     }
+  },
+  "action": {
+    "login": "Login"
   }
 }

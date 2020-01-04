@@ -8,6 +8,7 @@ module.exports = {
     }
   },
   'transpileDependencies': [
-    'vuetify'
+    'vuetify',
+    'vuex-module-decorators'
   ]
 }
