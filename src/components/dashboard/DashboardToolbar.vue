@@ -4,7 +4,7 @@
     v-toolbar-title.mr-12.align-center
       span.title.white--text {{$t("base.name")}}
     v-spacer
-    v-btn(icon, @click="")
+    v-btn(icon, @click="handleTheme")
       v-icon.white--text mdi-navigation
     v-menu(offset-y)
       template(v-slot:activator="{ on }")
@@ -20,9 +20,8 @@ import { Component, Vue, Emit } from 'vue-property-decorator'
 
 @Component
 export default class DashboardToolbar extends Vue {
-  @Emit('handle-change')
-  handleChange () {
-  }
+  @Emit('handle-change') handleChange () {}
+  @Emit('handle-theme') handleTheme () {}
 }
 </script>
 

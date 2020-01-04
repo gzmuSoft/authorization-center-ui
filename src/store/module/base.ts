@@ -1,11 +1,17 @@
-import { Module, VuexModule, Mutation, Action, getModule } from 'vuex-module-decorators'
-import store from '@/store'
+import { Module, VuexModule, Mutation, Action } from 'vuex-module-decorators'
+
 export interface IBase {
-  drawer: Boolean
+  theme: boolean
 }
-@Module({ dynamic: true, namespaced: true, name: 'base', store })
-class Base extends VuexModule {
-
+@Module({ namespaced: true, name: 'base' })
+export default class Base extends VuexModule implements IBase {
+  theme: boolean = true
+  @Mutation
+  SET_THEME () {
+    this.theme = !this.theme
+  }
+  @Action
+  changTheme () {
+    this.SET_THEME()
+  }
 }
-
-export const BaseModule = getModule(Base)
