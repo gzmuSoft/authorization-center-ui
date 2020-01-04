@@ -8,7 +8,7 @@
           v-list-item-content
             v-list-item-title {{menu.text}}
       v-subheader.mt-4.grey--text.text--darken-1(v-else) {{menu.name}}
-      // dashboard-menu(:router="menu.children")
+      dashboard-menu(:routes="menu.children")
 
 </template>
 
@@ -17,7 +17,10 @@ import { Component, Vue, Prop } from 'vue-property-decorator'
 
 @Component
 export default class DashboardMenu extends Vue {
-  @Prop({ type: Array }) routes!: Array<any>
+  @Prop({ type: Array }) routes!: Array<Object>
+  created () {
+    console.log(this.routes)
+  }
 }
 </script>
 

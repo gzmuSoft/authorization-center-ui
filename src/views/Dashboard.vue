@@ -3,6 +3,9 @@
     dashboard-toolbar(@handle-change="changeDrawer", @handle-theme="changeTheme")
     v-navigation-drawer(v-model="drawer", app, clipped)
       dashboard-menu(:routes="routes")
+    v-content
+      v-scroll-y-transition(mode="out-in")
+        router-view
 </template>
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
@@ -15,7 +18,14 @@ import { BaseModule } from '@/store'
 })
 export default class Dashboard extends Vue {
   drawer: Boolean = true
-  routes: Array<any> = []
+  routes: Array<Object> = [
+    {
+      name: '系统管理',
+      children: [
+        { text: '仪表盘', icon: 'mdi-view-dashboard', to: { name: 'index' } }
+      ]
+    }
+  ]
   changeDrawer () { this.drawer = !this.drawer }
   changeTheme () {
     BaseModule.changTheme()

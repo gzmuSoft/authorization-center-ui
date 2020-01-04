@@ -13,7 +13,15 @@ const routes = [
   {
     path: '/dashboard',
     name: 'dashboard',
-    component: () => import(/* webpackChunkName: "about" */ '@/views/Dashboard.vue')
+    redirect: '/dashboard/index',
+    component: () => import(/* webpackChunkName: "about" */ '@/views/Dashboard.vue'),
+    children: [
+      {
+        path: 'index',
+        name: 'index',
+        component: () => import(/* webpackChunkName: "about" */ '@/views/index/Index.vue')
+      }
+    ]
   }
 ]
 
