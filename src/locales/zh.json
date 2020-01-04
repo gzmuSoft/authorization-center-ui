@@ -1,3 +1,23 @@
 {
-  "message": "你好 i18n !!"
+  "base": {
+    "school": "贵州民族大学",
+    "name": "授权中心",
+    "fullName": "贵州民族大学授权中心",
+    "description": "提供安全的第三方授权服务以及完整信息管理",
+    "start": "开 始"
+  },
+  "home": {
+    "info": {
+      "title": "我们能做什么？",
+      "titleInfo": "安全、可靠、稳定、快速、灵活",
+      "subTitle1": "OAuth2",
+      "subTitle1Info": "根据当下最为流行的 OAuth2 开放授权协议进行设计，为 Web 应用程序和移动应用提供安全可靠的认证与授权流程。",
+      "subTitle2": "快速接入",
+      "subTitle2Info": "拥有统一的用户信息，适用于多种应用，不限定开发语言。客户选择自己喜欢的开发方式，一个流程即可快速接入我校系统。",
+      "subTitle3": "多种模式",
+      "subTitle3Info": "提供最为安全的授权码模式，最为简单的密码模式和最为方便的验证码模式。",
+      "developmentTitle": "为开发者提供完整的接入文档",
+      "developmentInfo": "不限定开发语言，基于 http 的授权模式，让开发者自由选择技术栈。"
+    }
+  }
 }

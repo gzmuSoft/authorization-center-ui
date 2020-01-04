@@ -1,3 +1,23 @@
 {
-  "message": "hello i18n !!"
+  "base": {
+    "school": "GZMU",
+    "name": "Authorization Center",
+    "fullName": "Guizhou Minzu University Authorization Center",
+    "description": "Provide secure third-party authorization services and complete information management",
+    "start": "GET STARTED"
+  },
+  "home": {
+    "info": {
+      "title": "What can we do？",
+      "titleInfo": "Safe, Reliable, Stable, Fast, Flexible",
+      "subTitle1": "OAuth2",
+      "subTitle1Info": "Designed according to the most popular OAuth2 open authorization protocol at the moment, provides secure and reliable authentication and authorization processes for web and mobile applications.",
+      "subTitle2": "Quick Use",
+      "subTitle2Info": "Has a unified user information, suitable for a variety of applications, not limited to the development language.Customers can choose their favorite development method, and one process can quickly use our school system.",
+      "subTitle3": "Multiple Modes",
+      "subTitle3Info": "Provide the most secure authorization code mode, the simplest password mode and the most convenient verification code mode.",
+      "developmentTitle": "Provide complete access documentation for developers",
+      "developmentInfo": "The development language is not limited, and the http-based authorization model allows developers to choose the technology stack freely."
+    }
+  }
 }
