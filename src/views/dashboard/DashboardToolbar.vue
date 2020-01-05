@@ -24,7 +24,3 @@ export default class DashboardToolbar extends Vue {
   @Emit('handle-theme') handleTheme () {}
 }
 </script>
-
-<style lang="stylus" scoped>
-
-</style>

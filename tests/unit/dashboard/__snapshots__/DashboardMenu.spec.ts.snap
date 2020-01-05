@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DashboardMenu.vue should check snapshot when success 1`] = `<div id="dashboard-menu"></div>`;
+
+exports[`DashboardMenu.vue should check snapshot when success 2`] = `
+<div id="dashboard-menu">
+  <div>
+    <v-subheader-stub class="mt-4 grey--text text--darken-1">系统管理</v-subheader-stub>
+    <dashboard-menu-stub routes="[object Object],[object Object]"></dashboard-menu-stub>
+  </div>
+</div>
+`;

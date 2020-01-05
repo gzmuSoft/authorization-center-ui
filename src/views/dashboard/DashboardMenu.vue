@@ -18,9 +18,6 @@ import { Component, Vue, Prop } from 'vue-property-decorator'
 @Component
 export default class DashboardMenu extends Vue {
   @Prop({ type: Array }) routes!: Array<Object>
-  created () {
-    console.log(this.routes)
-  }
 }
 </script>
 
