@@ -9,8 +9,8 @@
 </template>
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import DashboardToolbar from '@/components/dashboard/DashboardToolbar.vue'
-import DashboardMenu from '@/components/dashboard/DashboardMenu.vue'
+import DashboardToolbar from '@/views/dashboard/DashboardToolbar.vue'
+import DashboardMenu from '@/views/dashboard/DashboardMenu.vue'
 import { BaseModule } from '@/store'
 
 @Component({

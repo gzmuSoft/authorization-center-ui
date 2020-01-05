@@ -11,11 +11,11 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import HomeToolbar from '@/components/home/HomeToolbar.vue'
-import HomeBanner from '@/components/home/HomeBanner.vue'
-import HomeInfo from '@/components/home/HomeInfo.vue'
-import HomeDevelopment from '@/components/home/HomeDevelopment.vue'
-import HomeFooter from '@/components/home/HomeFooter.vue'
+import HomeToolbar from '@/views/home/HomeToolbar.vue'
+import HomeBanner from '@/views/home/HomeBanner.vue'
+import HomeInfo from '@/views/home/HomeInfo.vue'
+import HomeDevelopment from '@/views/home/HomeDevelopment.vue'
+import HomeFooter from '@/views/home/HomeFooter.vue'
 
 @Component({
   components: { HomeToolbar, HomeBanner, HomeInfo, HomeFooter, HomeDevelopment }
