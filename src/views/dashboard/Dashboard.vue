@@ -26,12 +26,16 @@ export default class Dashboard extends Vue {
       ]
     }
   ]
-  changeDrawer () { this.drawer = !this.drawer }
-  changeTheme () {
-    BaseModule.changTheme()
-    this.$vuetify.theme.dark = BaseModule.theme
-  }
   created () {
+    this.$vuetify.theme.dark = BaseModule.theme
+    this.drawer = BaseModule.drawer
+  }
+  changeDrawer () {
+    BaseModule.changeDrawer()
+    this.drawer = !this.drawer
+  }
+  changeTheme () {
+    BaseModule.changeTheme()
     this.$vuetify.theme.dark = BaseModule.theme
   }
 }

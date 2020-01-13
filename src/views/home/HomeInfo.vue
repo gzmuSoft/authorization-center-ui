@@ -1,13 +1,13 @@
 <template lang="pug">
   section#center-info
-    v-layout.my-12(column wrap align-center)
-      v-flex.my-4(xs12 sm4)
+    v-layout.my-12(column, wrap, align-center)
+      v-flex.my-4(xs12, sm4)
         .text-center
           h1.display-1 {{$t('home.info.title')}}
           .subheading.mt-3 {{$t('home.info.titleInfo')}}
       v-flex(xs12)
         v-container(grid-list-xl)
-          v-layout.px-xl-12.mx-xl-12(row wrap)
+          v-layout.px-xl-12.mx-xl-12(row, wrap)
             v-flex(xs12, md4, v-for="(a, i) in information", :key="i")
               v-card.transparent(flat)
                 v-card-text.text-center

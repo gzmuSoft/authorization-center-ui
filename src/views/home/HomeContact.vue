@@ -1,8 +1,8 @@
 <template lang="pug">
   section#center-contact
     v-container(grid-list-xl)
-      v-layout.my-12(row wrap justify-center)
-        v-flex(xs12 sm4)
+      v-layout.my-12(row, wrap, justify-center)
+        v-flex(xs12, sm4)
           v-card.transparent(flat)
             v-card-title.layout.justify-center(primary-title)
               .headline Company info
@@ -10,7 +10,7 @@
               | Cras facilisis mi vitae nunc lobortis pharetra. Nulla volutpat tincidunt ornare.
               | Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
               | Nullam in aliquet odio. Aliquam eu est vitae tellus bibendum tincidunt. Suspendisse potenti.
-        v-flex(xs12 sm4 offset-sm1)
+        v-flex(xs12, sm4, offset-sm1)
           v-card.transparent(flat)
             v-card-title.layout.justify-center(primary-title)
               .headline Contact us
