@@ -2,8 +2,7 @@ import { shallowMount, createLocalVue } from '@vue/test-utils'
 import Vuex from 'vuex'
 import Dashboard from '@/views/dashboard'
 
-jest.mock('@/views/dashboard', () => {
-})
+jest.mock('vuex-along', () => () => {})
 
 const localVue = createLocalVue()
 localVue.use(Vuex)
