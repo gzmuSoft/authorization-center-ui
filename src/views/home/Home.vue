@@ -21,5 +21,7 @@ import HomeFooter from '@/views/home/HomeFooter.vue'
   components: { HomeToolbar, HomeBanner, HomeInfo, HomeFooter, HomeDevelopment }
 })
 export default class Home extends Vue {
+  created () {
+  }
 }
 </script>
