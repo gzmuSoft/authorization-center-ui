@@ -19,12 +19,12 @@
     "vue-router": "^3.1.5",
     "vue-toastification": "^0.8.0",
     "vuejs-dialog": "^1.4.1",
-    "vuetify": "^2.2.5",
+    "vuetify": "^2.2.8",
     "vuex": "^3.1.2",
     "vuex-along": "^1.2.10"
   },
   "devDependencies": {
-    "@types/jest": "^24.9.0",
+    "@types/jest": "^25.1.1",
     "@types/lowdb": "^1.0.9",
     "@types/webpack": "^4.41.3",
     "@vue/cli-plugin-babel": "^4.1.0",
