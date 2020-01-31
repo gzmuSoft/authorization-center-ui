@@ -7,7 +7,6 @@
 <script lang="ts">
 import Vue from 'vue'
 import { BaseModule } from '@/store'
-import { oauthServer } from '@/api/oauth'
 
 export default Vue.extend({
   name: 'App',
@@ -16,7 +15,16 @@ export default Vue.extend({
   created () {
     this.$i18n.locale = BaseModule.locale
     this.$vuetify.lang.current = BaseModule.locale
-    oauthServer()
+    this.$vuetify.theme.dark = BaseModule.theme
   }
 })
 </script>
+
+<style lang="stylus">
+html, body
+  overflow hidden
+.ps__rail-y
+  top 0 !important
+.ps__rail-x
+  left 0 !important
+</style>

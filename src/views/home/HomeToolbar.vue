@@ -1,32 +1,46 @@
 <template lang="pug">
-  v-toolbar
+  v-app-bar(app, fixed, elevate-on-scroll)
     v-toolbar-title
       span.title {{$t("base.school")}}
     v-spacer
-    div.d-none.d-sm-flex
-      v-btn(@click="handleChange") {{$t("language")}}
-      v-btn.ml-2(@click="handleLogin", color="info") {{$t("action.login")}}
-    v-menu
+    v-menu(offset-y, :close-on-content-click="false")
       template(v-slot:activator="{ on }")
-        v-btn.d-sm-none(icon, v-on="on")
-          v-icon mdi-dots-vertical
+        v-btn(icon, v-on="on")
+          v-icon mdi-menu
       v-list
-        v-list-item(@click="handleChange") {{$t("language")}}
-        v-list-item(@click="handleLogin", color="info") {{$t("action.login")}}
+        v-list-item(@click="handleLogin", link)
+          v-list-item-title {{$t("action.login")}}
+        v-list-item(@click="handleLanguage", link)
+          v-list-item-title {{$t("language")}}
+        v-list-item(@click="handleTheme", link)
+          v-list-item-title {{$t("base.theme.change")}}
 
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import { BaseModule } from '@/store'
+import { BaseModule, AuthModule } from '@/store'
+import { oauthServer } from '@/api/oauth'
 
 @Component
 export default class HomeToolbar extends Vue {
-  handleChange () {
+  private loading: Boolean = false
+  handleLanguage () {
     BaseModule.changeLocale()
   }
+  handleTheme () {
+    BaseModule.changeTheme()
+  }
   handleLogin () {
-    this.$router.push({ name: 'dashboard' })
+    this.loading = true
+    if (AuthModule.accessToken === null) {
+      oauthServer()
+        .then(res => { window.location = res.data.server })
+        .finally(() => { this.loading = false })
+    } else {
+      console.log('success')
+      this.loading = false
+    }
   }
 }
 </script>

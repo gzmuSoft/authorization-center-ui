@@ -16,6 +16,7 @@ export default class Base extends VuexModule implements IBase {
   @Mutation
   SET_THEME () {
     this.theme = !this.theme
+    vuetify.framework.theme.dark = this.theme
   }
   @Mutation
   SET_DRAWER () {
@@ -24,6 +25,8 @@ export default class Base extends VuexModule implements IBase {
   @Mutation
   CHANGE_LOCALE () {
     this.locale = this.locale === 'zh' ? 'en' : 'zh'
+    i18n.locale = i18n.locale === 'zh' ? 'en' : 'zh'
+    vuetify.framework.lang.current = i18n.locale
   }
   @Action
   changeTheme () {
@@ -36,7 +39,5 @@ export default class Base extends VuexModule implements IBase {
   @Action
   changeLocale () {
     this.CHANGE_LOCALE()
-    i18n.locale = i18n.locale === 'zh' ? 'en' : 'zh'
-    vuetify.framework.lang.current = i18n.locale
   }
 }

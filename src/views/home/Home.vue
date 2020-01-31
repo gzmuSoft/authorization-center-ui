@@ -1,11 +1,12 @@
 <template lang="pug">
   .home
     home-toolbar
-    v-content
-      home-banner
-      home-info
-      home-development
-      home-footer
+    perfect-scrollbar
+      v-content#homw-content(style="height:100vh")
+        home-banner
+        home-info
+        home-development
+        home-footer
 
 </template>
 
@@ -25,3 +26,7 @@ export default class Home extends Vue {
   }
 }
 </script>
+
+<style lang="stylus">
+
+</style>
