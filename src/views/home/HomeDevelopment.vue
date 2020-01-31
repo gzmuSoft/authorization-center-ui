@@ -1,6 +1,6 @@
 <template lang="pug">
   section
-    v-parallax(src="https://raw.githubusercontent.com/vuetifyjs/parallax-starter/master/template/assets/section.jpg", height="380")
+    v-parallax(src="https://resources.echocow.cn/file/2020/01/31/section.jpg", height="380")
       v-layout(column, align-center, justify-center)
         .headline.white--text.mb-4.text-center {{$t("home.info.developmentTitle")}}
         em {{$t("home.info.developmentInfo")}}

@@ -1,12 +1,11 @@
 <template lang="pug">
   .home
     home-toolbar
-    perfect-scrollbar
-      v-content#homw-content(style="height:100vh")
-        home-banner
-        home-info
-        home-development
-        home-footer
+    v-content#homw-content
+      home-banner
+      home-info
+      home-development
+      home-footer
 
 </template>
 

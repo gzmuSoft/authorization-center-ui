@@ -21,8 +21,6 @@ export default Vue.extend({
 </script>
 
 <style lang="stylus">
-html, body
-  overflow hidden
 .ps__rail-y
   top 0 !important
 .ps__rail-x
