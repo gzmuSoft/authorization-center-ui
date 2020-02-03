@@ -27,7 +27,8 @@
     }
   },
   "action": {
-    "login": "Login"
+    "login": "Login",
+    "logout": "Logout"
   },
   "tip": {
     "success": "Success",

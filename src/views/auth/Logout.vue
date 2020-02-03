@@ -4,10 +4,11 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
+import { Component, Mixins } from 'vue-property-decorator'
+import Mixin from './Mixin'
 
 @Component
-export default class Logout extends Vue {
+export default class Logout extends Mixins(Mixin) {
 
 }
 </script>

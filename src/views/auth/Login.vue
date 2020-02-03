@@ -16,19 +16,16 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
+import { Component, Mixins } from 'vue-property-decorator'
 import { getUrlParams } from '@/utils'
 import { AuthModule } from '@/store'
 import { oauthToken } from '@/api/oauth'
+import Mixin from './Mixin'
 
 @Component
-export default class Login extends Vue {
-  private tipI18n: string = 'tip.login.loading'
-  private last: String = '.'
-  private show: Boolean = false
+export default class Login extends Mixins(Mixin) {
   created () {
-    this.showLast()
-    this.showBack()
+    this.tipI18n = 'tip.login.loading'
     const code = getUrlParams('code')
     oauthToken(code).then(res => {
       AuthModule.oauthToken(res.data)
@@ -40,20 +37,6 @@ export default class Login extends Vue {
       this.$toast.error(this.$t('tip.login.fail'))
       this.tipI18n = `tip.error.${error.response.status}`
     })
-  }
-  showLast () {
-    setInterval(() => {
-      this.last += '.'
-      if (this.last.length > 3) this.last = ''
-    }, 500)
-  }
-  showBack () {
-    setTimeout(() => {
-      this.show = true
-    }, 6000)
-  }
-  handleBack () {
-    this.$router.push({ name: 'home' })
   }
 }
 </script>
