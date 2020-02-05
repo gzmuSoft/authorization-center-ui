@@ -33,13 +33,9 @@ export const oauthToken = (code: String) => {
  * 退出登录 url
  */
 export const oauthLogout = () => {
-  axios({
+  return axios({
     url: OAUTH_LOGOUT,
     method: 'GET'
-  }).then(res => {
-    console.log(res.data)
-  }).catch(error => {
-    console.error(error)
   })
 }
 

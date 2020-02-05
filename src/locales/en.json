@@ -6,6 +6,7 @@
     "fullName": "Guizhou Minzu University Authorization Center",
     "description": "Provide secure third-party authorization services and complete information management",
     "start": "GET STARTED",
+    "documentation": "View Documentation",
     "theme": {
       "change": "Change Theme",
       "dark": "Dark",
@@ -37,7 +38,15 @@
       "loading": "Login",
       "success": "Login Success. Please wait",
       "fail": "Login Failed. Seems like something went wrong, please return and try.",
-      "again": "Waiting too long? Click me back to try again"
+      "again": "Waiting too long? Click me back to try again",
+      "already": "You are already logged in!"
+    },
+    "logout": {
+      "loading": "Logout",
+      "success": "Logout Success. Please wait",
+      "fail": "Logout Failed. Seems like something went wrong, please return and try.",
+      "again": "Waiting too long? Click me back to try again",
+      "already": "You are already logged in!"
     },
     "error": {
       "400": "Request error: Access denied due to invalid request body.",
@@ -45,6 +54,7 @@
       "403": "Authentication failed: you do not have permission to access the resource.",
       "404": "Resource not found: Cannot find information about the resource you are accessing.",
       "500": "Service error: An internal error occurred on the server, please contact the administrator.",
+      "action": "Oh My God, there was a small error. Please try later.",
       "other": "Unknown Error."
     }
   }

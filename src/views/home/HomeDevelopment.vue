@@ -5,7 +5,7 @@
         .headline.white--text.mb-4.text-center {{$t("home.info.developmentTitle")}}
         em {{$t("home.info.developmentInfo")}}
         v-btn.mt-12(color="info", large, href="/")
-          | {{$t("base.start")}}
+          | {{$t("base.documentation")}}
 </template>
 
 <script lang="ts">

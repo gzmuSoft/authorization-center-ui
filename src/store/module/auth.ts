@@ -22,6 +22,10 @@ export default class Auth extends VuexModule implements IAuth {
   sub: String = null;
   userName: String = null;
 
+  get isLogin () {
+    return this.accessToken !== null
+  }
+
   @Mutation
   SET_TOKEN (token) {
     if (token === null) {

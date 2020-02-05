@@ -6,17 +6,26 @@
           src="https://resources.echocow.cn/file/2020/1/31/logo.png")
         h1.white--text.mb-2.display-1.text-center {{$t("base.name")}}
         .subheading.mb-4.text-center {{$t(("base.description"))}}
-        v-btn.mt-12(color="primary", large, href="/dashboard")
+        v-btn.mt-12(color="primary", large, @click="handleStart")
           | {{$t("base.start")}}
 
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
+import { AuthModule } from '@/store'
+import { oauthServer } from '@/api/oauth'
 
 @Component
 export default class Banner extends Vue {
-
+  handleStart () {
+    if (AuthModule.isLogin) {
+      this.$router.push({ name: 'index' })
+    } else {
+      oauthServer().then(res => { window.location = res.data.server })
+        .catch(() => { this.$toast.error('tip.error.action') })
+    }
+  }
 }
 </script>
 
