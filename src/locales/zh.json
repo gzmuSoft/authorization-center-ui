@@ -63,6 +63,10 @@
       "other": "未知错误"
     }
   },
+  "setting": {
+    "system": "系统设置",
+    "user": "用户设置"
+  },
   "menu": {
     "system": "系统管理",
     "dashboard": "仪表盘"

@@ -50,3 +50,13 @@ export const oauthRefresh = (refreshToken: String) => {
     data: { refresh_token: refreshToken }
   })
 }
+
+/**
+ * Current user info.
+ */
+export const oauthMe = () => {
+  return authAxios.request({
+    url: '/oauth/me',
+    method: 'GET'
+  })
+}

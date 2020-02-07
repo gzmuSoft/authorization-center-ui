@@ -11,8 +11,9 @@
 import { Component, Vue } from 'vue-property-decorator'
 import DashboardToolbar from '@/views/dashboard/DashboardToolbar.vue'
 import DashboardMenu from '@/views/dashboard/DashboardMenu.vue'
-import { BaseModule } from '@/store'
+import { BaseModule, UserModule } from '@/store'
 import { meMenu } from '@/api/auth'
+import User from '@/store/module/user'
 
 @Component({
   components: { DashboardToolbar, DashboardMenu }
@@ -20,10 +21,12 @@ import { meMenu } from '@/api/auth'
 export default class Dashboard extends Vue {
   drawer: Boolean = true
   routes: Array<Object> = []
+  user: User = UserModule
   created () {
     this.$vuetify.theme.dark = BaseModule.theme
     this.drawer = BaseModule.drawer
     meMenu().then(res => { this.routes = res.data.menus })
+    this.user.getUser()
   }
   changeDrawer () {
     BaseModule.changeDrawer()

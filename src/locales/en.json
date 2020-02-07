@@ -63,6 +63,10 @@
       "other": "Unknown Error."
     }
   },
+  "setting": {
+    "system": "System Setting",
+    "user": "User Setting"
+  },
   "menu": {
     "system": "System",
     "dashboard": "Dashboard"

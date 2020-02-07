@@ -32,6 +32,16 @@ export const routerMap = [
         path: 'index',
         name: 'index',
         component: () => import(/* webpackChunkName: "main" */ '@/views/dashboard/main')
+      },
+      {
+        path: 'system-setting',
+        name: 'system-setting',
+        component: () => import(/* webpackChunkName: "SystemSetting" */ '@/views/dashboard/system-setting')
+      },
+      {
+        path: 'user-setting',
+        name: 'user-setting',
+        component: () => import(/* webpackChunkName: "SystemSetting" */ '@/views/dashboard/user-setting')
       }
     ]
   }
