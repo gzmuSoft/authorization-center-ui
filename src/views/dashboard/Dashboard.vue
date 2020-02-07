@@ -12,23 +12,18 @@ import { Component, Vue } from 'vue-property-decorator'
 import DashboardToolbar from '@/views/dashboard/DashboardToolbar.vue'
 import DashboardMenu from '@/views/dashboard/DashboardMenu.vue'
 import { BaseModule } from '@/store'
+import { meMenu } from '@/api/auth'
 
 @Component({
   components: { DashboardToolbar, DashboardMenu }
 })
 export default class Dashboard extends Vue {
   drawer: Boolean = true
-  routes: Array<Object> = [
-    {
-      name: '系统管理',
-      children: [
-        { text: '仪表盘', icon: 'mdi-view-dashboard', to: { name: 'index' } }
-      ]
-    }
-  ]
+  routes: Array<Object> = []
   created () {
     this.$vuetify.theme.dark = BaseModule.theme
     this.drawer = BaseModule.drawer
+    meMenu().then(res => { this.routes = res.data.menus })
   }
   changeDrawer () {
     BaseModule.changeDrawer()

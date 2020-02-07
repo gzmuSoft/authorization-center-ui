@@ -9,3 +9,13 @@ export const meRoutes = () => {
     method: 'GET'
   })
 }
+
+/**
+ * Get user menu
+ */
+export const meMenu = () => {
+  return authAxios.request({
+    url: '/me/menu',
+    method: 'GET'
+  })
+}

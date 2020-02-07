@@ -62,5 +62,9 @@
       "action": "Oh My God, there was a small error. Please try later.",
       "other": "Unknown Error."
     }
+  },
+  "menu": {
+    "system": "System",
+    "dashboard": "Dashboard"
   }
 }

@@ -6,8 +6,8 @@
           v-list-item-action
             v-icon {{ menu.icon }}
           v-list-item-content
-            v-list-item-title {{menu.text}}
-      v-subheader.grey--text.text--darken-1(v-else) {{menu.name}}
+            v-list-item-title {{$t(menu.text)}}
+      v-subheader.grey--text.text--darken-1(v-else) {{$t(menu.name)}}
       dashboard-menu(:routes="menu.children")
 
 </template>
