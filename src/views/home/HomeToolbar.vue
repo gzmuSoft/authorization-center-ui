@@ -32,11 +32,11 @@ export default class HomeToolbar extends Vue {
   private auth: Auth = AuthModule
   handleLogin () {
     oauthServer().then(res => { window.location = res.data.server })
-      .catch(() => { this.$toast.error('tip.error.action') })
+      .catch(() => { this.$toast.error(this.$t('tip.error.action')) })
   }
   handleLogout () {
     oauthLogout().then(res => { window.location = res.data.server })
-      .catch(() => { this.$toast.error('tip.error.action') })
+      .catch(() => { this.$toast.error(this.$t('tip.error.action')) })
   }
 }
 </script>

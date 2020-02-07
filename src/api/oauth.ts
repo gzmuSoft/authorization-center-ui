@@ -8,7 +8,7 @@ const REFRESH_TOKEN = `${baseURL}/oauth/refresh_token`
 const OAUTH_LOGOUT = `${baseURL}/oauth/logout`
 
 /**
- * 获取授权服务器地址
+ * Get oauth server
  */
 export const oauthServer = () => {
   return axios({
@@ -18,7 +18,7 @@ export const oauthServer = () => {
 }
 
 /**
- * 获取 token 信息
+ * Get token info
  * @param code 授权码
  */
 export const oauthToken = (code: String) => {
@@ -30,7 +30,7 @@ export const oauthToken = (code: String) => {
 }
 
 /**
- * 退出登录 url
+ * Get login url
  */
 export const oauthLogout = () => {
   return axios({
@@ -40,7 +40,7 @@ export const oauthLogout = () => {
 }
 
 /**
- * 刷新 token
+ * Refresh token
  * @param refreshToken
  */
 export const oauthRefresh = (refreshToken: String) => {

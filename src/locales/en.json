@@ -11,6 +11,10 @@
       "change": "Change Theme",
       "dark": "Dark",
       "light": "Light"
+    },
+    "title": {
+      "login": "Login",
+      "logout": "Logout"
     }
   },
   "home": {
@@ -39,7 +43,8 @@
       "success": "Login Success. Please wait",
       "fail": "Login Failed. Seems like something went wrong, please return and try.",
       "again": "Waiting too long? Click me back to try again",
-      "already": "You are already logged in!"
+      "already": "You are already logged in!",
+      "error": "You are not logged in, please try after login."
     },
     "logout": {
       "loading": "Logout",

@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import Base from '@/store/module/base'
 import Auth from '@/store/module/auth'
+import Route from '@/store/module/route'
 import createVuexAlong from 'vuex-along'
 import { getModule } from 'vuex-module-decorators'
 Vue.use(Vuex)
@@ -9,7 +10,8 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
   modules: {
     base: Base,
-    auth: Auth
+    auth: Auth,
+    route: Route
   },
   plugins: [createVuexAlong({
     name: 'auth-center',
@@ -21,3 +23,4 @@ const store = new Vuex.Store({
 export default store
 export const BaseModule = getModule(Base, store)
 export const AuthModule = getModule(Auth, store)
+export const RouteModule = getModule(Route, store)

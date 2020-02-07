@@ -8,6 +8,7 @@ export interface IAuth {
   userName: String,
   isTeacher: Boolean,
   isStudent: Boolean,
+  isLogin: Boolean,
   authorities: Array<String>
 }
 
@@ -18,13 +19,10 @@ export default class Auth extends VuexModule implements IAuth {
   expiresIn: Number = null;
   isStudent: Boolean = null;
   isTeacher: Boolean = null;
+  isLogin: Boolean = false;
   refreshToken: String = null;
   sub: String = null;
   userName: String = null;
-
-  get isLogin () {
-    return this.accessToken !== null
-  }
 
   @Mutation
   SET_TOKEN (token) {
@@ -37,8 +35,10 @@ export default class Auth extends VuexModule implements IAuth {
       this.refreshToken = null
       this.sub = null
       this.userName = null
+      this.isLogin = false
       return
     }
+    this.isLogin = true
     this.accessToken = token.access_token
     this.authorities = token.authorities
     this.expiresIn = token.expires_in

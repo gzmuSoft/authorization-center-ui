@@ -10,3 +10,7 @@ export const getUrlParams = (name) => {
   if (r != null) return unescape(r[2])
   return null
 }
+
+export const setTitle = (title) => {
+  window.document.title = title
+}

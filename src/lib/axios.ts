@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import axios from 'axios'
 import { baseURL } from '@/api/config'
+import { AuthModule } from '@/store'
 import i18n from '@/locales/i18n'
 
 class HttpRequest {
@@ -17,8 +18,14 @@ class HttpRequest {
   }
 
   interceptors (instance: any) {
-    instance.interceptors.response.use((res: any) => {
-      return res
+    instance.interceptors.request.use((config: any) => {
+      config.headers.Authorization = 'Bearer ' + AuthModule.accessToken
+      return config
+    }, error => {
+      return Promise.reject(error)
+    })
+    instance.interceptors.response.use((config: any) => {
+      return config
     }, (error: any) => {
       let message = i18n.t(`tip.error.${error.response.status}`)
       if (error.response.hasOwnProperty('data') && error.response.data.hasOwnProperty('error')) {
