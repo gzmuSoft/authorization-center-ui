@@ -4,8 +4,9 @@
     v-navigation-drawer(v-model="drawer", app, clipped)
       dashboard-menu(:routes="routes")
     v-content
-      v-scroll-y-transition(mode="out-in")
-        router-view
+      v-container(fluid, grid-list-md)
+        v-scroll-y-transition(mode="out-in")
+          router-view.mt-2
 </template>
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'

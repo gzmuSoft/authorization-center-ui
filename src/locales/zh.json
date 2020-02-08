@@ -70,5 +70,33 @@
   "menu": {
     "system": "系统管理",
     "dashboard": "仪表盘"
+  },
+  "title": {
+    "setting": {
+      "entity": "用户信息",
+      "base": "基础信息"
+    }
+  },
+  "entity": {
+    "base": {
+      "createTime": "创建时间",
+      "modifyTime": "修改时间"
+    },
+    "student": {
+      "name": "姓名",
+      "no": "学号",
+      "gender": "性别",
+      "idNumber": "身份证号码",
+      "birthday": "出生日期",
+      "enterDate": "入学时间",
+      "academic": "最后学历",
+      "graduationDate": "最后学历毕业时间",
+      "graduateInstitution": "最后学历毕业院校",
+      "originalMajor": "最后学历所学专业",
+      "resume": "个人简历",
+      "tip": {
+        "originalMajor": "若最后学历是高中，则不需要填写;若最后学历是大专等，则需要填写。"
+      }
+    }
   }
 }

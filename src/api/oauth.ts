@@ -1,6 +1,6 @@
 import axios from 'axios'
 import authAxios from '@/api/index'
-import { baseURL } from './config'
+import { baseURL } from '@/utils/config'
 
 const OAUTH_SERVER = `${baseURL}/oauth/server`
 const OAUTH_TOKEN = `${baseURL}/oauth/token`

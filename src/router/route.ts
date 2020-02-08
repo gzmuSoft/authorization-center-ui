@@ -31,16 +31,19 @@ export const routerMap = [
       {
         path: 'index',
         name: 'index',
+        meta: { title: i18n.t('menu.dashboard') },
         component: () => import(/* webpackChunkName: "main" */ '@/views/dashboard/main')
       },
       {
         path: 'system-setting',
         name: 'system-setting',
+        meta: { title: i18n.t('title.setting.base') },
         component: () => import(/* webpackChunkName: "SystemSetting" */ '@/views/dashboard/system-setting')
       },
       {
         path: 'user-setting',
         name: 'user-setting',
+        meta: { title: i18n.t('title.setting.entity') },
         component: () => import(/* webpackChunkName: "SystemSetting" */ '@/views/dashboard/user-setting')
       }
     ]

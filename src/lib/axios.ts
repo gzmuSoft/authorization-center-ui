@@ -1,8 +1,9 @@
 import Vue from 'vue'
 import axios from 'axios'
-import { baseURL } from '@/api/config'
+import { baseURL } from '@/utils/config'
 import { AuthModule } from '@/store'
 import i18n from '@/locales/i18n'
+import { oauthServer } from '@/api/oauth'
 
 class HttpRequest {
   private readonly baseUrl: string;
@@ -28,7 +29,10 @@ class HttpRequest {
       return config
     }, (error: any) => {
       let message = i18n.t(`tip.error.${error.response.status}`)
-      if (error.response.hasOwnProperty('data') && error.response.data.hasOwnProperty('error')) {
+      if (error.response.status === 401) {
+        oauthServer().then(res => { window.location = res.data.server })
+          .catch(() => { Vue.prototype.$toast.error(i18n.t('tip.error.action') as string) })
+      } else if (error.response.hasOwnProperty('data') && error.response.data.hasOwnProperty('error')) {
         message = error.response.data.error
       }
       Vue.prototype.$toast.error(message as string)

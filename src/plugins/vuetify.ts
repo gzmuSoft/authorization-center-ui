@@ -20,7 +20,8 @@ export default new Vuetify({
         error: colors.red.lighten1,
         warning: colors.orange.lighten1,
         info: colors.lightBlue.lighten1,
-        success: colors.lightGreen.lighten1
+        success: colors.lightGreen.lighten1,
+        third: colors.green.base
       },
       dark: {
         primary: colors.red.darken1,
@@ -29,7 +30,9 @@ export default new Vuetify({
         error: colors.red.accent3,
         warning: colors.orange.darken3,
         info: colors.blue.accent1,
-        success: colors.lightGreen.darken1
+        success: colors.lightGreen.darken1,
+        next: colors.lightGreen.darken1,
+        third: colors.blue.darken1
       }
     }
   }

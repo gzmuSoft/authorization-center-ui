@@ -70,5 +70,33 @@
   "menu": {
     "system": "System",
     "dashboard": "Dashboard"
+  },
+  "title": {
+    "setting": {
+      "entity": "User info",
+      "base": "Base info"
+    }
+  },
+  "entity": {
+    "base": {
+      "createTime": "Create Time",
+      "modifyTime": "Modify Time"
+    },
+    "student": {
+      "name": "Name",
+      "no": "No",
+      "gender": "Gender",
+      "idNumber": "identification",
+      "birthday": "Birthday",
+      "enterDate": "Enter date",
+      "academic": "Academic",
+      "graduationDate": "Last Academic Graduation Date",
+      "graduateInstitution": "Last College Graduate",
+      "originalMajor": "Majors studied",
+      "resume": "resume",
+      "tip": {
+        "originalMajor": "If the last degree is a high school, you do not need to fill in; if the last degree is a college, you need to fill in."
+      }
+    }
   }
 }
