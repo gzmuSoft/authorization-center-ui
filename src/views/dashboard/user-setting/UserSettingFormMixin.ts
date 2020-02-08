@@ -36,4 +36,12 @@ export default class extends Vue {
   get genderIcon () {
     return this.entity.gender === '男' ? 'mdi-gender-male' : 'mdi-gender-female'
   }
+
+  get change () {
+    return !this._.isEqual(this.entity, this.default)
+  }
+
+  handleReset () {
+    this.entity = this._.cloneDeep(this.default)
+  }
 }

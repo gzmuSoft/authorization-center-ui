@@ -33,11 +33,18 @@
   },
   "action": {
     "login": "Login",
-    "logout": "Logout"
+    "logout": "Logout",
+    "save": "Save",
+    "reset": "Reset",
+    "cancel": "Cancel",
+    "ok": "Ok",
+    "back": "Back"
   },
   "tip": {
     "success": "Success",
     "fail": "Fail",
+    "avatar": "Avatar: User account avatar.",
+    "photo": "Photo: My real photo.",
     "login": {
       "loading": "Login",
       "success": "Login Success. Please wait",
@@ -74,7 +81,9 @@
   "title": {
     "setting": {
       "entity": "User info",
-      "base": "Base info"
+      "base": "Base info",
+      "avatar": "Avatar",
+      "photo": "Photo"
     }
   },
   "entity": {
@@ -95,7 +104,21 @@
       "originalMajor": "Majors studied",
       "resume": "resume",
       "tip": {
+        "name": "Your real name, not as a login account.",
+        "idNumber": "Eighteen pure numbers here",
+        "graduateInstitution": "The whole process of graduation.",
         "originalMajor": "If the last degree is a high school, you do not need to fill in; if the last degree is a college, you need to fill in."
+      }
+    },
+    "user": {
+      "name": "Username",
+      "email": "Email",
+      "phone": "Telephone",
+      "password": "Password",
+      "rePassword": "rePassword",
+      "tip": {
+        "name": "Your account name, used for login.",
+        "password": "Password length is 6-18 characters"
       }
     }
   }

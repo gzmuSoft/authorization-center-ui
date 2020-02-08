@@ -33,11 +33,18 @@
   },
   "action": {
     "login": "登录",
-    "logout": "退出"
+    "logout": "退出",
+    "save": "保存",
+    "reset": "重置",
+    "cancel": "取消",
+    "ok": "确认",
+    "back": "返回"
   },
   "tip": {
     "success": "操作成功",
     "fail": "操作失败",
+    "avatar": "头像:用户账户头像",
+    "photo": "照片:本人真实照片",
     "login": {
       "loading": "登录中",
       "success": "登录成功，正在跳转",
@@ -74,7 +81,9 @@
   "title": {
     "setting": {
       "entity": "用户信息",
-      "base": "基础信息"
+      "base": "基础信息",
+      "avatar": "头像",
+      "photo": "照片"
     }
   },
   "entity": {
@@ -95,7 +104,21 @@
       "originalMajor": "最后学历所学专业",
       "resume": "个人简历",
       "tip": {
+        "name": "您的真实姓名，不作为登录帐号",
+        "idNumber": "此处十八位纯数字",
+        "graduateInstitution": "毕业院校的全程",
         "originalMajor": "若最后学历是高中，则不需要填写;若最后学历是大专等，则需要填写。"
+      }
+    },
+    "user": {
+      "name": "用户名",
+      "email": "电子邮箱",
+      "phone": "手机号",
+      "password": "密码",
+      "rePassword": "重复密码",
+      "tip": {
+        "name": "您的帐号名称，用作登录使用。",
+        "password": "密码长度为 6-18 位"
       }
     }
   }

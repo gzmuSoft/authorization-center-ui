@@ -25,6 +25,6 @@ export default class CardHeader extends Vue {
 .card-header {
   width auto
   position relative
-  top -30px
+  top -60px
 }
 </style>

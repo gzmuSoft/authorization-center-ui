@@ -1,5 +1,5 @@
 <template lang="pug">
-  #user-setting
+  #user-setting.mt-10
     v-row
       v-col(cols="12", md="8")
         user-setting-student(v-if="auth.isStudent")
