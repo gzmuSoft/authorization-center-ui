@@ -23,6 +23,16 @@ export const dataByType = (type) => {
 }
 
 /**
+ */
+export const dataByTypes = (types: Array<Number>) => {
+  return authAxios.request({
+    url: `/base/sysData/types`,
+    method: 'GET',
+    params: { types: types.join(',') }
+  })
+}
+
+/**
  * Get name by Id.
  * @param id id
  */

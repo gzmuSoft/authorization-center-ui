@@ -100,6 +100,19 @@
       "createTime": "Create Time",
       "modifyTime": "Modify Time"
     },
+    "teacher": {
+      "nation": "Nation",
+      "workDate": "Time Of Participation In Work",
+      "degree": "Degree",
+      "profTitle": "ProfTitle",
+      "profTitleAssDate": "Title evaluation time",
+      "isAcademicLeader": "Is AcademicLeader",
+      "subjectCategory": "Subject category",
+      "majorResearch": "Major Research",
+      "tip": {
+        "isAcademicLeader": "Is AcademicLeader：{0}"
+      }
+    },
     "student": {
       "name": "Name",
       "no": "No",
@@ -115,7 +128,7 @@
       "tip": {
         "name": "Your real name, not as a login account.",
         "idNumber": "Eighteen pure numbers here",
-        "graduateInstitution": "The whole process of graduation.",
+        "graduateInstitution": "The full name of the graduate school.",
         "originalMajor": "If the last degree is a high school, you do not need to fill in; if the last degree is a college, you need to fill in."
       }
     },

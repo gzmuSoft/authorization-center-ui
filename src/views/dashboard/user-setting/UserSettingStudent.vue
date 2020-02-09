@@ -3,7 +3,7 @@
     v-card-title(style="height: 100px;")
       card-header(icon="mdi-account-box", :title="$t('title.setting.entity')", :info="info")
     v-card-text
-      v-form
+      v-form(ref="form")
         v-layout(wrap, style="width:100%")
           v-flex(sm12, md6)
             v-text-field(v-model="entity.name", ref="name", :label="$t('entity.student.name')",
@@ -11,6 +11,9 @@
           v-flex(sm12, md6)
             v-select(v-model="entity.gender", ref="gender", :label="$t('entity.student.gender')", :items="options.gender",
               :append-icon="genderIcon")
+          v-flex(sm12, md6)
+            v-select(v-model="entity.nation", ref="nation", :label="$t('entity.teacher.nation')",
+              :items="options.nation", item-text="name", item-value="id")
           v-flex(sm12, md6)
             v-text-field(v-model="entity.idNumber", ref="idNumber", :label="$t('entity.student.idNumber')",
               :hint="$t('entity.student.tip.idNumber')")
@@ -53,15 +56,12 @@ import { Component, Mixins } from 'vue-property-decorator'
 import CardHeader from '@/components/CardHeader.vue'
 import DateMenu from '@/components/DateMenu.vue'
 import UserSettingFormMixin from './UserSettingFormMixin'
-import { BaseModule } from '@/store'
 
 @Component({
   components: { CardHeader, DateMenu }
 })
 export default class UserSettingEntity extends Mixins(UserSettingFormMixin) {
-  get locale () {
-    return BaseModule.locale === 'zh' ? 'zh-CN' : 'en'
-  }
+
 }
 </script>
 

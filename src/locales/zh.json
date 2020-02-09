@@ -100,6 +100,19 @@
       "createTime": "创建时间",
       "modifyTime": "修改时间"
     },
+    "teacher": {
+      "nation": "民族",
+      "workDate": "参加工作时间",
+      "degree": "学位",
+      "profTitle": "职称",
+      "profTitleAssDate": "职称评定时间",
+      "isAcademicLeader": "是否学术学科带头人",
+      "subjectCategory": "所属学科门类",
+      "majorResearch": "主要研究方向",
+      "tip": {
+        "isAcademicLeader": "是否学术学科带头人：{0}"
+      }
+    },
     "student": {
       "name": "姓名",
       "no": "学号",
@@ -115,7 +128,7 @@
       "tip": {
         "name": "您的真实姓名，不作为登录帐号",
         "idNumber": "此处十八位纯数字",
-        "graduateInstitution": "毕业院校的全程",
+        "graduateInstitution": "毕业院校的全称",
         "originalMajor": "若最后学历是高中，则不需要填写;若最后学历是大专等，则需要填写。"
       }
     },
