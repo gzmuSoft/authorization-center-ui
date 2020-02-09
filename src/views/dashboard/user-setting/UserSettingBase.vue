@@ -14,34 +14,39 @@
         v-btn(@click="handleImg(0)") {{$t("title.setting.avatar")}}
         v-btn(@click="handleImg(1)") {{$t("title.setting.photo")}}
     v-card-text
-      v-form
+      v-form(ref="form")
         v-layout(wrap, style="width:100%")
           v-flex(sm12)
-            v-text-field(v-model="user.name", ref="username", :label="$t('entity.user.name')"
-              :hint="$t('entity.user.tip.name')", persistent-hint)
+            v-text-field(:value="user.name", ref="username", :label="$t('entity.user.name')", disabled)
           v-flex(sm12)
-            v-text-field(v-model="user.email", ref="email", :label="$t('entity.user.email')")
+            v-text-field(v-model="user.email", ref="email", :label="$t('entity.user.email')",
+              :rules="[rangeLength(4, 35), email()]")
           v-flex(sm12)
-            v-text-field(v-model="user.phone", ref="phone", :label="$t('entity.user.phone')")
+            v-text-field(v-model="user.phone", ref="phone", :label="$t('entity.user.phone')",
+              :rules="[equalsLength(11)]")
           v-flex(sm12)
-            v-text-field(v-model="user.password", ref="password", type="password", :label="$t('entity.user.password')")
+            v-text-field(v-model="user.password", ref="password", type="password", :label="$t('entity.user.password')",
+              :rules="[noRequiredRangeLength(6, 20)]")
           v-flex(sm12)
-            v-text-field(v-model="user.rePassword", ref="rePassword", type="password", :label="$t('entity.user.password')")
+            v-text-field(v-model="user.rePassword", ref="rePassword", type="password", :label="$t('entity.user.password')",
+              :rules="[noRequiredRangeLength(6, 20), passwordEquals]")
     v-card-actions
       v-spacer
       v-expand-transition
         .action(v-show="change")
           v-btn.mr-5(outlined, color="warning", @click="handleReset") {{$t("action.reset")}}
-          v-btn(outlined, color="success") {{$t("action.save")}}
+          v-btn(outlined, color="success", @click="handleSave") {{$t("action.save")}}
 
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
+import { Component, Mixins } from 'vue-property-decorator'
 import { oauthMe } from '@/api/oauth'
+import FormValidateMixin from '@/plugins/FormValidateMixin'
+import { updateUser } from '@/api/setting'
 
 @Component
-export default class UserSettingBase extends Vue {
+export default class UserSettingBase extends Mixins(FormValidateMixin) {
   private default: any = {}
   private user: any = {}
   private image: String = ''
@@ -51,6 +56,7 @@ export default class UserSettingBase extends Vue {
       this.user = res.data
       this.default = this._.cloneDeep(res.data)
       this.image = this.user.avatar
+      this.$refs.form.resetValidation()
     })
   }
   get change () {
@@ -58,10 +64,23 @@ export default class UserSettingBase extends Vue {
   }
   handleReset () {
     this.user = this._.cloneDeep(this.default)
+    this.$refs.form.resetValidation()
+  }
+  handleSave () {
+    if (!this.$refs.form.validate()) return
+    updateUser(this.user).then(() => {
+      this.$toast.success(this.$t('tip.success'))
+      this.user.password = ''
+      this.user.rePassword = ''
+      this.default = this._.cloneDeep(this.user)
+    })
   }
   handleImg (type) {
-    if (type === 0) this.image = this.user.avatar
-    else this.image = this.user.image
+    if (type === 0 && this.user.avatar !== null) this.image = this.user.avatar
+    else if (type === 1 && this.user.image !== null) this.image = this.user.image
+  }
+  passwordEquals () {
+    return this.user.password === this.user.rePassword || this.$t('tip.validate.password')
   }
 }
 </script>

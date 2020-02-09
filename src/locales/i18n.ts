@@ -26,4 +26,9 @@ Vue.prototype.$t = (key: string) => {
   return i18n.t(key)
 }
 
+Vue.prototype.$t = (key: string, value) => {
+  if (!key) return ''
+  return i18n.t(key, value)
+}
+
 export default i18n

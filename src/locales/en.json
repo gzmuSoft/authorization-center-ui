@@ -68,6 +68,15 @@
       "500": "Service error: An internal error occurred on the server, please contact the administrator.",
       "action": "Oh My God, there was a small error. Please try later.",
       "other": "Unknown Error."
+    },
+    "validate": {
+      "required": "{0} cannot be empty.",
+      "email": "Email address is invalid.",
+      "maxLength": "The length must be less than {0}.",
+      "minLength": "The length must be greater than {0}.",
+      "equalsLength": "The length must be equals {0}.",
+      "rangeLength": "The length must be in the range of {0} to {1}.",
+      "password": "The password is different twice."
     }
   },
   "setting": {
