@@ -42,3 +42,16 @@ export const dataInfoById = (id) => {
     method: 'GET'
   })
 }
+
+/**
+ * user exist
+ * @param email
+ * @param phone
+ */
+export const userExist = ({ email = '', phone = '' }) => {
+  return authAxios.request({
+    url: `/base/user/exist`,
+    method: 'GET',
+    params: { email, phone }
+  })
+}

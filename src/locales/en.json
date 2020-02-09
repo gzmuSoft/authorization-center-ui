@@ -76,7 +76,8 @@
       "minLength": "The length must be greater than {0}.",
       "equalsLength": "The length must be equals {0}.",
       "rangeLength": "The length must be in the range of {0} to {1}.",
-      "password": "The password is different twice."
+      "password": "The password is different twice.",
+      "exist": "Ah, {0} already exists."
     }
   },
   "setting": {

@@ -19,10 +19,10 @@
           v-flex(sm12)
             v-text-field(:value="user.name", ref="username", :label="$t('entity.user.name')", disabled)
           v-flex(sm12)
-            v-text-field(v-model="user.email", ref="email", :label="$t('entity.user.email')",
+            v-text-field(v-model="user.email", ref="email", :label="$t('entity.user.email')", @blur="emailExist",
               :rules="[rangeLength(4, 35), email()]")
           v-flex(sm12)
-            v-text-field(v-model="user.phone", ref="phone", :label="$t('entity.user.phone')",
+            v-text-field(v-model="user.phone", ref="phone", :label="$t('entity.user.phone')", @blur="phoneExist",
               :rules="[equalsLength(11)]")
           v-flex(sm12)
             v-text-field(v-model="user.password", ref="password", type="password", :label="$t('entity.user.password')",
@@ -44,6 +44,7 @@ import { Component, Mixins } from 'vue-property-decorator'
 import { oauthMe } from '@/api/oauth'
 import FormValidateMixin from '@/plugins/FormValidateMixin'
 import { updateUser } from '@/api/setting'
+import { userExist } from '@/api/base'
 
 @Component
 export default class UserSettingBase extends Mixins(FormValidateMixin) {
@@ -51,6 +52,11 @@ export default class UserSettingBase extends Mixins(FormValidateMixin) {
   private user: any = {}
   private image: String = ''
   private tip: Boolean = false
+  $refs: {
+    form: any,
+    email: any,
+    phone: any
+  }
   created () {
     oauthMe().then(res => {
       this.user = res.data
@@ -66,8 +72,12 @@ export default class UserSettingBase extends Mixins(FormValidateMixin) {
     this.user = this._.cloneDeep(this.default)
     this.$refs.form.resetValidation()
   }
-  handleSave () {
+  async handleSave () {
     if (!this.$refs.form.validate()) return
+    const email = await this.emailExist()
+    if (email) return
+    const phone = await this.phoneExist()
+    if (phone) return
     updateUser(this.user).then(() => {
       this.$toast.success(this.$t('tip.success'))
       this.user.password = ''
@@ -81,6 +91,24 @@ export default class UserSettingBase extends Mixins(FormValidateMixin) {
   }
   passwordEquals () {
     return this.user.password === this.user.rePassword || this.$t('tip.validate.password')
+  }
+  async emailExist () {
+    if (this.user.email === this.default.email) return false
+    const res: any = await userExist({ email: this.user.email })
+    if (res.data.exist) {
+      this.$refs.email.errorBucket = [this.$t('tip.validate.exist', [this.user.email])]
+      return true
+    }
+    return false
+  }
+  async phoneExist () {
+    if (this.user.phone === this.default.phone) return false
+    const res: any = await userExist({ phone: this.user.phone })
+    if (res.data.exist) {
+      this.$refs.phone.errorBucket = [this.$t('tip.validate.exist', [this.user.phone])]
+      return true
+    }
+    return false
   }
 }
 </script>
