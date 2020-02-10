@@ -1,11 +1,12 @@
 <template lang="pug">
   v-sheet.card-header.pa-7.white--text.mx-2(elevation="8", :color="color", width="100%")
-    div(style="line-height:1")
-      v-icon.mr-5(color="white", size="32") {{icon}}
-      span.mr-5.my-0 {{title}}
-      span.mr-5.my-0 {{subTitle}}
-      br
-      span.caption {{info}}
+    v-expand-transition
+      div(style="line-height:1")
+        v-icon.mr-5(color="white", size="32") {{icon}}
+        span.mr-5.my-0 {{title}}
+        span.mr-5.my-0 {{subTitle}}
+        br
+        span.caption {{info}}
 </template>
 
 <script lang="ts">

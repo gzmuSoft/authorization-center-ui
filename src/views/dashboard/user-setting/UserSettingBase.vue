@@ -35,7 +35,7 @@
       v-expand-transition
         .action(v-show="change")
           v-btn.mr-5(outlined, color="warning", @click="handleReset") {{$t("action.reset")}}
-          v-btn(outlined, color="success", @click="handleSave") {{$t("action.save")}}
+          v-btn(outlined, color="success", @click="handleSave", :loading="loading") {{$t("action.save")}}
 
 </template>
 
@@ -52,6 +52,7 @@ export default class UserSettingBase extends Mixins(FormValidateMixin) {
   private user: any = {}
   private image: String = ''
   private tip: Boolean = false
+  private loading: Boolean = false
   $refs: {
     form: any,
     email: any,
@@ -73,17 +74,25 @@ export default class UserSettingBase extends Mixins(FormValidateMixin) {
     this.$refs.form.resetValidation()
   }
   async handleSave () {
-    if (!this.$refs.form.validate()) return
-    const email = await this.emailExist()
-    if (email) return
-    const phone = await this.phoneExist()
-    if (phone) return
-    updateUser(this.user).then(() => {
-      this.$toast.success(this.$t('tip.success'))
-      this.user.password = ''
-      this.user.rePassword = ''
-      this.default = this._.cloneDeep(this.user)
-    })
+    this.loading = true
+    try {
+      if (!this.$refs.form.validate()) {
+        this.$toast.warning(this.$t('tip.validate.complete'))
+        return
+      }
+      const email = await this.emailExist()
+      if (email) return
+      const phone = await this.phoneExist()
+      if (phone) return
+      updateUser(this.user).then(() => {
+        this.$toast.success(this.$t('tip.success'))
+        this.user.password = ''
+        this.user.rePassword = ''
+        this.default = this._.cloneDeep(this.user)
+      })
+    } finally {
+      this.loading = false
+    }
   }
   handleImg (type) {
     if (type === 0 && this.user.avatar !== null) this.image = this.user.avatar

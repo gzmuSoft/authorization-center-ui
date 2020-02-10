@@ -70,6 +70,7 @@
       "other": "Unknown Error."
     },
     "validate": {
+      "complete": "Please confirm that you have completed the information.",
       "required": "{0} cannot be empty.",
       "email": "Email address is invalid.",
       "maxLength": "The length must be less than {0}.",
@@ -77,6 +78,7 @@
       "equalsLength": "The length must be equals {0}.",
       "rangeLength": "The length must be in the range of {0} to {1}.",
       "password": "The password is different twice.",
+      "resume": "The resume length must be less than 4000. Now it is {0}.",
       "exist": "Ah, {0} already exists."
     }
   },

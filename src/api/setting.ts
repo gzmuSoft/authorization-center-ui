@@ -11,3 +11,15 @@ export const updateUser = (user) => {
     data: user
   })
 }
+
+/**
+ * Update user entity.
+ * @param entity
+ */
+export const updateEntity = (entity) => {
+  return authAxios.request({
+    url: '/me/info',
+    method: 'PATCH',
+    data: entity
+  })
+}
