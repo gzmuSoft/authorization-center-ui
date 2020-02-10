@@ -2,7 +2,7 @@
   v-card.setting-base
     v-card-title.setting-avatar.text-center(style="width:100%;height:190px")
       v-avatar.mx-auto.elevation-18(height="150px", width="150px")
-        v-img.setting-avatar-img(:src="image")
+        v-img.setting-avatar-img(:src="image", v-img-view)
       v-tooltip(bottom, v-model="tip")
         template(v-slot:activator="{ on }")
           v-btn(icon, v-on="on", @click="tip = true", style="position: absolute; right: 0;")

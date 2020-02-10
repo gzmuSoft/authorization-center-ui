@@ -1,15 +1,18 @@
 <template lang="pug">
   v-app
+    img-view
     v-fade-transition(hide-on-leave, mode="out-in")
       router-view
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
+import ImgView from '@/plugins/img-view/ImgView.vue'
 import { BaseModule } from '@/store'
 
 export default Vue.extend({
   name: 'App',
+  components: { ImgView },
   data: () => ({
   }),
   created () {

@@ -45,6 +45,7 @@
     "fail": "Fail",
     "avatar": "Avatar: User account avatar.",
     "photo": "Photo: My real photo.",
+    "imgClose": "Click image to close view.",
     "login": {
       "loading": "Login",
       "success": "Login Success. Please wait",

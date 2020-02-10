@@ -8,6 +8,7 @@ import Toast from 'vue-toastification'
 import VuejsDialog from 'vuejs-dialog'
 import mavonEditor from 'mavon-editor'
 import _ from 'lodash'
+import imgView from './plugins/img-view'
 import 'vue-toastification/dist/index.css'
 import 'vuejs-dialog/dist/vuejs-dialog.min.css'
 import 'mavon-editor/dist/css/index.css'
@@ -15,6 +16,7 @@ import 'mavon-editor/dist/css/index.css'
 Vue.config.productionTip = false
 
 Vue.prototype._ = _
+Vue.use(imgView)
 Vue.use(Toast)
 Vue.use(VuejsDialog)
 Vue.use(mavonEditor)

@@ -18,7 +18,7 @@
         v-list
           v-list-item
             v-list-item-avatar
-              img(alt="Avatar", :src="user.avatar")
+              img(alt="Avatar", :src="user.avatar", v-img-view)
             v-list-item-content
               v-list-item-title {{user.name}}
               v-list-item-subtitle {{user.email}}

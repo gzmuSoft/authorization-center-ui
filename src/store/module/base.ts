@@ -5,14 +5,24 @@ import vuetify from '@/plugins/vuetify'
 export interface IBase {
   theme: boolean,
   drawer: boolean,
-  locale: string
+  locale: string,
+  imgView: any
 }
 @Module({ namespaced: true, name: 'base' })
 export default class Base extends VuexModule implements IBase {
   theme: boolean = true
   drawer: boolean = true
   locale: string = 'zh'
+  imgView: any = {
+    show: false,
+    img: ''
+  }
 
+  @Mutation
+  CHANGE_IMG (img) {
+    this.imgView.show = !this.imgView.show
+    this.imgView.img = img
+  }
   @Mutation
   SET_THEME () {
     this.theme = !this.theme
@@ -27,6 +37,10 @@ export default class Base extends VuexModule implements IBase {
     this.locale = this.locale === 'zh' ? 'en' : 'zh'
     i18n.locale = i18n.locale === 'zh' ? 'en' : 'zh'
     vuetify.framework.lang.current = i18n.locale
+  }
+  @Action
+  changImg (img) {
+    this.CHANGE_IMG(img)
   }
   @Action
   changeTheme () {
