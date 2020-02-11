@@ -1,6 +1,6 @@
 <template lang="pug">
   #dashboard
-    dashboard-toolbar(@handle-change="changeDrawer", @handle-theme="changeTheme")
+    dashboard-toolbar(@handle-change="handleChangeDrawer", @handle-theme="handleChangeTheme")
     v-navigation-drawer(v-model="drawer", app, clipped)
       dashboard-menu(:routes="routes")
     v-content
@@ -12,30 +12,34 @@
 import { Component, Vue } from 'vue-property-decorator'
 import DashboardToolbar from '@/views/dashboard/DashboardToolbar.vue'
 import DashboardMenu from '@/views/dashboard/DashboardMenu.vue'
-import { BaseModule, UserModule } from '@/store'
 import { meMenu } from '@/api/auth'
-import User from '@/store/module/user'
-
+import { Action, State } from 'vuex-class'
+const base = 'base'
+const user = 'user'
 @Component({
   components: { DashboardToolbar, DashboardMenu }
 })
 export default class Dashboard extends Vue {
   drawer: Boolean = true
   routes: Array<Object> = []
-  user: User = UserModule
+  @State('theme', { namespace: base }) public theme!: Boolean
+  @State('drawer', { namespace: base }) public drawerState!: Boolean
+  @Action('getUser', { namespace: user }) public getUser!: Function
+  @Action('changeDrawer', { namespace: base }) public changeDrawer!: Function
+  @Action('changeTheme', { namespace: base }) public changeTheme!: Function
   created () {
-    this.$vuetify.theme.dark = BaseModule.theme
-    this.drawer = BaseModule.drawer
+    this.$vuetify.theme.dark = this.theme as boolean
+    this.drawer = this.drawerState
     meMenu().then(res => { this.routes = res.data.menus })
-    this.user.getUser()
+    this.getUser()
   }
-  changeDrawer () {
-    BaseModule.changeDrawer()
+  handleChangeDrawer () {
+    this.changeDrawer()
     this.drawer = !this.drawer
   }
-  changeTheme () {
-    BaseModule.changeTheme()
-    this.$vuetify.theme.dark = BaseModule.theme
+  handleChangeTheme () {
+    this.changeTheme()
+    this.$vuetify.theme.dark = this.theme as boolean
   }
 }
 </script>

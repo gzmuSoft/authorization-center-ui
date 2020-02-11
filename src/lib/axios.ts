@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import axios from 'axios'
 import { baseURL } from '@/utils/config'
-import { AuthModule } from '@/store'
+import store from '@/store'
 import i18n from '@/locales/i18n'
 import { oauthServer } from '@/api/oauth'
 
@@ -20,7 +20,7 @@ class HttpRequest {
 
   interceptors (instance: any) {
     instance.interceptors.request.use((config: any) => {
-      config.headers.Authorization = 'Bearer ' + AuthModule.accessToken
+      config.headers.Authorization = 'Bearer ' + store.state.auth.accessToken
       return config
     }, error => {
       return Promise.reject(error)

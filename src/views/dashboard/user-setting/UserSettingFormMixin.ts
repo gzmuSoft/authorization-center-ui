@@ -3,8 +3,8 @@ import { meInfo } from '@/api/auth'
 import { dataByTypes, dataInfoById } from '@/api/base'
 import { gender } from '@/utils/options'
 import { toolbars } from '@/utils/config'
-import { BaseModule } from '@/store'
 import { updateEntity } from '@/api/setting'
+import { Getter } from 'vuex-class'
 
 @Component
 export default class extends Vue {
@@ -17,6 +17,7 @@ export default class extends Vue {
   protected info: string = ''
   protected toolbars: object = toolbars
   protected loading: Boolean = false
+  @Getter('localeMarkdown', { namespace: 'base' }) public locale!: string
   $refs: {
     form: any
   }
@@ -55,10 +56,6 @@ export default class extends Vue {
 
   get change () {
     return !this._.isEqual(this.entity, this.default)
-  }
-
-  get locale () {
-    return BaseModule.locale === 'zh' ? 'zh-CN' : 'en'
   }
 
   handleReset () {

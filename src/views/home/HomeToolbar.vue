@@ -8,28 +8,28 @@
         v-btn(icon, v-on="on")
           v-icon mdi-menu
       v-list
-        v-list-item(@click="handleLogout", v-if="auth.isLogin", link)
+        v-list-item(@click="handleLogout", v-if="isLogin", link)
           v-list-item-title {{$t("action.logout")}}
         v-list-item(@click="handleLogin", v-else, link)
           v-list-item-title {{$t("action.login")}}
-        v-list-item(@click="base.changeLocale()", link)
+        v-list-item(@click="changeLocale()", link)
           v-list-item-title {{$t("language")}}
-        v-list-item(@click="base.changeTheme()", link)
+        v-list-item(@click="changeTheme()", link)
           v-list-item-title {{$t("base.theme.change")}}
 
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import { BaseModule, AuthModule } from '@/store'
 import { oauthServer, oauthLogout } from '@/api/oauth'
-import Base from '@/store/module/base'
-import Auth from '@/store/module/auth'
+import { Action, Getter } from 'vuex-class'
+const base = 'base'
 
 @Component
 export default class HomeToolbar extends Vue {
-  private base: Base = BaseModule
-  private auth: Auth = AuthModule
+  @Getter('isLogin', { namespace: 'auth' }) public isLogin!:Boolean
+  @Action('changeLocale', { namespace: base }) public changeLocale!:Function
+  @Action('changeTheme', { namespace: base }) public changeTheme!:Function
   handleLogin () {
     oauthServer().then(res => { window.location = res.data.server })
       .catch(() => { this.$toast.error(this.$t('tip.error.action')) })

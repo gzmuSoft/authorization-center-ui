@@ -13,17 +13,18 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import { AuthModule } from '@/store'
 import { oauthServer } from '@/api/oauth'
+import { Getter } from 'vuex-class'
 
 @Component
 export default class Banner extends Vue {
+  @Getter('isLogin', { namespace: 'auth' }) public isLogin!: Boolean
   handleStart () {
-    if (AuthModule.isLogin) {
+    if (this.isLogin) {
       this.$router.push({ name: 'index' })
     } else {
       oauthServer().then(res => { window.location = res.data.server })
-        .catch(() => { this.$toast.error('tip.error.action') })
+        .catch(() => { this.$toast.error(this.$t('tip.error.action')) })
     }
   }
 }

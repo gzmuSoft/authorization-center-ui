@@ -1,9 +1,9 @@
 import Vue from 'vue'
-import VueRouter, { RouteConfig } from 'vue-router'
+import VueRouter from 'vue-router'
 import i18n from '@/locales/i18n'
 import { routes } from './route'
 import { setTitle } from '@/utils'
-import { AuthModule, RouteModule } from '@/store'
+import store from '@/store'
 
 Vue.use(VueRouter)
 
@@ -19,16 +19,16 @@ router.beforeEach((to, from, next) => {
     next()
     return
   }
-  if (!AuthModule.isLogin) {
+  if (!store.getters['auth/isLogin']) {
     next({ name: 'home' })
     Vue.$toast.error(i18n.t('tip.login.error'))
     return
   }
-  if (RouteModule.hasGetRules) {
+  if (store.state.route.hasGetRules) {
     next()
     return
   }
-  RouteModule.getRoutes().then((routes:RouteConfig[]) => {
+  store.dispatch('route/getRoutes').then(routes => {
     // @ts-ignore
     if (!router.options.routes.includes(routes)) {
       router.addRoutes(routes)

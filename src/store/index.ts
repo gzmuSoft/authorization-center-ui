@@ -1,30 +1,26 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import Base from '@/store/module/base'
-import Auth from '@/store/module/auth'
-import Route from '@/store/module/route'
-import User from '@/store/module/user'
+import { RootState } from './types'
+import { user } from '@/store/module/user'
+import { route } from '@/store/module/route'
+import { base } from '@/store/module/base'
+import { auth } from '@/store/module/auth'
 import createVuexAlong from 'vuex-along'
-import { getModule } from 'vuex-module-decorators'
 Vue.use(Vuex)
 
-const store = new Vuex.Store({
+const store = new Vuex.Store<RootState>({
   modules: {
-    base: Base,
-    auth: Auth,
-    route: Route,
-    user: User
+    user,
+    route,
+    base,
+    auth
   },
   plugins: [createVuexAlong({
     name: 'auth-center',
     local: {
-      list: ['base', 'auth']
+      list: ['user', 'base', 'auth']
     }
   })]
 })
 
 export default store
-export const BaseModule = getModule(Base, store)
-export const AuthModule = getModule(Auth, store)
-export const RouteModule = getModule(Route, store)
-export const UserModule = getModule(User, store)

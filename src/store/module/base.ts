@@ -1,57 +1,69 @@
-import { Module, VuexModule, Mutation, Action } from 'vuex-module-decorators'
 import i18n from '@/locales/i18n'
 import vuetify from '@/plugins/vuetify'
+import { ActionTree, GetterTree, MutationTree, Module } from 'vuex'
+import { RootState } from '@/store/types'
 
-export interface IBase {
+export interface BaseState {
   theme: boolean,
   drawer: boolean,
   locale: string,
   imgView: any
 }
-@Module({ namespaced: true, name: 'base' })
-export default class Base extends VuexModule implements IBase {
-  theme: boolean = true
-  drawer: boolean = true
-  locale: string = 'zh'
-  imgView: any = {
+
+const state: BaseState = {
+  theme: true,
+  drawer: false,
+  locale: 'zh',
+  imgView: {
     show: false,
     img: ''
   }
+}
 
-  @Mutation
-  CHANGE_IMG (img) {
-    this.imgView.show = !this.imgView.show
-    this.imgView.img = img
+const getters: GetterTree<BaseState, RootState> = {
+  localeMarkdown (state) {
+    return state.locale === 'zh' ? 'zh-CN' : 'en'
   }
-  @Mutation
-  SET_THEME () {
-    this.theme = !this.theme
-    vuetify.framework.theme.dark = this.theme
-  }
-  @Mutation
-  SET_DRAWER () {
-    this.drawer = !this.drawer
-  }
-  @Mutation
-  CHANGE_LOCALE () {
-    this.locale = this.locale === 'zh' ? 'en' : 'zh'
+}
+
+const mutations: MutationTree<BaseState> = {
+  CHANGE_IMG (state, img) {
+    state.imgView.show = !state.imgView.show
+    state.imgView.img = img
+  },
+  SET_THEME (state) {
+    state.theme = !state.theme
+    vuetify.framework.theme.dark = state.theme
+  },
+  SET_DRAWER (state) {
+    state.drawer = !state.drawer
+  },
+  CHANGE_LOCALE (state) {
+    state.locale = state.locale === 'zh' ? 'en' : 'zh'
     i18n.locale = i18n.locale === 'zh' ? 'en' : 'zh'
     vuetify.framework.lang.current = i18n.locale
   }
-  @Action
-  changImg (img) {
-    this.CHANGE_IMG(img)
+}
+
+const actions:ActionTree<BaseState, RootState> = {
+  changImg ({ commit }, img) {
+    commit('CHANGE_IMG', img)
+  },
+  changeTheme ({ commit }) {
+    commit('SET_THEME')
+  },
+  changeDrawer ({ commit }) {
+    commit('SET_DRAWER')
+  },
+  changeLocale ({ commit }) {
+    commit('CHANGE_LOCALE')
   }
-  @Action
-  changeTheme () {
-    this.SET_THEME()
-  }
-  @Action
-  changeDrawer () {
-    this.SET_DRAWER()
-  }
-  @Action
-  changeLocale () {
-    this.CHANGE_LOCALE()
-  }
+}
+
+export const base: Module<BaseState, RootState> = {
+  namespaced: true,
+  state,
+  getters,
+  actions,
+  mutations
 }

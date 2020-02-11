@@ -10,15 +10,17 @@
 
 <script lang="ts">
 import { Component, Mixins } from 'vue-property-decorator'
-import { AuthModule, RouteModule } from '@/store'
 import Mixin from './Mixin'
+import { Action } from 'vuex-class'
 
 @Component
 export default class Logout extends Mixins(Mixin) {
+  @Action('oauthToken', { namespace: 'auth' }) public oauthToken!: Function
+  @Action('changeRoutes', { namespace: 'route' }) public changeRoutes!: Function
   created () {
     this.tipI18n = 'tip.logout.loading'
-    AuthModule.oauthToken(null)
-    RouteModule.changeRoutes(false)
+    this.oauthToken(null)
+    this.changeRoutes(false)
     this.tipI18n = 'tip.logout.success'
     setTimeout(() => {
       this.handleBack()

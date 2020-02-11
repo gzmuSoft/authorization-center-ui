@@ -1,6 +1,7 @@
-import { Module, VuexModule, Mutation, Action } from 'vuex-module-decorators'
+import { ActionTree, GetterTree, Module, MutationTree } from 'vuex'
+import { RootState } from '@/store/types'
 
-export interface IAuth {
+export interface AuthState {
   accessToken: String,
   refreshToken: String,
   expiresIn: Number,
@@ -8,49 +9,60 @@ export interface IAuth {
   userName: String,
   isTeacher: Boolean,
   isStudent: Boolean,
-  isLogin: Boolean,
   authorities: Array<String>
 }
 
-@Module({ namespaced: true, name: 'auth' })
-export default class Auth extends VuexModule implements IAuth {
-  accessToken: String = null;
-  authorities: Array<String> = null;
-  expiresIn: Number = null;
-  isStudent: Boolean = null;
-  isTeacher: Boolean = null;
-  isLogin: Boolean = false;
-  refreshToken: String = null;
-  sub: String = null;
-  userName: String = null;
+const state: AuthState = {
+  accessToken: null,
+  authorities: null,
+  expiresIn: null,
+  isStudent: null,
+  isTeacher: null,
+  refreshToken: null,
+  sub: null,
+  userName: null
+}
 
-  @Mutation
-  SET_TOKEN (token) {
+const getters: GetterTree<AuthState, RootState> = {
+  isLogin (state): Boolean {
+    return state.accessToken !== null
+  }
+}
+
+const mutations: MutationTree<AuthState> = {
+  SET_TOKEN (state, token) {
     if (token === null) {
-      this.accessToken = null
-      this.authorities = null
-      this.expiresIn = null
-      this.isStudent = null
-      this.isTeacher = null
-      this.refreshToken = null
-      this.sub = null
-      this.userName = null
-      this.isLogin = false
+      state.accessToken = null
+      state.authorities = null
+      state.expiresIn = null
+      state.isStudent = null
+      state.isTeacher = null
+      state.refreshToken = null
+      state.sub = null
+      state.userName = null
       return
     }
-    this.isLogin = true
-    this.accessToken = token.access_token
-    this.authorities = token.authorities
-    this.expiresIn = token.expires_in
-    this.isStudent = token.is_student
-    this.isTeacher = token.is_teacher
-    this.refreshToken = token.refresh_token
-    this.sub = token.sub
-    this.userName = token.user_name
+    state.accessToken = token.access_token
+    state.authorities = token.authorities
+    state.expiresIn = token.expires_in
+    state.isStudent = token.is_student
+    state.isTeacher = token.is_teacher
+    state.refreshToken = token.refresh_token
+    state.sub = token.sub
+    state.userName = token.user_name
   }
+}
 
-  @Action
-  oauthToken (token) {
-    this.SET_TOKEN(token)
+const actions:ActionTree<AuthState, RootState> = {
+  oauthToken ({ commit }, token) {
+    commit('SET_TOKEN', token)
   }
+}
+
+export const auth: Module<AuthState, RootState> = {
+  namespaced: true,
+  state,
+  getters,
+  actions,
+  mutations
 }

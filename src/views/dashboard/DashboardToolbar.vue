@@ -13,15 +13,15 @@
       template(v-slot:activator="{ on }")
         v-btn(icon, v-on="on", large)
           v-avatar(size="32")
-            img(alt="Avatar", :src="user.avatar")
+            img(alt="Avatar", :src="avatar")
       v-card
         v-list
           v-list-item
             v-list-item-avatar
-              img(alt="Avatar", :src="user.avatar", v-img-view)
+              img(alt="Avatar", :src="avatar", v-img-view)
             v-list-item-content
-              v-list-item-title {{user.name}}
-              v-list-item-subtitle {{user.email}}
+              v-list-item-title {{name}}
+              v-list-item-subtitle {{email}}
         v-divider
         v-list
           v-list-item(link, :to="{name: 'system-setting'}")
@@ -32,7 +32,7 @@
             v-list-item-avatar
               v-icon mdi-account
             v-list-item-content {{$t('setting.user')}}
-          v-list-item(link, @click="base.changeLocale")
+          v-list-item(link, @click="changeLocale")
             v-list-item-avatar
               v-icon mdi-all-inclusive
             v-list-item-content {{$t('language')}}
@@ -46,15 +46,16 @@
 
 <script lang="ts">
 import { Component, Vue, Emit } from 'vue-property-decorator'
-import { UserModule, BaseModule } from '@/store'
-import User from '@/store/module/user'
-import Base from '@/store/module/base'
 import { oauthLogout } from '@/api/oauth'
+import { Action, State } from 'vuex-class'
 
+const user = 'user'
 @Component
 export default class DashboardToolbar extends Vue {
-  user: User = UserModule
-  base: Base = BaseModule
+  @State('avatar', { namespace: user }) public avatar!: String
+  @State('name', { namespace: user }) public name!: String
+  @State('email', { namespace: user }) public email!: String
+  @Action('changeLocale', { namespace: 'base' }) public changeLocale!: Function
   @Emit('handle-change') handleChange () {}
   @Emit('handle-theme') handleTheme () {}
   handleLogout () {

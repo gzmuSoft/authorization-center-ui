@@ -89,7 +89,8 @@
   },
   "menu": {
     "system": "系统管理",
-    "dashboard": "仪表盘"
+    "dashboard": "仪表盘",
+    "role": "角色管理"
   },
   "title": {
     "setting": {
@@ -97,7 +98,8 @@
       "base": "基础信息",
       "avatar": "头像",
       "photo": "照片"
-    }
+    },
+    "role": "角色管理"
   },
   "entity": {
     "base": {

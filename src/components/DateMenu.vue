@@ -8,13 +8,14 @@
 
 <script lang="ts">
 import { Component, Prop, Vue, Watch } from 'vue-property-decorator'
-import { BaseModule } from '@/store'
+import { State } from 'vuex-class'
 
 @Component
 export default class DateMenu extends Vue {
   // Data -----------
   private dateMenu: Boolean = false
   private initDate: String = new Date().toISOString()
+  @State('base/locale') public locale!: string
   // Prop -----------
   @Prop(String) private value: String
   @Prop(String) private label: String
@@ -40,10 +41,6 @@ export default class DateMenu extends Vue {
     if (this.init !== null) this.initDate = this.init
     if (this.type === 'day') this.initDate = this.initDate.substring(0, 10)
     else if (this.type === 'month') this.initDate = this.initDate.substring(0, 7)
-  }
-  // getter ---------
-  get locale () {
-    return BaseModule.locale
   }
 }
 </script>

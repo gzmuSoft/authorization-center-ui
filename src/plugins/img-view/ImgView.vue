@@ -1,27 +1,24 @@
 <template lang="pug">
   .img-view
-    v-overlay(:value="base.imgView.show")
+    v-overlay(:value="imgView.show")
       .text-right
-        v-btn(icon, @click="handleClick")
+        v-btn(icon, @click="changImg")
           v-icon mdi-close
-      v-img(:src="base.imgView.img", @click="handleClick", max-width="900px")
+      v-img(:src="imgView.img", @click="changImg", max-width="900px")
       .text-center {{$t('tip.imgClose')}}
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import vuetify from '@/plugins/vuetify'
-import { BaseModule } from '@/store'
-import Base from '@/store/module/base'
+import { Action, State } from 'vuex-class'
 
 @Component
 export default class ImgView extends Vue {
-  private base: Base = BaseModule
+  @State('imgView', { namespace: 'base' }) public imgView!: any
+  @Action('changImg', { namespace: 'base' }) public changImg!: Function
   created () {
     this.$vuetify = vuetify.framework
-  }
-  handleClick () {
-    this.base.changImg('')
   }
 }
 </script>

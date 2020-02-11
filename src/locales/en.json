@@ -89,7 +89,8 @@
   },
   "menu": {
     "system": "System",
-    "dashboard": "Dashboard"
+    "dashboard": "Dashboard",
+    "role": "Role"
   },
   "title": {
     "setting": {
@@ -97,7 +98,8 @@
       "base": "Base info",
       "avatar": "Avatar",
       "photo": "Photo"
-    }
+    },
+    "role": "Role"
   },
   "entity": {
     "base": {

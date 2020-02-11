@@ -8,19 +8,20 @@
 <script lang="ts">
 import Vue from 'vue'
 import ImgView from '@/plugins/img-view/ImgView.vue'
-import { BaseModule } from '@/store'
+import { Component } from 'vue-property-decorator'
+import { State } from 'vuex-class'
 
-export default Vue.extend({
-  name: 'App',
-  components: { ImgView },
-  data: () => ({
-  }),
+const base = 'base'
+@Component({ components: { ImgView } })
+export default class App extends Vue {
+  @State('locale', { namespace: base }) public locale!: string
+  @State('theme', { namespace: base }) public theme!: boolean
   created () {
-    this.$i18n.locale = BaseModule.locale
-    this.$vuetify.lang.current = BaseModule.locale
-    this.$vuetify.theme.dark = BaseModule.theme
+    this.$i18n.locale = this.locale
+    this.$vuetify.lang.current = this.locale
+    this.$vuetify.theme.dark = this.theme
   }
-})
+}
 </script>
 
 <style lang="stylus">

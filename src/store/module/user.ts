@@ -1,7 +1,8 @@
-import { Module, VuexModule, Mutation, Action } from 'vuex-module-decorators'
 import { oauthMe } from '@/api/oauth'
+import { Module, ActionTree, GetterTree, MutationTree } from 'vuex'
+import { RootState } from '@/store/types'
 
-export interface IUser {
+export interface UserState {
   name: String,
   email: String,
   avatar: String,
@@ -9,28 +10,40 @@ export interface IUser {
   phone: String
 }
 
-@Module({ namespaced: true, name: 'user' })
+const state: UserState = {
+  name: null,
+  email: null,
+  image: null,
+  avatar: null,
+  phone: null
+}
 
-export default class User extends VuexModule implements IUser {
-  avatar: String = null;
-  email: String = null;
-  image: String = null;
-  name: String = null;
-  phone: String = null;
+const getters: GetterTree<UserState, RootState> = {
+  //
+}
 
-  @Mutation
-  SET_USER (user) {
-    this.avatar = user.avatar
-    this.email = user.email
-    this.image = user.image
-    this.name = user.name
-    this.phone = user.phone
+const mutations: MutationTree<UserState> = {
+  SET_USER (state, user) {
+    state.avatar = user.avatar
+    state.email = user.email
+    state.image = user.image
+    state.name = user.name
+    state.phone = user.phone
   }
+}
 
-  @Action
-  getUser () {
+const actions:ActionTree<UserState, RootState> = {
+  getUser ({ commit }): void {
     oauthMe().then(res => {
-      this.SET_USER(res.data)
+      commit('SET_USER', res.data)
     })
   }
+}
+
+export const user: Module<UserState, RootState> = {
+  namespaced: true,
+  state,
+  getters,
+  actions,
+  mutations
 }

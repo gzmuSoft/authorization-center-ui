@@ -18,17 +18,18 @@
 <script lang="ts">
 import { Component, Mixins } from 'vue-property-decorator'
 import { getUrlParams } from '@/utils'
-import { AuthModule } from '@/store'
 import { oauthToken } from '@/api/oauth'
 import Mixin from './Mixin'
+import { Action } from 'vuex-class'
 
 @Component
 export default class Login extends Mixins(Mixin) {
+  @Action('oauthToken', { namespace: 'auth' }) public oauthToken!: Function
   created () {
     this.tipI18n = 'tip.login.loading'
     const code = getUrlParams('code')
     oauthToken(code).then(res => {
-      AuthModule.oauthToken(res.data)
+      this.oauthToken(res.data)
       this.tipI18n = 'tip.login.success'
       setTimeout(() => {
         this.handleBack()
