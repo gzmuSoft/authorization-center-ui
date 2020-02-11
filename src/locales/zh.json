@@ -38,9 +38,13 @@
     "reset": "重置",
     "cancel": "取消",
     "ok": "确认",
-    "back": "返回"
+    "back": "返回",
+    "refresh": "刷新",
+    "delete": "删除"
   },
   "tip": {
+    "yes": "是",
+    "no": "否",
     "success": "操作成功",
     "fail": "操作失败",
     "avatar": "头像:用户账户头像",
@@ -71,7 +75,7 @@
       "other": "未知错误"
     },
     "validate": {
-      "complete": "请确认您已完整的填写信息。",
+      "complete": "请确认您已完整正确的填写信息。",
       "required": "{0}不能为空",
       "email": "电子邮箱不合法",
       "maxLength": "长度必须小于 {0} 位",
@@ -81,6 +85,10 @@
       "password": "两次密码不一致",
       "resume": "个人简历内容长度不能超过4000为，当前长度 {0}",
       "exist": "啊哦，{0} 已经存在"
+    },
+    "role": {
+      "emptyTip": "请选择一个角色",
+      "edit": "点击相应字段以编辑"
     }
   },
   "setting": {
@@ -103,8 +111,14 @@
   },
   "entity": {
     "base": {
+      "name": "名称",
+      "createUser": "创建用户",
       "createTime": "创建时间",
-      "modifyTime": "修改时间"
+      "modifyUser": "修改用户",
+      "modifyTime": "修改时间",
+      "remark": "备注",
+      "sort": "排序",
+      "isEnable": "是否启用"
     },
     "teacher": {
       "nation": "民族",
@@ -148,6 +162,14 @@
         "name": "您的帐号名称，用作登录使用。",
         "password": "密码长度为 6-18 位"
       }
+    },
+    "role": {
+      "des": "描述",
+      "iconCls": "图标"
+    },
+    "res": {
+      "url": "路径/图标",
+      "describe": "详情"
     }
   }
 }

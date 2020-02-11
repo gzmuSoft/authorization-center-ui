@@ -37,10 +37,15 @@
     "save": "Save",
     "reset": "Reset",
     "cancel": "Cancel",
+    "delete": "Delete",
     "ok": "Ok",
-    "back": "Back"
+    "refresh": "Refresh",
+    "back": "Back",
+    "isEnable": "Is Enable"
   },
   "tip": {
+    "yes": "Yes",
+    "no": "No",
     "success": "Success",
     "fail": "Fail",
     "avatar": "Avatar: User account avatar.",
@@ -71,7 +76,7 @@
       "other": "Unknown Error."
     },
     "validate": {
-      "complete": "Please confirm that you have completed the information.",
+      "complete": "Please confirm that you have completed the correct information",
       "required": "{0} cannot be empty.",
       "email": "Email address is invalid.",
       "maxLength": "The length must be less than {0}.",
@@ -81,6 +86,10 @@
       "password": "The password is different twice.",
       "resume": "The resume length must be less than 4000. Now it is {0}.",
       "exist": "Ah, {0} already exists."
+    },
+    "role": {
+      "emptyTip": "Please choose a role.",
+      "edit": "Click on the field to edit."
     }
   },
   "setting": {
@@ -103,8 +112,13 @@
   },
   "entity": {
     "base": {
+      "name": "Name",
+      "createUser": "Create User",
       "createTime": "Create Time",
-      "modifyTime": "Modify Time"
+      "modifyUser": "Modify User",
+      "modifyTime": "Modify Time",
+      "remark": "Remark",
+      "sort": "sort"
     },
     "teacher": {
       "nation": "Nation",
@@ -148,6 +162,14 @@
         "name": "Your account name, used for login.",
         "password": "Password length is 6-18 characters"
       }
+    },
+    "role": {
+      "des": "Description",
+      "iconCls": "Icon"
+    },
+    "res": {
+      "url": "Path / Icon",
+      "describe": "Info"
     }
   }
 }
