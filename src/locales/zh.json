@@ -40,6 +40,7 @@
     "ok": "确认",
     "back": "返回",
     "refresh": "刷新",
+    "search": "查询",
     "delete": "删除"
   },
   "tip": {
@@ -89,6 +90,9 @@
     "role": {
       "emptyTip": "请选择一个角色",
       "edit": "点击相应字段以编辑"
+    },
+    "res": {
+      "info": "这里包含了权限资源、菜单资源以及路由资源三个部分，非开发人员请勿轻易修改。"
     }
   },
   "setting": {
@@ -98,7 +102,8 @@
   "menu": {
     "system": "系统管理",
     "dashboard": "仪表盘",
-    "role": "角色管理"
+    "role": "角色管理",
+    "res": "资源管理"
   },
   "title": {
     "setting": {
@@ -107,7 +112,9 @@
       "avatar": "头像",
       "photo": "照片"
     },
-    "role": "角色管理"
+    "role": "角色管理",
+    "res": "资源管理",
+    "action": "操作"
   },
   "entity": {
     "base": {
@@ -168,8 +175,16 @@
       "iconCls": "图标"
     },
     "res": {
-      "url": "路径/图标",
-      "describe": "详情"
+      "name": "路由名称",
+      "url": "路径",
+      "describe": "详情",
+      "method": "方法/图标",
+      "remark": "标题",
+      "type": "资源类型",
+      "type0": "全部",
+      "type1": "菜单",
+      "type2": "资源",
+      "type3": "路由"
     }
   }
 }

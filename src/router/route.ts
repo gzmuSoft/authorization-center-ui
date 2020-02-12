@@ -51,6 +51,12 @@ export const routerMap = [
         name: 'role',
         meta: { title: i18n.t('title.role') },
         component: () => import(/* webpackChunkName: "SystemSetting" */ '@/views/dashboard/role')
+      },
+      {
+        path: 'res',
+        name: 'res',
+        meta: { title: i18n.t('menu.res') },
+        component: () => import(/* webpackChunkName: "SystemSetting" */ '@/views/dashboard/res')
       }
     ]
   }

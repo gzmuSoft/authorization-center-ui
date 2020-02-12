@@ -40,8 +40,8 @@
     "delete": "Delete",
     "ok": "Ok",
     "refresh": "Refresh",
-    "back": "Back",
-    "isEnable": "Is Enable"
+    "search": "Search",
+    "back": "Back"
   },
   "tip": {
     "yes": "Yes",
@@ -90,6 +90,9 @@
     "role": {
       "emptyTip": "Please choose a role.",
       "edit": "Click on the field to edit."
+    },
+    "res": {
+      "info": "There are three parts: permission resources, menu resources, and routing resources. Non-developers should not modify them easily."
     }
   },
   "setting": {
@@ -99,7 +102,8 @@
   "menu": {
     "system": "System",
     "dashboard": "Dashboard",
-    "role": "Role"
+    "role": "Role",
+    "res": "Resource"
   },
   "title": {
     "setting": {
@@ -108,7 +112,9 @@
       "avatar": "Avatar",
       "photo": "Photo"
     },
-    "role": "Role"
+    "role": "Role",
+    "res": "Resource",
+    "action": "Action"
   },
   "entity": {
     "base": {
@@ -118,7 +124,8 @@
       "modifyUser": "Modify User",
       "modifyTime": "Modify Time",
       "remark": "Remark",
-      "sort": "sort"
+      "sort": "sort",
+      "isEnable": "Is Enable"
     },
     "teacher": {
       "nation": "Nation",
@@ -168,8 +175,16 @@
       "iconCls": "Icon"
     },
     "res": {
-      "url": "Path / Icon",
-      "describe": "Info"
+      "name": "Route Name",
+      "url": "Path",
+      "describe": "Info",
+      "method": "Method / Icon",
+      "remark": "Title",
+      "type": "Resource Type",
+      "type0": "All",
+      "type1": "Menu",
+      "type2": "Resource",
+      "type3": "Route"
     }
   }
 }
