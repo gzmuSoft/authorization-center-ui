@@ -18,7 +18,10 @@ Vue.config.productionTip = false
 Vue.prototype._ = _
 Vue.use(imgView)
 Vue.use(Toast)
-Vue.use(VuejsDialog)
+Vue.use(VuejsDialog, {
+  okText: i18n.t('action.ok'),
+  cancelText: i18n.t('action.cancel')
+})
 Vue.use(mavonEditor)
 
 new Vue({

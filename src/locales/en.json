@@ -39,8 +39,11 @@
     "cancel": "Cancel",
     "delete": "Delete",
     "ok": "Ok",
+    "close": "Close",
     "refresh": "Refresh",
     "search": "Search",
+    "view": "View",
+    "update": "Update",
     "back": "Back"
   },
   "tip": {
@@ -51,6 +54,8 @@
     "avatar": "Avatar: User account avatar.",
     "photo": "Photo: My real photo.",
     "imgClose": "Click image to close view.",
+    "delete": "Are you sure to delete this data?",
+    "dangerDelete": "Dangerous operation: Are you sure to delete this data?",
     "login": {
       "loading": "Login",
       "success": "Login Success. Please wait",
@@ -114,7 +119,8 @@
     },
     "role": "Role",
     "res": "Resource",
-    "action": "Action"
+    "action": "Action",
+    "info": "Info"
   },
   "entity": {
     "base": {
