@@ -8,6 +8,14 @@ export const resUpdate = (res) => {
   })
 }
 
+export const resCreate = (res) => {
+  return authAxios.request({
+    url: '/res',
+    method: 'POST',
+    data: res
+  })
+}
+
 export const resDelete = (id) => {
   return authAxios.request({
     url: `/res/${id}`,

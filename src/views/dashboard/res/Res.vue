@@ -12,6 +12,7 @@
             v-select(v-model="search.type", ref="type", :label="$t('entity.res.type')",
               :items="resTypes", item-text="name", item-value="id")
           v-flex.text-right(sm12)
+            v-btn.mr-4(outlined, color="success", @click="handleAdd") {{$t('action.add')}}
             v-btn(outlined, color="primary", @click="handleSearch") {{$t('action.search')}}
       v-data-table(:headers="headers", :items="items", :options.sync="options", :server-items-length="itemsLength",
         :footer-props="footer", :loading="load", multi-sort)
@@ -26,7 +27,7 @@
               v-btn.mr-2(icon, x-small, fab, color="error", v-on="on", @click="handleDelete(item)")
                 v-icon mdi-delete
             span {{$t('action.delete')}}
-    res-view(ref="view", :item="viewItem", @update="handleUpdate")
+    res-view(ref="view", :item="viewItem", @update="handleUpdate", @crate="handleSearch")
 </template>
 
 <script lang="ts">
@@ -68,6 +69,18 @@ export default class Res extends Mixins(TableMixin, FormValidateMixin) {
   handleView (item) {
     this.$refs.view.show = true
     this.viewItem = item
+  }
+  handleAdd () {
+    this.$refs.view.show = true
+    this.viewItem = {
+      id: null,
+      name: null,
+      url: null,
+      describe: null,
+      method: null,
+      sort: 1,
+      remark: null
+    }
   }
   handleUpdate (item) {
     this.viewItem = item
