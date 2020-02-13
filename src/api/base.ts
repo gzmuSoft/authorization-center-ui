@@ -10,9 +10,7 @@ import authAxios from '@/api/index'
  * 4 - class
  * 6 - academic
  * 7 - degree
- * 8 - Teacher Graduation
  * 9 - nation
- * 10 - Research Interests
  * 11 - professional title
  */
 export const dataByType = (type) => {

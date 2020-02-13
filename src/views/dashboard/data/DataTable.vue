@@ -1,17 +1,12 @@
 <template lang="pug">
-  v-card.res.mt-12
-    v-card-title(style="height: 100px;")
-      card-header(icon="mdi-account-box", :title="$t('title.res')", :info="$t('tip.res.info')")
+  v-card.data-table(flat)
     v-card-text
       v-form(ref="form")
         v-layout(wrap, style="width:100%")
-          v-flex(sm12, md6)
-            v-text-field(v-model="search.describe", ref="des", :label="$t('entity.res.describe')",
+          v-flex(sm12, md8)
+            v-text-field(v-model="search.name", ref="name", :label="$t('entity.base.name')",
               counter="18", :rules="[maxLength(18)]", clearable)
-          v-flex(sm12, md6)
-            v-select(v-model="search.type", ref="type", :label="$t('entity.res.type')",
-              :items="resTypes", item-text="name", item-value="id")
-          v-flex.text-right(sm12)
+          v-flex.text-right(sm12, md4)
             v-btn.mr-4(outlined, color="success", @click="handleAdd") {{$t('action.add')}}
             v-btn(outlined, color="primary", @click="handleSearch") {{$t('action.search')}}
       v-data-table(:headers="headers", :items="items", :options.sync="options", :server-items-length="itemsLength",
@@ -27,61 +22,59 @@
               v-btn.mr-2(icon, x-small, fab, color="error", v-on="on", @click="handleDelete(item)")
                 v-icon mdi-delete
             span {{$t('action.delete')}}
-    res-view(ref="view", :item="viewItem", @update="handleUpdate", @crate="handleSearch")
+      data-view(ref="view", :item="viewItem", @update="handleUpdate", @create="handleSearch")
 </template>
 
 <script lang="ts">
-import { Component, Mixins } from 'vue-property-decorator'
-import CardHeader from '@/components/CardHeader.vue'
+import { Component, Prop, Mixins } from 'vue-property-decorator'
 import TableMixin from '@/plugins/TableMixin'
 import FormValidateMixin from '@/plugins/FormValidateMixin'
-import ResView from './ResView.vue'
-import { resTypes } from '@/utils/options'
-import { resPage } from '@/api/page'
-import { resDelete } from '@/api/res'
+import DataView from './DataView.vue'
+import { dataPage } from '@/api/page'
+import { dataDelete } from '@/api/data'
 
-@Component({ components: { CardHeader, ResView } })
-export default class Res extends Mixins(TableMixin, FormValidateMixin) {
-  protected search = { describe: '', type: 0 }
-  protected resTypes = resTypes
+@Component({ components: { DataView } })
+export default class DataTable extends Mixins(TableMixin, FormValidateMixin) {
+  @Prop(Number) private type !: Number
+  protected search = { name: '' }
+
   get headers () {
     return [
-      { text: this.$t('entity.res.describe'), align: 'left', value: 'describe' },
-      { text: this.$t('entity.res.url'), align: 'left', value: 'url' },
-      { text: this.$t('entity.res.method'), align: 'left', value: 'method' },
-      { text: this.$t('entity.res.name'), align: 'left', value: 'name' },
+      { text: this.$t('entity.base.name'), align: 'left', value: 'name' },
+      { text: this.$t('entity.sysData.brief'), align: 'left', value: 'brief' },
       { text: this.$t('entity.base.sort'), align: 'middle', value: 'sort' },
-      { text: this.$t('entity.res.remark'), align: 'left', value: 'remark' },
+      { text: this.$t('entity.base.remark'), align: 'left', value: 'remark' },
       { text: this.$t('title.action'), align: 'center', value: 'action', sortable: false, width: '120px' }
     ]
   }
 
   getPage (option) {
     this.load = true
-    resPage(option).then(res => {
-      this.itemsLength = res.data.itemsLength
+    option.type = this.type
+    dataPage(option).then(res => {
       this.items = res.data.content
-    }).finally(() => { this.load = false })
+      this.itemsLength = res.data.itemsLength
+    }).finally(() => {
+      this.load = false
+    })
   }
-
   handleAdd () {
     this.$refs.view.show = true
     this.viewItem = {
       id: null,
       name: null,
-      url: null,
-      describe: null,
-      method: null,
+      brief: null,
+      type: this.type,
+      parentId: 0,
       sort: 1,
       remark: null
     }
   }
-
   handleDelete (item) {
     this.$dialog
-      .confirm(this.$t('tip.dangerDelete'))
+      .confirm(this.$t('tip.delete'))
       .then(() => {
-        resDelete(item.id).then(() => {
+        dataDelete(item.id).then(() => {
           this.$toast.success(this.$t('tip.success'))
           this.handleSearch()
         })

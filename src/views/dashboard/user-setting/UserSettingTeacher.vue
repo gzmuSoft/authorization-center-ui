@@ -42,8 +42,8 @@
             v-text-field(v-model="entity.majorResearch", :label="$t('entity.teacher.majorResearch')", counter="25",
               :rules="[maxLength(25)]")
           v-flex(sm12, md6)
-            v-text-field(v-model="entity.profTitle", :label="$t('entity.teacher.profTitle')", counter="25",
-              :rules="[maxLength(25)]")
+            v-select(v-model="entity.profTitle", :items="profTitle", item-text="name", item-value="id",
+              :label="$t('entity.teacher.profTitle')")
           v-flex(sm12, md6)
             date-menu(v-model="entity.profTitleAssDate", ref="profTitleAssDate", :label="$t('entity.teacher.profTitleAssDate')", counter="25",
               :rules="[maxLength(25)]")

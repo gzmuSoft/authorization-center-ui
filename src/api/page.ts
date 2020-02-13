@@ -7,3 +7,11 @@ export const resPage = (params) => {
     params: params
   })
 }
+
+export const dataPage = (params) => {
+  return authAxios.request({
+    url: '/data',
+    method: 'GET',
+    params: params
+  })
+}

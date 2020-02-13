@@ -63,6 +63,12 @@ export const routerMap = [
         name: 'college',
         meta: { title: i18n.t('menu.college') },
         component: () => import(/* webpackChunkName: "college" */ '@/views/dashboard/college')
+      },
+      {
+        path: 'data',
+        name: 'data',
+        meta: { title: i18n.t('menu.data') },
+        component: () => import(/* webpackChunkName: "college" */ '@/views/dashboard/data')
       }
     ]
   }

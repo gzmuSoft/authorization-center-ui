@@ -14,6 +14,7 @@ export default class extends Vue {
   protected nation: any = []
   protected academic: any = []
   protected degree: any = []
+  protected profTitle: any = []
   protected info: string = ''
   protected toolbars: object = toolbars
   protected loading: Boolean = false
@@ -42,7 +43,9 @@ export default class extends Vue {
         this.info = res.data.name
       })
       types.push(7)
+      types.push(11)
       dataByTypes(types).then(res => {
+        this.profTitle = res.data['11']
         this.nation = res.data['9']
         this.academic = res.data['6']
         this.degree = res.data['7']

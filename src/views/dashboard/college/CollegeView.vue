@@ -33,7 +33,7 @@
 <script lang="ts">
 import { Component, Mixins, Prop, Watch } from 'vue-property-decorator'
 import FormValidateMixin from '@/plugins/FormValidateMixin'
-import { collegeCreate, collegeUpdate } from '@/api/college'
+import { dataCreate, dataUpdate } from '@/api/data'
 
 @Component
 export default class CollegeView extends Mixins(FormValidateMixin) {
@@ -58,9 +58,9 @@ export default class CollegeView extends Mixins(FormValidateMixin) {
     if (!this.$refs.form.validate()) return
     try {
       if (this.college.id === null) {
-        await collegeCreate(this.college)
+        await dataCreate(this.college)
       } else {
-        await collegeUpdate(this.college)
+        await dataUpdate(this.college)
       }
       this.$emit('success', this.college)
       this.$toast.success(this.$t('tip.success'))

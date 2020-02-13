@@ -16,7 +16,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import { collegeParent, collegeType } from '@/api/college'
+import { dataParent, dataType } from '@/api/data'
 import CollegeView from './CollegeView.vue'
 
 @Component({ components: { CollegeView } })
@@ -29,7 +29,7 @@ export default class College extends Vue {
     this.initData()
   }
   initData () {
-    collegeType(0).then(res => {
+    dataType(0).then(res => {
       this.college = []
       this.actives = []
       this.open = []
@@ -46,7 +46,7 @@ export default class College extends Vue {
     }
   }
   async handleCollege (item) {
-    const res = await collegeParent(item.id)
+    const res = await dataParent(item.id)
     res.data.forEach(c => {
       if (c.type !== 4) {
         c.children = []
