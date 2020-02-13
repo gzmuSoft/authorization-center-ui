@@ -11,7 +11,7 @@
         v-col
           v-scroll-y-transition(hide-on-leave, mode="out-in")
             .title.grey--text.text--lighten-1.font-weight-light.text-center(v-if="active === null")
-              | {{$t("tip.role.emptyTip")}}
+              | {{$t("tip.role.empty")}}
           v-scroll-y-transition(hide-on-leave, mode="out-in")
             .pt-6.mx-auto(v-if="active !== null")
               v-tabs(v-model="tab")
@@ -31,7 +31,7 @@ import { roleParent } from '@/api/role'
 
 @Component({ components: { RoleView, RoleRes } })
 export default class Role extends Vue {
-  private roles: Array<any> = []
+  private roles = []
   private open = []
   private actives = []
   private active = null

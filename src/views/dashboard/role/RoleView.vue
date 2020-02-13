@@ -61,8 +61,8 @@
                   v-text-field(v-model="role.remark", :label="$t('entity.base.remark')", counter="200",
                     autofocus, single-line, :rules="[maxLength(200)]")
     .text-right
-      v-btn.mr-4(color="warning", outlined, @click="handleReset") {{$t("action.reset")}}
-      v-btn(color="success", outlined, @click="handleSave", v-show="change", :loading="loading.save") {{$t("action.save")}}
+      v-btn(color="warning", outlined, @click="handleReset") {{$t("action.reset")}}
+      v-btn.ml-4(color="success", outlined, @click="handleSave", v-show="change", :loading="loading.save") {{$t("action.save")}}
 </template>
 
 <script lang="ts">

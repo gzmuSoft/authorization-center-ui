@@ -38,25 +38,31 @@ export const routerMap = [
         path: 'system-setting',
         name: 'system-setting',
         meta: { title: i18n.t('title.setting.base') },
-        component: () => import(/* webpackChunkName: "SystemSetting" */ '@/views/dashboard/system-setting')
+        component: () => import(/* webpackChunkName: "system-setting" */ '@/views/dashboard/system-setting')
       },
       {
         path: 'user-setting',
         name: 'user-setting',
         meta: { title: i18n.t('title.setting.entity') },
-        component: () => import(/* webpackChunkName: "SystemSetting" */ '@/views/dashboard/user-setting')
+        component: () => import(/* webpackChunkName: "user-setting" */ '@/views/dashboard/user-setting')
       },
       {
         path: 'role',
         name: 'role',
         meta: { title: i18n.t('title.role') },
-        component: () => import(/* webpackChunkName: "SystemSetting" */ '@/views/dashboard/role')
+        component: () => import(/* webpackChunkName: "role" */ '@/views/dashboard/role')
       },
       {
         path: 'res',
         name: 'res',
         meta: { title: i18n.t('menu.res') },
-        component: () => import(/* webpackChunkName: "SystemSetting" */ '@/views/dashboard/res')
+        component: () => import(/* webpackChunkName: "res" */ '@/views/dashboard/res')
+      },
+      {
+        path: 'college',
+        name: 'college',
+        meta: { title: i18n.t('menu.college') },
+        component: () => import(/* webpackChunkName: "college" */ '@/views/dashboard/college')
       }
     ]
   }

@@ -42,6 +42,7 @@
     "close": "Close",
     "refresh": "Refresh",
     "add": "Add",
+    "addChildren": "Add Children",
     "search": "Search",
     "view": "View",
     "update": "Update",
@@ -86,6 +87,8 @@
       "complete": "Please confirm that you have completed the correct information",
       "required": "{0} cannot be empty.",
       "email": "Email address is invalid.",
+      "max": "The value must be greater than {0}.",
+      "min": "The value must be less than {0}.",
       "maxLength": "The length must be less than {0}.",
       "minLength": "The length must be greater than {0}.",
       "equalsLength": "The length must be equals {0}.",
@@ -95,10 +98,11 @@
       "exist": "Ah, {0} already exists."
     },
     "role": {
-      "emptyTip": "Please choose a role.",
+      "empty": "Please choose a role.",
       "edit": "Click on the field to edit."
     },
     "res": {
+      "empty": "Please select a data to view the information.",
       "info": "There are three parts: permission resources, menu resources, and routing resources. Non-developers should not modify them easily."
     }
   },
@@ -108,9 +112,11 @@
   },
   "menu": {
     "system": "System",
+    "data": "Data",
     "dashboard": "Dashboard",
     "role": "Role",
-    "res": "Resource"
+    "res": "Resource",
+    "college": "College"
   },
   "title": {
     "setting": {
@@ -193,6 +199,9 @@
       "type1": "Menu",
       "type2": "Resource",
       "type3": "Route"
+    },
+    "sysData": {
+      "brief": "Brief"
     }
   }
 }

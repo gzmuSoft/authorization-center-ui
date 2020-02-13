@@ -8,6 +8,12 @@ export default class extends Vue {
   required (name) {
     return v => (!!v && v.length !== 0) || this.$t('tip.validate.required', [this.$t(name)])
   }
+  max (number) {
+    return v => (!!v && v <= number) || this.$t('tip.validate.max', [number])
+  }
+  min (number) {
+    return v => (!!v && v >= number) || this.$t('tip.validate.min', [number])
+  }
   maxLength (length) {
     return v => !v || (!!v && v.length <= length) || this.$t('tip.validate.maxLength', [length])
   }
