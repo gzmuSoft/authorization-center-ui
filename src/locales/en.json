@@ -46,6 +46,9 @@
     "search": "Search",
     "view": "View",
     "update": "Update",
+    "enable": "Enable",
+    "disable": "Disable",
+    "wait": "Waiting",
     "back": "Back"
   },
   "tip": {
@@ -116,7 +119,8 @@
     "dashboard": "Dashboard",
     "role": "Role",
     "res": "Resource",
-    "college": "College"
+    "college": "College",
+    "semester": "学期管理"
   },
   "title": {
     "setting": {
@@ -206,6 +210,10 @@
     },
     "sysData": {
       "brief": "Brief"
+    },
+    "semester": {
+      "startDate": "Start Data",
+      "endDate": "End Data"
     }
   }
 }

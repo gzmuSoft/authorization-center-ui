@@ -46,6 +46,9 @@
     "search": "查询",
     "view": "详情",
     "update": "更新",
+    "enable": "启用",
+    "disable": "警用",
+    "wait": "等待",
     "delete": "删除"
   },
   "tip": {
@@ -116,7 +119,8 @@
     "dashboard": "仪表盘",
     "role": "角色管理",
     "res": "资源管理",
-    "college": "院校管理"
+    "college": "院校管理",
+    "semester": "学期管理"
   },
   "title": {
     "setting": {
@@ -206,6 +210,10 @@
     },
     "sysData": {
       "brief": "简要"
+    },
+    "semester": {
+      "startDate": "开始时间",
+      "endDate": "结束时间"
     }
   }
 }

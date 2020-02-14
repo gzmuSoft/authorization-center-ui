@@ -15,3 +15,11 @@ export const dataPage = (params) => {
     params: params
   })
 }
+
+export const semesterPage = (params) => {
+  return authAxios.request({
+    url: '/semester',
+    method: 'GET',
+    params: params
+  })
+}
