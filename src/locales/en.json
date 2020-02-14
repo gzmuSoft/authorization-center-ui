@@ -107,6 +107,9 @@
     "res": {
       "empty": "Please select a data to view the information.",
       "info": "There are three parts: permission resources, menu resources, and routing resources. Non-developers should not modify them easily."
+    },
+    "student": {
+      "info": "You can view student basic information about you here."
     }
   },
   "setting": {
@@ -126,7 +129,7 @@
     "student": "Student",
     "teacher": "Teacher",
     "oauth": "OAuth",
-    "client": "授权客户端"
+    "client": "OAuth application"
   },
   "title": {
     "setting": {
@@ -142,7 +145,8 @@
     "academic": "Academic",
     "degree": "Degree",
     "nation": "Nation",
-    "professionalTitle": "Professional Title"
+    "professionalTitle": "Professional Title",
+    "student": "Student"
   },
   "entity": {
     "base": {

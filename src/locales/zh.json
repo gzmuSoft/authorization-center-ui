@@ -107,6 +107,9 @@
     "res": {
       "empty": "请选择一个数据以查看信息",
       "info": "这里包含了权限资源、菜单资源以及路由资源三个部分，非开发人员请勿轻易修改。"
+    },
+    "student": {
+      "info": "你可以在这里查看与你有关学生的基础信息"
     }
   },
   "setting": {
@@ -126,7 +129,7 @@
     "student": "学生信息",
     "teacher": "教师信息",
     "oauth": "OAuth",
-    "client": "授权客户端"
+    "client": "OAuth 应用"
   },
   "title": {
     "setting": {
@@ -142,7 +145,8 @@
     "academic": "学历",
     "degree": "学位",
     "nation": "民族",
-    "professionalTitle": "职称"
+    "professionalTitle": "职称",
+    "student": "学生信息"
   },
   "entity": {
     "base": {

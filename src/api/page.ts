@@ -23,3 +23,11 @@ export const semesterPage = (params) => {
     params: params
   })
 }
+
+export const studentPage = (params) => {
+  return authAxios.request({
+    url: '/student/me',
+    method: 'GET',
+    params: params
+  })
+}
