@@ -120,7 +120,13 @@
     "role": "Role",
     "res": "Resource",
     "college": "College",
-    "semester": "学期管理"
+    "semester": "Semester",
+    "userInfo": "User",
+    "user": "User",
+    "student": "Student",
+    "teacher": "Teacher",
+    "oauth": "OAuth",
+    "client": "授权客户端"
   },
   "title": {
     "setting": {

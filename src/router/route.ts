@@ -75,6 +75,30 @@ export const routerMap = [
         name: 'semester',
         meta: { title: i18n.t('menu.semester') },
         component: () => import(/* webpackChunkName: "semester" */ '@/views/dashboard/semester')
+      },
+      {
+        path: 'client',
+        name: 'client',
+        meta: { title: i18n.t('menu.client') },
+        component: () => import(/* webpackChunkName: "semester" */ '@/views/dashboard/client')
+      },
+      {
+        path: 'user',
+        name: 'user',
+        meta: { title: i18n.t('menu.user') },
+        component: () => import(/* webpackChunkName: "student" */ '@/views/dashboard/user')
+      },
+      {
+        path: 'student',
+        name: 'student',
+        meta: { title: i18n.t('menu.student') },
+        component: () => import(/* webpackChunkName: "student" */ '@/views/dashboard/student')
+      },
+      {
+        path: 'teacher',
+        name: 'teacher',
+        meta: { title: i18n.t('menu.teacher') },
+        component: () => import(/* webpackChunkName: "teacher" */ '@/views/dashboard/teacher')
       }
     ]
   }

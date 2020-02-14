@@ -120,7 +120,13 @@
     "role": "角色管理",
     "res": "资源管理",
     "college": "院校管理",
-    "semester": "学期管理"
+    "semester": "学期管理",
+    "userInfo": "用户信息",
+    "user": "用户管理",
+    "student": "学生信息",
+    "teacher": "教师信息",
+    "oauth": "OAuth",
+    "client": "授权客户端"
   },
   "title": {
     "setting": {
