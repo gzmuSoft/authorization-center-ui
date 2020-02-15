@@ -14,14 +14,14 @@
               :append-icon="genderIcon", :rules="[required('entity.student.gender')]")
           v-col(cols="12", sm="6")
             date-menu(v-model="entity.birthday", ref="birthday", :label="$t('entity.student.birthday')",
-              :rules="[required('entity.teacher.nation')]")
+              :rules="[required('entity.student.birthday')]")
           v-col(cols="12", sm="6")
             v-select(v-model="entity.nation", ref="nation", :label="$t('entity.teacher.nation')",
               :items="nation", item-text="name", item-value="id", :rules="[required('entity.teacher.nation')]")
           v-col(cols="12", sm="6")
             v-text-field(v-model="entity.idNumber", ref="idNumber", :label="$t('entity.student.idNumber')",
               :hint="$t('entity.student.tip.idNumber')", counter="18",
-              :rules="[required('entity.teacher.nation'), equalsLength(18)]")
+              :rules="[required('entity.student.idNumber'), equalsLength(18)]")
           v-col(cols="12", sm="6")
             v-text-field(v-model="entity.no", ref="no", :label="$t('entity.student.no')",
               :rules="[required('entity.student.no'), maxLength(18)]", counter="18")
