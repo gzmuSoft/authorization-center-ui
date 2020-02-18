@@ -114,7 +114,8 @@
       "info": "There are three parts: permission resources, menu resources, and routing resources. Non-developers should not modify them easily."
     },
     "student": {
-      "info": "You can view student basic information about you here."
+      "info": "You can view student basic information about you here.",
+      "resetPassword": "Are you sure you want to reset the user's password? The new password is the last six digits of the user no."
     }
   },
   "setting": {

@@ -7,3 +7,11 @@ export const studentPatch = (student) => {
     data: student
   })
 }
+
+export const studentUpdateComplete = (student) => {
+  return authAxios.request({
+    url: '/student/complete',
+    method: 'PATCH',
+    data: student
+  })
+}

@@ -57,7 +57,7 @@
               v-btn.mr-2(icon, x-small, fab, color="third", v-on="on", @click="handleUser(item)", :loading="item.user")
                 v-icon mdi-account
             span {{$t('tip.userInfo')}}
-          v-tooltip(top, v-if="item.userEdit")
+          v-tooltip(top, v-if="item.resetPassword")
             template(v-slot:activator="{ on }")
               v-btn.mr-2(icon, x-small, fab, color="warning", v-on="on", @click="handleResetPassword(item)")
                 v-icon mdi-lock-reset
@@ -86,7 +86,8 @@ import { studentPatch } from '@/api/student'
 import { Action } from 'vuex-class'
 import StudentAdminView from './StudentAdminView.vue'
 import StudentAdminUserView from './StudentAdminUserView.vue'
-import { userOne } from '@/api/user'
+import { resetPassword, userOne } from '@/api/user'
+import { resDelete } from '@/api/res'
 
 @Component({ components: { StudentAdminUserView, StudentAdminView, DateMenu, CardHeader } })
 export default class StudentAdmin extends Mixins(TableMixin, FormValidateMixin, StudentAdminMixin) {
@@ -202,7 +203,14 @@ export default class StudentAdmin extends Mixins(TableMixin, FormValidateMixin, 
     })
   }
   handleResetPassword (item) {
-    //
+    this.$dialog
+      .confirm(this.$t('tip.student.resetPassword'))
+      .then(() => {
+        resetPassword({ id: item.id, userId: item.userId }).then(() => {
+          this.$toast.success(this.$t('tip.success'))
+        })
+      })
+      .catch(() => {})
   }
 }
 </script>

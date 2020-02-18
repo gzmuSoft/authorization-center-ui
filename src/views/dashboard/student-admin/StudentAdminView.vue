@@ -61,7 +61,7 @@
                   v-text-field.mt-0.pa-0(v-model="res.sort", single-line, type="number",
                     style="width:60px", :rules="[required('entity.base.sort')]")
             v-col(cols="12", md="6")
-              v-textarea(v-model="res.remark", :label="$t('entity.base.remark')", counter="128", rows="2",
+              v-text-field(v-model="res.remark", :label="$t('entity.base.remark')", counter="128",
                 :rules="[maxLength(128)]")
           v-row
             v-col(cols="12", sm="6", lg="3")
@@ -86,6 +86,7 @@ import DialogViewMixin from '@/plugins/DialogViewMixin'
 import StudentAdminMixin from './StudentAdminMixin'
 import DateMenu from '@/components/DateMenu.vue'
 import { State } from 'vuex-class'
+import { studentUpdateComplete } from '@/api/student'
 
 @Component({ components: { DateMenu } })
 export default class StudentAdminView extends Mixins(FormValidateMixin, DialogViewMixin, StudentAdminMixin) {
@@ -122,6 +123,16 @@ export default class StudentAdminView extends Mixins(FormValidateMixin, DialogVi
     } else {
       return []
     }
+  }
+  async handleSave () {
+    this.loading = true
+    studentUpdateComplete(this.res).then(() => {
+      this.$toast.success(this.$t('tip.success'))
+      this.show = false
+      this.$emit('update', this.res)
+    }).finally(() => {
+      this.loading = false
+    })
   }
 }
 </script>

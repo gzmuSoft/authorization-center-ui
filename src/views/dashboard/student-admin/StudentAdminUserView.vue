@@ -60,6 +60,7 @@ import { Component, Mixins } from 'vue-property-decorator'
 import FormValidateMixin from '@/plugins/FormValidateMixin'
 import DialogViewMixin from '@/plugins/DialogViewMixin'
 import { userExist } from '@/api/base'
+import { userUpdate } from '@/api/user'
 
 @Component
 export default class StudentAdminUserView extends Mixins(FormValidateMixin, DialogViewMixin) {
@@ -107,6 +108,15 @@ export default class StudentAdminUserView extends Mixins(FormValidateMixin, Dial
       return true
     }
     return false
+  }
+  async handleSave () {
+    this.loading = true
+    userUpdate(this.res).then(() => {
+      this.$toast.success(this.$t('tip.success'))
+      this.show = false
+    }).finally(() => {
+      this.loading = false
+    })
   }
 }
 </script>
