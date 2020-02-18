@@ -31,3 +31,11 @@ export const studentPage = (params) => {
     params: params
   })
 }
+
+export const studentAdminPage = (params) => {
+  return authAxios.request({
+    url: '/student',
+    method: 'GET',
+    params: params
+  })
+}

@@ -5,6 +5,7 @@ import { user } from '@/store/module/user'
 import { route } from '@/store/module/route'
 import { base } from '@/store/module/base'
 import { auth } from '@/store/module/auth'
+import { admin } from '@/store/module/admin'
 import createVuexAlong from 'vuex-along'
 Vue.use(Vuex)
 
@@ -13,7 +14,8 @@ const store = new Vuex.Store<RootState>({
     user,
     route,
     base,
-    auth
+    auth,
+    admin
   },
   plugins: [createVuexAlong({
     name: 'auth-center',

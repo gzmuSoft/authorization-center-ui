@@ -9,7 +9,7 @@
             | {{c.name}}
       v-row
         v-col(cols="12", md="6")
-          v-text-field(v-model="search.name", ref="name", :label="$t('entity.base.name')",
+          v-text-field(v-model="search.name", ref="name", :label="$t('entity.student.name')",
             counter="18", :rules="[maxLength(18)]", clearable)
         v-col(cols="12", md="6")
           v-text-field(v-model="search.no", ref="no", :label="$t('entity.student.no')",
@@ -18,11 +18,12 @@
           v-card.mx-auto.mb-1(max-width="344", ripple, shaped, :loading="loading", @click="handleView(student)")
             v-list-item(two-line)
               v-list-item-avatar
-                v-avatar(color="secondary")
+                v-avatar(:color="student.gender === '男' ? 'blue' : 'red'")
                   img(v-if="student.image !== null", :src="student.image", v-img-view)
                   span.headline.white--text(v-else) {{student.name.substring(0, 1)}}
               v-list-item-content
                 .overline.mb-1 {{student.no}}
+                  v-icon(small) {{genderIcon(student.gender)}}
                 v-list-item-title.headline.mb-1 {{student.name}}
       student-view(ref="view", :item="view", @update="handleUpdate")
 </template>
@@ -56,6 +57,9 @@ export default class Student extends Mixins(FormValidateMixin) {
   @Watch('classIndex')
   classChange (val) {
     if (typeof (this.classes[val]) !== 'undefined') { this.getData(this.classes[val].id) }
+  }
+  genderIcon (gender) {
+    return gender === '男' ? 'mdi-gender-male' : 'mdi-gender-female'
   }
   handleView (student) {
     if (!student.view) return

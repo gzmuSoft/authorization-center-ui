@@ -17,7 +17,7 @@
                 :hint="$t('entity.student.tip.name')", persistent-hint, counter="18", :readondly="!res.edit",
                 :rules="[required('entity.student.name'),maxLength(18)]")
             v-col(cols="12", sm="6")
-              v-text-field(v-model="res.gender", ref="gender", :label="$t('entity.student.gender')",
+              v-select(v-model="res.gender", ref="gender", :label="$t('entity.student.gender')", :items="gender",
                 :append-icon="genderIcon", :rules="[required('entity.student.gender')]", :readonly="!res.edit")
             v-col(cols="12", sm="6")
               v-text-field(v-model="res.no", ref="no", :label="$t('entity.student.no')", :readonly="!res.edit",
@@ -47,16 +47,17 @@ import { Component, Mixins } from 'vue-property-decorator'
 import FormValidateMixin from '@/plugins/FormValidateMixin'
 import DialogViewMixin from '@/plugins/DialogViewMixin'
 import DateMenu from '@/components/DateMenu.vue'
+import { gender } from '@/utils/options'
 import { studentPatch } from '@/api/student'
 
 @Component({ components: { DateMenu } })
 export default class StudentView extends Mixins(FormValidateMixin, DialogViewMixin) {
-  get genderIcon () {
-    return this.res.gender === '男' ? 'mdi-gender-male' : 'mdi-gender-female'
-  }
+  protected gender: any = gender
+
   async handleSave () {
     if (!this.$refs.form.validate()) return
     this.loading = true
+    this.res.isEnable = true
     studentPatch(this.res).then(() => {
       this.$toast.success(this.$t('tip.success'))
       this.$emit('update', this.res)

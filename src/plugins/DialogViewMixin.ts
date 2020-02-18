@@ -1,7 +1,7 @@
 import { Component, Prop, Vue, Watch } from 'vue-property-decorator'
 @Component
 export default class extends Vue {
-  @Prop(Object) protected item !: object
+  @Prop(Object) protected item !: any
   protected show: boolean = false
   protected res: any = {}
   protected loading = false
@@ -22,5 +22,8 @@ export default class extends Vue {
   }
   async handleSave () {
     // need implement
+  }
+  get genderIcon () {
+    return this.res.gender === '男' ? 'mdi-gender-male' : 'mdi-gender-female'
   }
 }

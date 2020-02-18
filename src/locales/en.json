@@ -52,6 +52,11 @@
     "back": "Back"
   },
   "tip": {
+    "none": "Unfilled",
+    "userInfo": "User Info",
+    "baseInfo": "Base Info",
+    "resetPassword": "Reset Password",
+    "editNoPermission": "You don't have permission to edit the information.",
     "yes": "Yes",
     "no": "No",
     "success": "Success",
@@ -127,7 +132,9 @@
     "userInfo": "User",
     "user": "User",
     "student": "Student",
+    "studentManagement": "Student Management",
     "teacher": "Teacher",
+    "teacherManagement": "Teacher Management",
     "oauth": "OAuth",
     "client": "OAuth application"
   },
@@ -146,7 +153,9 @@
     "degree": "Degree",
     "nation": "Nation",
     "professionalTitle": "Professional Title",
-    "student": "Student"
+    "student": "Student",
+    "studentManagement": "Student Management",
+    "teacherManagement": "Teacher Management"
   },
   "entity": {
     "base": {
@@ -183,7 +192,12 @@
       "graduationDate": "Last Academic Graduation Date",
       "graduateInstitution": "Last College Graduate",
       "originalMajor": "Majors studied",
-      "resume": "resume",
+      "resume": "Resume",
+      "school": "School",
+      "college": "College",
+      "dep": "Department",
+      "specialty": "Specialty",
+      "classes": "Classes",
       "tip": {
         "name": "Your real name, not as a login account.",
         "idNumber": "Eighteen pure numbers here",

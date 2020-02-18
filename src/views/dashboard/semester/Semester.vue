@@ -98,12 +98,11 @@ export default class Semester extends Mixins(TableMixin, FormValidateMixin) {
     }
   }
   handleStatus (item) {
-    item.status = item.status === 'NORMAL' ? 'LOCKED' : 'NORMAL'
     item.loading = 'success'
     item.disabled = true
     item.isEnable = !item.isEnable
     semesterUpdate(item)
-      .catch(() => { item.status = item.status === 'NORMAL' ? 'LOCKED' : 'NORMAL' })
+      .catch(() => { item.isEnable = !item.isEnable })
       .finally(() => {
         item.disabled = false
         item.loading = false

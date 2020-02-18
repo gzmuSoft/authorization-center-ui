@@ -43,13 +43,14 @@ export const dataInfoById = (id) => {
 
 /**
  * user exist
+ * @param name
  * @param email
  * @param phone
  */
-export const userExist = ({ email = '', phone = '' }) => {
+export const userExist = ({ name = '', email = '', phone = '' }) => {
   return authAxios.request({
     url: `/base/user/exist`,
     method: 'GET',
-    params: { email, phone }
+    params: { name, email, phone }
   })
 }

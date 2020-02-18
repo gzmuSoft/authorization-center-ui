@@ -39,6 +39,7 @@ export default class DateMenu extends Vue {
   // init -----------
   created () {
     if (this.init !== null) this.initDate = this.init
+    if (this.value === null) return
     if (this.type === 'day') this.initDate = this.initDate.substring(0, 10)
     else if (this.type === 'month') this.initDate = this.initDate.substring(0, 7)
   }

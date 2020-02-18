@@ -6,7 +6,8 @@ export default class extends Vue {
   protected search = {}
   protected options = {
     sortBy: [ 'sort' ],
-    sortDesc: [ false ]
+    sortDesc: [ false ],
+    page: 1
   }
   protected footer = {
     itemsPerPageOptions: [5, 10, 15, 20],
@@ -15,7 +16,7 @@ export default class extends Vue {
   }
   protected load = false
   protected itemsLength = -1
-  protected viewItem = {}
+  protected viewItem: any = {}
 
   @Watch('options')
   optionsChange (val) {
@@ -24,6 +25,7 @@ export default class extends Vue {
 
   handleSearch () {
     if (!this.$refs.form.validate()) return
+    this.options.page = 1
     this.getPage(Object.assign(this.toPage(this.options), this.search))
   }
 
