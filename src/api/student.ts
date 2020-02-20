@@ -15,3 +15,11 @@ export const studentUpdateComplete = (student) => {
     data: student
   })
 }
+
+export const studentImport = (data) => {
+  return authAxios.request({
+    url: '/student/import',
+    method: 'POST',
+    data: data
+  })
+}

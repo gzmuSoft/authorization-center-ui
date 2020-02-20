@@ -49,9 +49,14 @@
     "enable": "Enable",
     "disable": "Disable",
     "wait": "Waiting",
-    "back": "Back"
+    "back": "Back",
+    "import": "Import",
+    "next": "Next",
+    "previous": "Previous",
+    "deleteSelect": "Delete Selected"
   },
   "tip": {
+    "this": "This",
     "none": "Unfilled",
     "userInfo": "User Info",
     "baseInfo": "Base Info",
@@ -115,7 +120,22 @@
     },
     "student": {
       "info": "You can view student basic information about you here.",
-      "resetPassword": "Are you sure you want to reset the user's password? The new password is the last six digits of the user no."
+      "resetPassword": "Data mapping: we need to map the columns in the table to the data one by one. If the columns of your table data do not match our template, please modify this to correspond."
+    },
+    "import": {
+      "error": "Oh! The import went wrong. Please check the file information or contact the administrator.",
+      "noData": "No data to import.",
+      "field": "The red font indicates that there is no such data in the system. It is recommended to add the data before importing it. The system will not set its specific value. Default is empty.",
+      "first": "Select Files.",
+      "second": "Import Configuration",
+      "third": "Preview Data",
+      "fourth": "Import Success",
+      "noFiles": "Please select at least one file.",
+      "start": "The first few lines of data (non-title, non-header).",
+      "startTip": "We will read the header data for one-to-one correspondence. Therefore, start with the header, not the title row.",
+      "mapper": "Data mapping: We need to correspond to the fields in the header. If the header of your table data is different from our template, please modify this to correspond.",
+      "validate": "Validating",
+      "loading": "Importing"
     }
   },
   "setting": {
@@ -156,7 +176,9 @@
     "professionalTitle": "Professional Title",
     "student": "Student",
     "studentManagement": "Student Management",
-    "teacherManagement": "Teacher Management"
+    "teacherManagement": "Teacher Management",
+    "import": "Import Rule",
+    "advanced": "Advanced"
   },
   "entity": {
     "base": {
@@ -194,11 +216,13 @@
       "graduateInstitution": "Last College Graduate",
       "originalMajor": "Majors studied",
       "resume": "Resume",
+      "nation": "Nation",
       "school": "School",
       "college": "College",
       "dep": "Department",
       "specialty": "Specialty",
       "classes": "Classes",
+      "remark": "Remark",
       "tip": {
         "name": "Your real name, not as a login account.",
         "idNumber": "Eighteen pure numbers here",

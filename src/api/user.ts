@@ -22,3 +22,11 @@ export const userUpdate = (user) => {
     data: user
   })
 }
+
+export const userExist = (names) => {
+  return authAxios.request({
+    url: '/user/exist',
+    method: 'POST',
+    data: names
+  })
+}

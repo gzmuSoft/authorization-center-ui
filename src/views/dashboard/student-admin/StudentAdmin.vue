@@ -41,6 +41,7 @@
             v-select(v-model="search.isEnable", ref="isEnable", :label="$t('entity.base.isEnable')",
               :items="status", item-text="name", item-value="value", clearable)
           v-flex.text-right(sm12)
+            v-btn.mr-4(outlined, color="accent", @click="handleImport") {{$t('action.import')}}
             v-btn.mr-4(outlined, color="warning", @click="handleReset") {{$t('action.reset')}}
             v-btn.mr-4(outlined, color="success", @click="handleAdd") {{$t('action.add')}}
             v-btn(outlined, color="primary", @click="handleSearch") {{$t('action.search')}}
@@ -72,6 +73,7 @@
             :label="`${item.disabled === true? $t('action.wait') : item.isEnable ? $t('action.enable') : $t('action.disable') }`")
     student-admin-view(ref="view", :item="viewItem", @update="handleUpdate")
     student-admin-user-view(ref="user", :item="viewItem")
+    student-admin-import(ref="import")
 </template>
 
 <script lang="ts">
@@ -86,13 +88,14 @@ import { studentPatch } from '@/api/student'
 import { Action } from 'vuex-class'
 import StudentAdminView from './StudentAdminView.vue'
 import StudentAdminUserView from './StudentAdminUserView.vue'
+import StudentAdminImport from './import'
 import { resetPassword, userOne } from '@/api/user'
-import { resDelete } from '@/api/res'
 
-@Component({ components: { StudentAdminUserView, StudentAdminView, DateMenu, CardHeader } })
+@Component({ components: { StudentAdminImport, StudentAdminUserView, StudentAdminView, DateMenu, CardHeader } })
 export default class StudentAdmin extends Mixins(TableMixin, FormValidateMixin, StudentAdminMixin) {
-  $refs : { form: any, view: any, user: any }
+  $refs : { form: any, view: any, user: any, import: any }
   protected search: any = {}
+  protected files: any = []
   @Action('getTypes', { namespace: 'admin' }) protected getTypes !: Function
   get userId () {
     if (this.viewItem.hasOwnProperty('userId')) return this.viewItem.userId
@@ -211,6 +214,9 @@ export default class StudentAdmin extends Mixins(TableMixin, FormValidateMixin, 
         })
       })
       .catch(() => {})
+  }
+  handleImport () {
+    this.$refs.import.show = true
   }
 }
 </script>
