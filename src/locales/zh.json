@@ -53,7 +53,8 @@
     "import": "导入",
     "next": "下一步",
     "previous": "上一步",
-    "deleteSelect": "删除所选"
+    "deleteSelect": "删除所选",
+    "finished": "完成"
   },
   "tip": {
     "this": "此项",
@@ -135,7 +136,9 @@
       "startTip": "我们将读取表头数据来进行一一对应。因此，请从第一行开始而不是标题和表头行。",
       "mapper": "数据映射：我们需要对表格中的列与数据进行一一对应，如果您的表格数据的列与我们模板有所不符，请修改此项进行对应",
       "validate": "校验中",
-      "loading": "导入中"
+      "loading": "导入中",
+      "exist": "学号相同时，您希望如何处理？",
+      "existContent": "以下学号数据已存在，您选择 {0} 操作，确认继续吗？(可在上一步高级配置进行配置)"
     }
   },
   "setting": {
@@ -178,7 +181,8 @@
     "studentManagement": "学生管理",
     "teacherManagement": "教师管理",
     "import": "导入规则",
-    "advanced": "高级配置"
+    "advanced": "高级配置",
+    "tip": "提示"
   },
   "entity": {
     "base": {

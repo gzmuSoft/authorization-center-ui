@@ -53,7 +53,8 @@
     "import": "Import",
     "next": "Next",
     "previous": "Previous",
-    "deleteSelect": "Delete Selected"
+    "deleteSelect": "Delete Selected",
+    "finished": "Finished"
   },
   "tip": {
     "this": "This",
@@ -135,7 +136,9 @@
       "startTip": "We will read the header data for one-to-one correspondence. Therefore, start with the header, not the title row.",
       "mapper": "Data mapping: We need to correspond to the fields in the header. If the header of your table data is different from our template, please modify this to correspond.",
       "validate": "Validating",
-      "loading": "Importing"
+      "loading": "Importing",
+      "exist": "What do you want to do when the student numbers are the same?",
+      "existContent": "The following student number data already exists. Do you choose the {0} operation. Are you sure you want to proceed?(Can be configured in the previous advanced configuration)"
     }
   },
   "setting": {

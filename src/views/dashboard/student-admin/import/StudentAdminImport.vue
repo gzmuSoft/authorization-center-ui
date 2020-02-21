@@ -11,7 +11,7 @@
           span {{$t("title.import")}}
         v-tooltip(bottom)
           template(v-slot:activator="{ on }")
-            v-btn(icon, v-on="on", @click="show = false")
+            v-btn(icon, v-on="on", @click="handleSuccess")
               v-icon mdi-close
           span {{$t("action.close")}}
       v-card-text
@@ -42,8 +42,24 @@
                     strong.primary--text 高级配置
             v-expand-transition
               v-form.second(ref="form", v-show="config.enable")
+                v-divider
                 v-text-field(v-model="config.start", :label="$t('tip.import.start')", type="number", color="secondary",
                   :hint="$t('tip.import.startTip')", persistent-hint, :rules="[required('tip.this')]")
+                v-divider.mt-5
+                v-radio-group(v-model="config.update")
+                  template(v-slot:label)
+                    .config {{$t('tip.import.exist')}}
+                  v-radio(:value="false")
+                    template(v-slot:label)
+                      .config-one 直接跳过，对已有的数据
+                        strong.error--text 不进行任何操作
+                        span.grey--text (例: 存在 201607090217 学生，导入数据中有学号相同学生将直接跳过)
+                  v-radio(:value="true")
+                    template(v-slot:label)
+                      .config-two 替换数据，使用新的数据
+                        strong.success--text 完全替换并启用
+                        span.grey--text (例: 存在 201607090217 学生，导入数据中有学号相同学生将直接覆盖旧数据并启用)
+                v-divider
                 v-subheader {{$t('tip.import.mapper')}}
                 v-row
                   v-col(cols="5")
@@ -155,14 +171,24 @@
           v-stepper-step(step="3", color="secondary") {{$t('tip.import.third')}}
           v-stepper-content(step="3")
             student-admin-preview(ref="preview", :config="config")
-            v-btn.mr-2(color="secondary", @click="handleThird", :loading="loading.third", :disabled="loading.third") {{$t('action.next')}}
+            v-btn.mr-2(color="secondary", @click="handleThird(false)", :loading="loading.third", :disabled="loading.third") {{$t('action.next')}}
               template(v-slot:loader)
                 span {{loading.thirdTip}}
             v-btn(color="secondary", @click="handlePrevious") {{$t('action.previous')}}
           v-stepper-step(step="4", color="secondary") {{$t('tip.import.fourth')}}
           v-stepper-content(step="4")
-            v-btn(color="secondary", @click="handleSuccess") {{$t('action.previous')}}
-
+            v-btn(color="secondary", @click="handleSuccess") {{$t('action.finished')}}
+    v-dialog(v-model="tip.show", width="500px")
+      v-card
+        v-card-title.headline.grey.lighten-2(primary-title) {{$t('title.tip')}}
+        v-card-text
+          p {{$t('tip.import.existContent', [config.update ? '替换' : '不进行任何'])}}
+          ul
+            li(v-for="no in tip.no") {{no}}
+        v-card-actions
+          v-spacer
+          v-btn(outlined, color="error", @click="tip.show = false") {{$t('action.cancel')}}
+          v-btn(outlined, color="success", @click="handleThird(true)") {{$t('action.ok')}}
 </template>
 
 <script lang="ts">
@@ -177,9 +203,10 @@ export default class StudentAdminImport extends Mixins(FormValidateMixin) {
   $refs: { form: any, files: any, preview: any }
   protected show = false
   protected loading = { second: false, third: false, thirdTip: '' }
+  protected tip = { show: false, no: [] }
   protected help = true
   protected files = []
-  protected step = 4
+  protected step = 1
   protected panel = [0, 1]
   protected rules = [
     '导入的文件应该与 <a>模板文件</a> 保持一致，否则请使用 <b>高级配置</b>。',
@@ -188,7 +215,8 @@ export default class StudentAdminImport extends Mixins(FormValidateMixin) {
     '首行应该直接为表头信息，如果不是，需要使用 <b>高级配置</b>。',
     '导入前建议保证数据的 <b>完整性</b>，如果导入的数据中存在数据缺失情况，可能会造成导入失败的情况发生。',
     '由于导入的过程涉及过程较为复杂，在导入过得过程中请不要擅自关闭此页面，否则可能造成导入的数据错乱等问题。',
-    '导入后，<b>学号将作为用户的账户名称，学号后六位将作为默认密码。因此，学号为必填项且长度必须大于等于 6！</b>'
+    '导入后，<b>学号将作为用户的账户名称，学号后六位将作为默认密码。因此，学号为必填项且长度必须大于等于 6！</b>',
+    '为了保证导入能够正常进行，学号长度小于 6 位时，默认密码为 000000.'
   ]
   protected config = {
     enable: false,
@@ -208,7 +236,8 @@ export default class StudentAdminImport extends Mixins(FormValidateMixin) {
     academic: 'M',
     graduationDate: 'N',
     graduateInstitution: 'O',
-    remark: 'P'
+    remark: 'P',
+    update: false
   }
   handleDelete (index) {
     this.files.splice(index, 1)
@@ -238,7 +267,8 @@ export default class StudentAdminImport extends Mixins(FormValidateMixin) {
       this.loading.second = false
     }
   }
-  async handleThird () {
+  async handleThird (tip) {
+    this.tip.show = false
     if (this.$refs.preview.data.length === 0) {
       this.$toast.error(this.$t('tip.import.noData'))
       return
@@ -247,15 +277,16 @@ export default class StudentAdminImport extends Mixins(FormValidateMixin) {
     try {
       this.loading.thirdTip = this.$t('tip.import.validate') as string
       const data = this.$refs.preview.data
-      const params = { content: data, config: {} }
+      const params = { content: data, config: { update: this.config.update } }
       const nos = data.map(d => d.no)
       const res = await userExist(nos)
       // Already exist users
       const users = res.data
-      if (users.length !== 0) {
+      if (users.length !== 0 && !tip) {
         const names = users.map(u => u.name)
-        await this.$dialog
-          .confirm(`学号为 ${names} 的用户已经存在，我们将会直接跳过。您确定继续吗？`)
+        this.tip.show = true
+        this.tip.no = names
+        return
       }
       this.loading.thirdTip = this.$t('tip.import.loading') as string
       await studentImport(params)
