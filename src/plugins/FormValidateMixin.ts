@@ -21,15 +21,15 @@ export default class extends Vue {
     return v => !v || (!!v && v.length >= length) || this.$t('tip.validate.minLength', [length])
   }
   equalsLength (length) {
-    return v => (!!v && v.length === length) || this.$t('tip.validate.equalsLength', [length])
+    return v => !v || (!!v && v.length === length) || this.$t('tip.validate.equalsLength', [length])
   }
   noRequiredRangeLength (min, max) {
     return v => !v || (v.length >= min && v.length <= max) || this.$t('tip.validate.rangeLength', [min, max])
   }
   rangeLength (min, max) {
-    return v => (!!v && v.length >= min && v.length <= max) || this.$t('tip.validate.rangeLength', [min, max])
+    return v => !v || (!!v && v.length >= min && v.length <= max) || this.$t('tip.validate.rangeLength', [min, max])
   }
   email () {
-    return v => (!!v && /.+@.+\..+/.test(v)) || this.$t('tip.validate.email')
+    return v => !v || (!!v && /.+@.+\..+/.test(v)) || this.$t('tip.validate.email')
   }
 }

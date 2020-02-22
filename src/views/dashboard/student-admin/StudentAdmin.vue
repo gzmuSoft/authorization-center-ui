@@ -41,9 +41,9 @@
             v-select(v-model="search.isEnable", ref="isEnable", :label="$t('entity.base.isEnable')",
               :items="status", item-text="name", item-value="value", clearable)
           v-flex.text-right(sm12)
-            v-btn.mr-4(outlined, color="accent", @click="handleImport") {{$t('action.import')}}
+            v-btn.mr-4(outlined, color="accent", @click="handleImport", v-if="permission.import") {{$t('action.import')}}
+            v-btn.mr-4(outlined, color="success", @click="handleAdd", v-if="permission.add") {{$t('action.add')}}
             v-btn.mr-4(outlined, color="warning", @click="handleReset") {{$t('action.reset')}}
-            v-btn.mr-4(outlined, color="success", @click="handleAdd") {{$t('action.add')}}
             v-btn(outlined, color="primary", @click="handleSearch") {{$t('action.search')}}
       v-data-table(:headers="headers", :items="items", :options.sync="options", :server-items-length="itemsLength",
         :footer-props="footer", :loading="load", multi-sort)
@@ -71,7 +71,7 @@
           v-switch(:loading="item.loading", :disabled="item.disabled", v-model="item.isEnable",
             :true-value="true", :false-value="false", :value="item.isEnable", @click.stop="handleStatus(item)",
             :label="`${item.disabled === true? $t('action.wait') : item.isEnable ? $t('action.enable') : $t('action.disable') }`")
-    student-admin-view(ref="view", :item="viewItem", @update="handleUpdate")
+    student-admin-view(ref="view", :item="viewItem", @update="handleUpdate", @create="handleSearch")
     student-admin-user-view(ref="user", :item="viewItem")
     student-admin-import(ref="import")
 </template>
@@ -96,6 +96,7 @@ export default class StudentAdmin extends Mixins(TableMixin, FormValidateMixin, 
   $refs : { form: any, view: any, user: any, import: any }
   protected search: any = {}
   protected files: any = []
+  protected permission = { add: false, import: false }
   @Action('getTypes', { namespace: 'admin' }) protected getTypes !: Function
   get userId () {
     if (this.viewItem.hasOwnProperty('userId')) return this.viewItem.userId
@@ -168,6 +169,8 @@ export default class StudentAdmin extends Mixins(TableMixin, FormValidateMixin, 
         this.items.push(v)
       })
       this.itemsLength = res.data.itemsLength
+      this.permission.add = res.data.add
+      this.permission.import = res.data.import
     }).finally(() => {
       this.load = false
     })
@@ -183,6 +186,13 @@ export default class StudentAdmin extends Mixins(TableMixin, FormValidateMixin, 
     const find = this._.find(classes, { id: id })
     if (typeof (find) === 'undefined') return this.$t('tip.none')
     else return find.name
+  }
+  handleAdd () {
+    this.handleView({
+      id: null,
+      edit: true,
+      sort: 1
+    })
   }
   handleStatus (item) {
     item.loading = 'success'

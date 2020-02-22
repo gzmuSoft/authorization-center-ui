@@ -21,11 +21,17 @@
                 :append-icon="genderIcon", :rules="[required('entity.student.gender')]", :readonly="!res.edit")
             v-col(cols="12", sm="6", lg="3")
               v-text-field(v-model="res.no", ref="no", :label="$t('entity.student.no')", :readonly="!res.edit",
-                :rules="[required('entity.student.no'), maxLength(18)]", counter="18")
+                :rules="[required('entity.student.no'), maxLength(18)]", counter="18", @blur="nameExist", :loading="load.no")
             v-col(cols="12", sm="6", lg="3")
               v-text-field(v-model="res.idNumber", ref="idNumber", :label="$t('entity.student.idNumber')", :readonly="!res.edit",
                 :hint="$t('entity.student.tip.idNumber')", counter="18",
-                :rules="[required('entity.teacher.nation'), equalsLength(18)]")
+                :rules="[equalsLength(18)]")
+            v-col(cols="12", sm="6", lg="3")
+              v-text-field(v-model="res.email", ref="email", :label="$t('entity.user.email')", @blur="emailExist", v-if="res.id === null",
+                :rules="[rangeLength(4, 35), email()]")
+            v-col(cols="12", sm="6", lg="3")
+              v-text-field(v-model="res.phone", ref="phone", :label="$t('entity.user.phone')", @blur="phoneExist", v-if="res.id === null",
+                :rules="[equalsLength(11)]")
             v-col(cols="12", sm="6", lg="3")
               date-menu(v-model="res.enterDate", ref="enterDate", :label="$t('entity.student.enterDate')", :readonly="!res.edit",
                 :rules="[required('entity.student.enterDate')]")
@@ -37,7 +43,7 @@
                 :label="$t('entity.student.academic')")
             v-col(cols="12", sm="6", lg="3")
               v-select(v-model="res.nation", ref="nation", :label="$t('entity.teacher.nation')",
-                :items="types['9']", item-text="name", item-value="id", :rules="[required('entity.teacher.nation')]")
+                :items="types['9']", item-text="name", item-value="id")
             v-col(cols="12", sm="6", lg="3")
               v-select(v-model="res.schoolId", ref="school", :label="$t('entity.student.school')",
                 :items="types['0']", item-text="name", item-value="id", :rules="[required('entity.student.school')]")
@@ -86,12 +92,14 @@ import DialogViewMixin from '@/plugins/DialogViewMixin'
 import StudentAdminMixin from './StudentAdminMixin'
 import DateMenu from '@/components/DateMenu.vue'
 import { State } from 'vuex-class'
-import { studentUpdateComplete } from '@/api/student'
+import { studentAdd, studentUpdateComplete } from '@/api/student'
+import { userExist } from '@/api/base'
 
 @Component({ components: { DateMenu } })
 export default class StudentAdminView extends Mixins(FormValidateMixin, DialogViewMixin, StudentAdminMixin) {
   @State('types', { namespace: 'admin' })protected types!: any
-
+  $refs: {form: any, no: any, email: any, phone: any}
+  private load = { no: false }
   get colleges () {
     if (this.res.schoolId !== '') {
       const college: Array<any> = this.types['1']
@@ -125,14 +133,53 @@ export default class StudentAdminView extends Mixins(FormValidateMixin, DialogVi
     }
   }
   async handleSave () {
+    if (!this.$refs.form.validate()) return
     this.loading = true
-    studentUpdateComplete(this.res).then(() => {
+    try {
+      if (this.res.id === null) {
+        await studentAdd(this.res)
+        this.$emit('create', this.res)
+      } else {
+        await studentUpdateComplete(this.res)
+        this.$emit('update', this.res)
+      }
       this.$toast.success(this.$t('tip.success'))
       this.show = false
-      this.$emit('update', this.res)
-    }).finally(() => {
+    } finally {
       this.loading = false
-    })
+    }
+  }
+  async nameExist () {
+    if (this.res.no === this.item.no || this.res.no.length < 1) return false
+    this.load.no = true
+    try {
+      const res: any = await userExist({ name: this.res.no })
+      if (res.data.exist) {
+        this.$refs.no.errorBucket = [this.$t('tip.validate.exist', [this.res.no])]
+        return true
+      }
+      return false
+    } finally {
+      this.load.no = false
+    }
+  }
+  async emailExist () {
+    if (this.res.email === this.item.email) return false
+    const res: any = await userExist({ email: this.res.email })
+    if (res.data.exist) {
+      this.$refs.email.errorBucket = [this.$t('tip.validate.exist', [this.res.email])]
+      return true
+    }
+    return false
+  }
+  async phoneExist () {
+    if (this.res.phone === this.item.phone) return false
+    const res: any = await userExist({ phone: this.res.phone })
+    if (res.data.exist) {
+      this.$refs.phone.errorBucket = [this.$t('tip.validate.exist', [this.res.phone])]
+      return true
+    }
+    return false
   }
 }
 </script>

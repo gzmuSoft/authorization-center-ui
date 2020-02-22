@@ -23,3 +23,11 @@ export const studentImport = (data) => {
     data: data
   })
 }
+
+export const studentAdd = (data) => {
+  return authAxios.request({
+    url: '/student',
+    method: 'POST',
+    data: data
+  })
+}
