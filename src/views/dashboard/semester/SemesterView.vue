@@ -4,7 +4,7 @@
       v-card-title
         span {{$t("title.info")}}
         v-spacer
-        v-tooltip(left)
+        v-tooltip(bottom)
           template(v-slot:activator="{ on }")
             v-btn(icon, v-on="on", @click="show = false")
               v-icon mdi-close

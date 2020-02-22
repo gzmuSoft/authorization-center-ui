@@ -57,6 +57,7 @@
     "finished": "完成"
   },
   "tip": {
+    "noData": "暂无数据",
     "this": "此项",
     "none": "未填写",
     "userInfo": "用户信息",

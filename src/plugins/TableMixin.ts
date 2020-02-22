@@ -42,7 +42,11 @@ export default class extends Vue {
   }
 
   handleAdd () {
-    // need implement
+    this.handleView({
+      id: null,
+      edit: true,
+      sort: 1
+    })
   }
 
   handleDelete (item) {

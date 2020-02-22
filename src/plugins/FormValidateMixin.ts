@@ -2,9 +2,7 @@ import { Component, Vue } from 'vue-property-decorator'
 
 @Component
 export default class extends Vue {
-  $refs: {
-    form: any
-  }
+  $refs: { form: any }
   required (name) {
     return v => (!!v && v.length !== 0) || this.$t('tip.validate.required', [this.$t(name)])
   }

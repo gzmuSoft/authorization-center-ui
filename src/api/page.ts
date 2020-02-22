@@ -39,3 +39,11 @@ export const studentAdminPage = (params) => {
     params: params
   })
 }
+
+export const teacherAdminPage = (params) => {
+  return authAxios.request({
+    url: '/teacher',
+    method: 'GET',
+    params: params
+  })
+}

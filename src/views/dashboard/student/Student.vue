@@ -14,6 +14,7 @@
         v-col(cols="12", md="6")
           v-text-field(v-model="search.no", ref="no", :label="$t('entity.student.no')",
             counter="18", :rules="[maxLength(18)]", clearable)
+        v-subheader(v-if="searchStudent.length === 0") {{$t('tip.noData')}}
         v-col(v-for="student in searchStudent", :key="`${student.name}-${student.no}`", cols="12", sm="6" md="4", lg="3", xl="2")
           v-card.mx-auto.mb-1(max-width="344", ripple, shaped, :loading="loading", @click="handleView(student)")
             v-list-item(two-line)

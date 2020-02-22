@@ -57,6 +57,7 @@
     "finished": "Finished"
   },
   "tip": {
+    "noData": "No Data",
     "this": "This",
     "none": "Unfilled",
     "userInfo": "User Info",

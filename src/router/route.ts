@@ -101,12 +101,6 @@ export const routerMap = [
         component: () => import(/* webpackChunkName: "student" */ '@/views/dashboard/student-admin')
       },
       {
-        path: 'teacher',
-        name: 'teacher',
-        meta: { title: i18n.t('menu.teacher') },
-        component: () => import(/* webpackChunkName: "teacher" */ '@/views/dashboard/teacher')
-      },
-      {
         path: 'teacher-admin',
         name: 'teacher-admin',
         meta: { title: i18n.t('menu.teacher') },
