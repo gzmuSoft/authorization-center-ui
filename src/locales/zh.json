@@ -268,6 +268,39 @@
     "semester": {
       "startDate": "开始时间",
       "endDate": "结束时间"
+    },
+    "client": {
+      "name": "应用名称",
+      "clientId": "客户端 ID",
+      "resourceId": "资源服务器 ID",
+      "clientSecret": "客户端密钥",
+      "scope": "授权域",
+      "grantTypes": "授权方式",
+      "redirectUrl": "重定向地址",
+      "authorities": "授权保留字段",
+      "accessTokenValidity": "访问令牌有效期/秒",
+      "refreshTokenValidity": "刷新令牌有效期/秒",
+      "additionalInformation": "附加信息(保留字段)",
+      "autoApproveScopes": "是否自动授权(保留字段)",
+      "remark": "应用详情",
+      "tip": {
+        "client": "OAuth 客户端角色",
+        "clientSecret": "OAuth 客户端密钥",
+        "resource": "OAuth 的资源服务器角色，多个资源服务器使用 ',' 分割",
+        "scope": "用户请求授权域，授权服务器不做验证。客户端自行使用。多个域使用 ',' 分割",
+        "grantTypes": "允许客户端使用的授权方式",
+        "redirectUrl": "授权码模式登录成功后的回调地址",
+        "reserved": "此字段为授权服务器保留字段",
+        "accessTokenValidity": "用户得到有效的访问令牌后，令牌有效期。可使用安全模式强制使令牌失效。",
+        "refreshTokenValidity": "用户得到有效的刷新令牌后，令牌有效期。可使用安全模式强制使令牌失效。"
+      },
+      "type": {
+        "password": "密码模式",
+        "refreshToken": "刷新令牌",
+        "sms": "短袖验证码模式",
+        "email": "电子邮箱模式",
+        "authorizationCode": "授权码模式"
+      }
     }
   }
 }

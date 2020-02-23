@@ -6,7 +6,7 @@
         v-text-field(v-model="config.start", :label="$t('tip.import.start')", type="number", color="secondary",
           :hint="$t('tip.import.startTip')", persistent-hint, :rules="[required('tip.this')]")
         v-subheader {{$t('tip.import.mapper')}}
-        v-row(v-for="r in rows")
+        v-row(v-for="r in rows", :key="r.key")
           v-col(cols="5")
             v-text-field(:value="`${r.label} ${config[r.key]}`", color="secondary", disabled, readonly)
           v-col.text-center(cols="2")
@@ -22,7 +22,6 @@
 import { Component, Mixins } from 'vue-property-decorator'
 import AdminImport from '@/components/AdminImport.vue'
 import FormValidateMixin from '@/plugins/FormValidateMixin'
-import { userExist } from '@/api/user'
 import { studentImport } from '@/api/student'
 import StudentAdminPreview from './StudentAdminPreview.vue'
 import ImportMixin from '@/plugins/ImportMixin'

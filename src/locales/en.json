@@ -267,6 +267,39 @@
     "semester": {
       "startDate": "Start Data",
       "endDate": "End Data"
+    },
+    "client": {
+      "name": "Application name",
+      "clientId": "Client ID",
+      "resourceId": "Resource Server ID",
+      "clientSecret": "Client Secret",
+      "scope": "Scope",
+      "grantTypes": "Grant Type",
+      "redirectUrl": "Redirect Url",
+      "authorities": "Authorization Reserved Field",
+      "accessTokenValidity": "Access Token Validity Period / Second",
+      "refreshTokenValidity": "Refresh Token Validity Period / Second",
+      "additionalInformation": "Additional Information(Reserved Field)",
+      "autoApproveScopes": "AutoApproveScopes(Reserved Field)",
+      "remark": "Application Info",
+      "tip": {
+        "client": "OAuth client role.",
+        "clientSecret": "OAuth Client Secret",
+        "resource": "OAuth resource server role, multiple resource servers use ',' split.",
+        "scope": "The user requests an authorization scopes, and the authorization server does not perform authentication. The client uses it on its own. Use ',' to split multiple scopes",
+        "grantTypes": "Authorization types allowed by the client.",
+        "redirectUrl": "Callback address after successful login in authorization code mode.",
+        "reserved": "This field is reserved for the authorization server.",
+        "accessTokenValidity": "After the user gets a valid access token, the token expires. You can use security mode to force the token to be invalidated.",
+        "refreshTokenValidity": "After the user gets a valid refresh token, the token is valid. You can use security mode to force the token to be invalidated.."
+      },
+      "type": {
+        "password": "Password Mode",
+        "refreshToken": "Refresh Token",
+        "sms": "Sms Mode",
+        "email": "Email Mode",
+        "authorizationCode": "Authorization Code Mode"
+      }
     }
   }
 }
