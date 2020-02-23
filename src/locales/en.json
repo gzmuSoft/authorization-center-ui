@@ -139,7 +139,7 @@
       "validate": "Validating",
       "loading": "Importing",
       "exist": "What do you want to do when the student numbers are the same?",
-      "existContent": "The following student number data already exists. Do you choose the {0} operation. Are you sure you want to proceed?(Can be configured in the previous advanced configuration)"
+      "existContent": "The following phone data already exists. Do you choose the {0} operation. Are you sure you want to proceed?(Can be configured in the previous advanced configuration)"
     }
   },
   "setting": {

@@ -74,7 +74,7 @@
         v-card-text
           p {{$t('tip.import.existContent', [update ? '替换' : '不进行任何'])}}
           ul
-            li(v-for="no in tip.no") {{no}}
+            li(v-for="no in tip.phone") {{no}}
         v-card-actions
           v-spacer
           v-btn(outlined, color="error", @click="tip.show = false") {{$t('action.cancel')}}
@@ -93,7 +93,7 @@ export default class StudentAdminImport extends Mixins(FormValidateMixin) {
   @Prop(Function) protected validate !: Function
   @Prop(Function) protected import !: Function
   protected loading = { second: false, third: false, thirdTip: '' }
-  protected tip = { show: false, no: [] }
+  protected tip = { show: false, phone: [] }
   protected help = true
   protected files = []
   protected step = 1
@@ -107,8 +107,8 @@ export default class StudentAdminImport extends Mixins(FormValidateMixin) {
     '首行应该直接为表头信息，如果不是，需要使用 <b>高级配置</b>。',
     '导入前建议保证数据的 <b>完整性</b>，如果导入的数据中存在数据缺失情况，可能会造成导入失败的情况发生。',
     '由于导入的过程涉及过程较为复杂，在导入过得过程中请不要擅自关闭此页面，否则可能造成导入的数据错乱等问题。',
-    '导入后，<b>学号将作为用户的账户名称，学号后六位将作为默认密码。因此，学号为必填项且长度必须大于等于 6！</b>',
-    '为了保证导入能够正常进行，学号长度小于 6 位时，默认密码为 000000.'
+    '导入后，<b>手机号将作为用户的账户名称，身份证后六位将作为默认密码。</b>',
+    '为了保证导入能够正常进行，身份证号码长度小于 6 位时，为其设置默认密码为 000000.'
   ]
   handleDelete (index) {
     this.files.splice(index, 1)

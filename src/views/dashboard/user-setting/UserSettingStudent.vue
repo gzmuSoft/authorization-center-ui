@@ -31,7 +31,8 @@
             v-select(v-model="entity.academic", :items="academic", item-text="name", item-value="id",
               :label="$t('entity.student.academic')")
           v-col(cols="12", sm="6")
-            date-menu(v-model="entity.graduationDate", ref="graduationDate", :label="$t('entity.student.graduationDate')")
+            date-menu(v-model="entity.graduationDate", ref="graduationDate", :label="$t('entity.student.graduationDate')",
+              style="z-index: 1500;")
           v-col(cols="12", sm="6")
             v-text-field(v-model="entity.graduateInstitution", :label="$t('entity.student.graduateInstitution')",
               :hint="$t('entity.student.tip.graduateInstitution')", counter="25",

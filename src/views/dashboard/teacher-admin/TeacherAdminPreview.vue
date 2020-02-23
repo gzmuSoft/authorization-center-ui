@@ -1,5 +1,5 @@
 <template lang="pug">
-  .student-admin-preview
+  .teacher-admin-preview
     v-row.mx-4
       p.font-weight-bold {{$t('tip.import.field')}}
       v-spacer
@@ -12,15 +12,12 @@
         span(:class="item.collegeId ? '' : 'error--text font-weight-bold'") {{item.college}}
       template(v-slot:item.dep="{ item }")
         span(:class="item.depId ? '' : 'error--text font-weight-bold'") {{item.dep}}
-      template(v-slot:item.specialty="{ item }")
-        span(:class="item.specialtyId ? '' : 'error--text font-weight-bold'") {{item.specialty}}
-      template(v-slot:item.classes="{ item }")
-        span(:class="item.classesId ? '' : 'error--text font-weight-bold'") {{item.classes}}
       template(v-slot:item.academicName="{ item }")
         span(:class="item.academic ? '' : 'error--text font-weight-bold'") {{item.academicName}}
       template(v-slot:item.nationName="{ item }")
         span(:class="item.nation ? '' : 'error--text font-weight-bold'") {{item.nationName}}
-
+      template(v-slot:item.degreeName="{ item }")
+        span(:class="item.degree ? '' : 'error--text font-weight-bold'") {{item.degreeName}}
 </template>
 
 <script lang="ts">
@@ -28,24 +25,22 @@ import { Component, Mixins } from 'vue-property-decorator'
 import AdminPreviewMixin from '@/plugins/AdminPreviewMixin'
 
 @Component
-export default class StudentAdminPreview extends Mixins(AdminPreviewMixin) {
+export default class TeacherAdminPreview extends Mixins(AdminPreviewMixin) {
   get headers () {
     return [
       { text: this.$t('entity.student.name'), align: 'left', value: 'name', width: '90px' },
       { text: this.$t('entity.user.phone'), align: 'left', value: 'phone' },
-      { text: this.$t('entity.student.no'), align: 'left', value: 'no' },
       { text: this.$t('entity.student.idNumber'), align: 'left', value: 'idNumber' },
       { text: this.$t('entity.student.gender'), align: 'left', value: 'gender', width: '40px' },
       { text: this.$t('entity.student.birthday'), align: 'left', value: 'birthday', width: '100px' },
-      { text: this.$t('entity.student.enterDate'), align: 'left', value: 'enterDate', width: '100px' },
       { text: this.$t('entity.teacher.nation'), align: 'left', value: 'nationName' },
       { text: this.$t('entity.student.school'), align: 'left', value: 'school' },
       { text: this.$t('entity.student.college'), align: 'left', value: 'college' },
-      { text: this.$t('entity.student.dep'), align: 'left', value: 'dep' },
-      { text: this.$t('entity.student.specialty'), align: 'left', value: 'specialty' },
-      { text: this.$t('entity.student.classes'), align: 'left', value: 'classes' },
+      { text: this.$t('entity.teacher.degree'), align: 'left', value: 'degreeName' },
       { text: this.$t('entity.student.academic'), align: 'left', value: 'academicName' },
-      { text: this.$t('entity.student.graduationDate'), align: 'left', value: 'graduationDate' },
+      { text: this.$t('entity.teacher.profTitle'), align: 'left', value: 'profTitleName' },
+      { text: this.$t('entity.student.originalMajor'), align: 'left', value: 'major' },
+      { text: this.$t('entity.student.graduationDate'), align: 'left', value: 'graduationDate', width: '100px' },
       { text: this.$t('entity.student.graduateInstitution'), align: 'left', value: 'graduateInstitution', sortable: false },
       { text: this.$t('entity.student.remark'), align: 'left', value: 'remark', sortable: false }
     ]
@@ -60,13 +55,6 @@ export default class StudentAdminPreview extends Mixins(AdminPreviewMixin) {
     const dep = this._.find(this.dep, { name: tmp.dep })
     if (typeof (dep) !== 'undefined') tmp.depId = dep.id
     else tmp.depId = null
-    const specialty = this._.find(this.specialty, { name: tmp.specialty })
-    if (typeof (specialty) !== 'undefined') tmp.specialtyId = specialty.id
-    else tmp.specialtyId = null
-    const classes = this._.find(this.classes, { name: tmp.classes })
-    if (typeof (classes) !== 'undefined') tmp.classesId = classes.id
-    else tmp.classesId = null
-    // academic
     tmp.academicName = tmp.academic
     const academic = this._.find(this.academic, { name: tmp.academic })
     if (typeof (academic) !== 'undefined') tmp.academic = academic.id
@@ -76,6 +64,16 @@ export default class StudentAdminPreview extends Mixins(AdminPreviewMixin) {
     const nation = this._.find(this.nation, { name: tmp.nation })
     if (typeof (nation) !== 'undefined') tmp.nation = nation.id
     else tmp.nation = null
+    // degree
+    tmp.degreeName = tmp.degree
+    const degree = this._.find(this.degree, { name: tmp.nation })
+    if (typeof (degree) !== 'undefined') tmp.degree = degree.id
+    else tmp.degree = null
+    // professionalTitle
+    tmp.profTitleName = tmp.profTitle
+    const profTitle = this._.find(this.professionalTitle, { name: tmp.profTitle })
+    if (typeof (profTitle) !== 'undefined') tmp.profTitle = profTitle.id
+    else tmp.profTitle = null
     return tmp
   }
 }

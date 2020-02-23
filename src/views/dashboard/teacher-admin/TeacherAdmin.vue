@@ -76,6 +76,7 @@
             :label="`${item.disabled === true? $t('action.wait') : item.isEnable ? $t('action.enable') : $t('action.disable') }`")
     teacher-admin-view(ref="view", :item="viewItem", @update="handleUpdate", @create="handleSearch")
     table-admin-user-view(ref="user", :item="viewItem")
+    teacher-admin-import(ref="import")
 </template>
 
 <script lang="ts">
@@ -87,8 +88,9 @@ import DateMenu from '@/components/DateMenu.vue'
 import { teacherAdminPage } from '@/api/page'
 import TableAdminUserView from '@/components/TableAdminUserView.vue'
 import TeacherAdminView from './TeacherAdminView.vue'
+import TeacherAdminImport from '@/views/dashboard/teacher-admin/TeacherAdminImport.vue'
 
-@Component({ components: { TeacherAdminView, TableAdminUserView, DateMenu, CardHeader } })
+@Component({ components: { TeacherAdminImport, TeacherAdminView, TableAdminUserView, DateMenu, CardHeader } })
 export default class TeacherAdmin extends Mixins(FormValidateMixin, TableAdminMixin) {
   get headers () {
     return [

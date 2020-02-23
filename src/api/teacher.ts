@@ -15,3 +15,11 @@ export const teacherAdd = (date) => {
     data: date
   })
 }
+
+export const teacherImport = (data) => {
+  return authAxios.request({
+    url: '/teacher/import',
+    method: 'POST',
+    data: data
+  })
+}
