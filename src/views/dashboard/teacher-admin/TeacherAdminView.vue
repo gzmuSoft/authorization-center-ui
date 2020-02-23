@@ -21,14 +21,13 @@
                 :append-icon="genderIcon", :rules="[required('entity.student.gender')]", :readonly="!res.edit")
             v-col(cols="12", sm="6", lg="3")
               v-text-field(v-model="res.idNumber", ref="idNumber", :label="$t('entity.student.idNumber')", :readonly="!res.edit",
-                :hint="$t('entity.student.tip.idNumber')", counter="18",
-                :rules="[equalsLength(18)]")
+                :hint="$t('entity.student.tip.idNumber')", counter="18", :rules="[required('entity.student.idNumber'), equalsLength(18)]")
             v-col(cols="12", sm="6", lg="3", v-if="res.id === null")
               v-text-field(v-model="res.email", ref="email", :label="$t('entity.user.email')", @blur="filedExist('email')",
-                :rules="[rangeLength(4, 35), email()]", :loading="load.email")
+                :rules="[required('entity.user.email'), rangeLength(4, 35), email()]", :loading="load.email")
             v-col(cols="12", sm="6", lg="3", v-if="res.id === null")
               v-text-field(v-model="res.phone", ref="phone", :label="$t('entity.user.phone')", @blur="filedExist('phone')",
-                :rules="[equalsLength(11)]", :loading="load.phone")
+                :rules="[required('entity.user.phone'), equalsLength(11)]", :loading="load.phone")
             v-col(cols="12", sm="6", lg="3")
               date-menu(v-model="res.workDate", ref="workDate", :label="$t('entity.teacher.workDate')", :readonly="!res.edit",
                 :rules="[required('entity.teacher.workDate')]")
@@ -45,6 +44,8 @@
               v-select(v-model="res.profTitle", ref="profTitle", :label="$t('entity.teacher.profTitle')",
                 :items="types['11']", item-text="name", item-value="id")
             v-col(cols="12", sm="6", lg="3")
+              date-menu(v-model="res.profTitleAssDate", ref="profTitleAssDate", :label="$t('entity.teacher.profTitleAssDate')", :readonly="!res.edit")
+            v-col(cols="12", sm="6", lg="3")
               v-select(v-model="res.degree", ref="degree", :label="$t('entity.teacher.degree')",
                 :items="types['7']", item-text="name", item-value="id")
             v-col(cols="12", sm="6", lg="3")
@@ -57,8 +58,21 @@
               v-select(v-model="res.depId", ref="dep", :label="$t('entity.student.dep')",
                 :items="departments", item-text="name", item-value="id", :rules="[required('entity.student.dep')]")
             v-col(cols="12", sm="6", lg="3")
+              v-text-field(v-model="res.major", ref="major", :label="$t('entity.student.originalMajor')", :readonly="!res.edit",
+                counter="18", :rules="[maxLength(18)]")
+            v-col(cols="12", sm="6", lg="3")
+              date-menu(v-model="res.graduationDate", ref="graduationDate", :label="$t('entity.student.graduationDate')", :readonly="!res.edit")
+            v-col(cols="12", sm="6", lg="3")
+              v-text-field(v-model="res.graduateInstitution", ref="graduateInstitution", :label="$t('entity.student.graduateInstitution')", :readonly="!res.edit",
+                counter="18", :rules="[maxLength(18)]")
+            v-col(cols="12", sm="6", lg="3")
+              v-text-field(v-model="res.subjectCategory", ref="subjectCategory", :label="$t('entity.teacher.subjectCategory')", :readonly="!res.edit",
+                counter="18", :rules="[maxLength(18)]")
+            v-col(cols="12", sm="6", lg="3")
               v-text-field(v-model="res.majorResearch", ref="majorResearch", :label="$t('entity.teacher.majorResearch')", :readonly="!res.edit",
                 counter="18", :rules="[maxLength(18)]")
+            v-col(cols="12", sm="6", lg="3")
+              v-switch(v-model="res.isAcademicLeader", :label="$t('entity.teacher.tip.isAcademicLeader', [res.isAcademicLeader?'是':'否'])")
             v-col.pt-8.pb-0(cols="12", sm="6", lg="3")
               v-slider(v-model="res.sort", :thumb-size="24", thumb-label)
                 template(v-slot:prepend)
@@ -89,13 +103,14 @@
 import { Component, Mixins } from 'vue-property-decorator'
 import TableAdminViewMixin from '@/plugins/TableAdminViewMixin'
 import DateMenu from '@/components/DateMenu.vue'
-import { teacherUpdate } from '@/api/teacher'
+import { teacherAdd, teacherUpdate } from '@/api/teacher'
 @Component({
   components: { DateMenu }
 })
 export default class TeacherAdminView extends Mixins(TableAdminViewMixin) {
   async handleAction () {
     if (this.res.id === null) {
+      await teacherAdd(this.res)
       this.$emit('create', this.res)
     } else {
       await teacherUpdate(this.res)

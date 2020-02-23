@@ -45,6 +45,7 @@ export default class extends Vue {
     this.handleView({
       id: null,
       edit: true,
+      isEnable: true,
       sort: 1
     })
   }
