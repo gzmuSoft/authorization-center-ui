@@ -112,9 +112,9 @@ export default class extends Mixins(TableMixin) {
   pageRes (res) {
     this.items = []
     res.data.content.forEach(v => {
-      v.loading = false
-      v.disabled = false
-      v.user = false
+      v['loading'] = false
+      v['disabled'] = false
+      v['user'] = false
       this.items.push(v)
     })
     this.itemsLength = res.data.itemsLength

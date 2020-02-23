@@ -16,17 +16,16 @@
             v-btn(outlined, color="primary", @click="handleSearch") {{$t('action.search')}}
       v-data-table(:headers="headers", :items="items", :options.sync="options", :server-items-length="itemsLength",
         :footer-props="footer", :loading="load", multi-sort)
+        template(v-slot:item.isEnable="{ item }")
+          v-switch(:loading="item.loading", :disabled="item.disabled", v-model="item.isEnable",
+            :true-value="true", :false-value="false", :value="item.isEnable", @click.stop="handleDelete(item)",
+            :label="`${item.disabled === true? $t('action.wait') : item.isEnable ? $t('action.enable') : $t('action.disable') }`")
         template(v-slot:item.action="{ item }")
           v-tooltip(top)
             template(v-slot:activator="{ on }")
               v-btn.mr-2(icon, x-small, fab, color="secondary", v-on="on", @click="handleView(item)")
                 v-icon mdi-pencil
             span {{$t('action.update')}}
-          v-tooltip(top)
-            template(v-slot:activator="{ on }")
-              v-btn.mr-2(icon, x-small, fab, color="error", v-on="on", @click="handleDelete(item)")
-                v-icon mdi-delete
-            span {{$t('action.delete')}}
     res-view(ref="view", :item="viewItem", @update="handleUpdate", @crate="handleSearch")
 </template>
 
@@ -52,15 +51,22 @@ export default class Res extends Mixins(TableMixin, FormValidateMixin) {
       { text: this.$t('entity.res.name'), align: 'left', value: 'name' },
       { text: this.$t('entity.base.sort'), align: 'middle', value: 'sort' },
       { text: this.$t('entity.res.remark'), align: 'left', value: 'remark' },
-      { text: this.$t('title.action'), align: 'center', value: 'action', sortable: false, width: '120px' }
+      { text: this.$t('entity.base.isEnable'), align: 'left', value: 'isEnable' },
+      { text: this.$t('title.action'), align: 'center', value: 'action', sortable: false, width: '70px' }
     ]
   }
 
   getPage (option) {
     this.load = true
     resPage(option).then(res => {
+      this.items = []
       this.itemsLength = res.data.itemsLength
-      this.items = res.data.content
+      res.data.content.forEach(v => {
+        v['loading'] = false
+        v['disabled'] = false
+        v['user'] = false
+        this.items.push(v)
+      })
     }).finally(() => { this.load = false })
   }
 
@@ -78,15 +84,15 @@ export default class Res extends Mixins(TableMixin, FormValidateMixin) {
   }
 
   handleDelete (item) {
-    this.$dialog
-      .confirm(this.$t('tip.dangerDelete'))
-      .then(() => {
-        resDelete(item.id).then(() => {
-          this.$toast.success(this.$t('tip.success'))
-          this.handleSearch()
-        })
+    item.loading = 'success'
+    item.disabled = true
+    item.isEnable = !item.isEnable
+    resDelete(item.id)
+      .catch(() => { item.isEnable = !item.isEnable })
+      .finally(() => {
+        item.disabled = false
+        item.loading = false
       })
-      .catch(() => {})
   }
 }
 </script>

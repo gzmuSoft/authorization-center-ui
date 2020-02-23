@@ -7,8 +7,9 @@
             v-text-field(v-model="search.name", ref="name", :label="$t('entity.base.name')",
               counter="18", :rules="[maxLength(18)]", clearable)
           v-flex.text-right(sm12, md4)
-            v-btn.mr-4(outlined, color="success", @click="handleAdd") {{$t('action.add')}}
-            v-btn(outlined, color="primary", @click="handleSearch") {{$t('action.search')}}
+            .mt-5
+              v-btn.mr-4(outlined, color="success", @click="handleAdd") {{$t('action.add')}}
+              v-btn(outlined, color="primary", @click="handleSearch") {{$t('action.search')}}
       v-data-table(:headers="headers", :items="items", :options.sync="options", :server-items-length="itemsLength",
         :footer-props="footer", :loading="load", multi-sort)
         template(v-slot:item.action="{ item }")
