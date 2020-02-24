@@ -6,3 +6,11 @@ export const client = () => {
     method: 'GET'
   })
 }
+
+export const clientUpdate = (data) => {
+  return authAxios.request({
+    url: '/client',
+    method: 'POST',
+    data: data
+  })
+}

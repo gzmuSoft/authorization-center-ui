@@ -11,7 +11,7 @@
               :content="$t(`action.${c.isEnable?'enable':'disable'}`)")
               .display-1.flex-grow-1.text-center {{c.name}}
       v-expand-transition
-        client-view.pa-10(v-if="edit", :item="view")
+        client-view.pa-10(v-if="edit", :item="view", @success="handleSuccess")
 </template>
 
 <script lang="ts">
@@ -27,6 +27,9 @@ export default class Client extends Vue {
   private view = {}
   private edit = false
   created () {
+    this.initData()
+  }
+  initData () {
     client().then(res => {
       this.client = []
       res.data.forEach(v => {
@@ -45,8 +48,33 @@ export default class Client extends Vue {
     this.edit = true
   }
   handleAdd () {
-    this.view = {}
+    this.view = {
+      id: null,
+      spell: '',
+      clientSecret: '',
+      isEnable: true,
+      sort: 1,
+      name: null,
+      clientId: null,
+      resourceIds: null,
+      scope: 'READ',
+      grantTypes: null,
+      redirectUrl: null,
+      accessTokenValidity: null,
+      refreshTokenValidity: null,
+      remark: null
+    }
     this.edit = true
+  }
+  handleSuccess (res) {
+    if (res.id === null) {
+      this.initData()
+      this.edit = false
+    } else {
+      this.view = res
+      const index = this._.findIndex(this.client, { id: res.id })
+      this.client.splice(index, 1, res)
+    }
   }
 }
 </script>
