@@ -167,6 +167,7 @@
     "setting": {
       "entity": "用户信息",
       "base": "基础信息",
+      "role": "角色信息",
       "avatar": "头像",
       "photo": "照片"
     },

@@ -165,8 +165,9 @@
   },
   "title": {
     "setting": {
-      "entity": "User info",
-      "base": "Base info",
+      "entity": "User Info",
+      "base": "Base Info",
+      "role": "Role Info",
       "avatar": "Avatar",
       "photo": "Photo"
     },
