@@ -3,29 +3,30 @@
     v-card-title(style="height: 100px;")
       card-header(icon="mdi-account-box", :title="$t('title.res')", :info="$t('tip.res.info')")
     v-card-text
-      v-form(ref="form")
-        v-layout(wrap, style="width:100%")
-          v-flex(sm12, md6)
-            v-text-field(v-model="search.describe", ref="des", :label="$t('entity.res.describe')",
-              counter="18", :rules="[maxLength(18)]", clearable)
-          v-flex(sm12, md6)
-            v-select(v-model="search.type", ref="type", :label="$t('entity.res.type')",
-              :items="resTypes", item-text="name", item-value="id")
-          v-flex.text-right(sm12)
-            v-btn.mr-4(outlined, color="success", @click="handleAdd") {{$t('action.add')}}
-            v-btn(outlined, color="primary", @click="handleSearch") {{$t('action.search')}}
-      v-data-table(:headers="headers", :items="items", :options.sync="options", :server-items-length="itemsLength",
-        :footer-props="footer", :loading="load", multi-sort)
-        template(v-slot:item.isEnable="{ item }")
-          v-switch(:loading="item.loading", :disabled="item.disabled", v-model="item.isEnable",
-            :true-value="true", :false-value="false", :value="item.isEnable", @click.stop="handleDelete(item)",
-            :label="`${item.disabled === true? $t('action.wait') : item.isEnable ? $t('action.enable') : $t('action.disable') }`")
-        template(v-slot:item.action="{ item }")
-          v-tooltip(top)
-            template(v-slot:activator="{ on }")
-              v-btn.mr-2(icon, x-small, fab, color="secondary", v-on="on", @click="handleView(item)")
-                v-icon mdi-pencil
-            span {{$t('action.update')}}
+      v-skeleton-loader(:loading="init", transition="slide-y-transition", type="table")
+        v-form(ref="form")
+          v-layout(wrap, style="width:100%")
+            v-flex(sm12, md6)
+              v-text-field(v-model="search.describe", ref="des", :label="$t('entity.res.describe')",
+                counter="18", :rules="[maxLength(18)]", clearable)
+            v-flex(sm12, md6)
+              v-select(v-model="search.type", ref="type", :label="$t('entity.res.type')",
+                :items="resTypes", item-text="name", item-value="id")
+            v-flex.text-right(sm12)
+              v-btn.mr-4(outlined, color="success", @click="handleAdd") {{$t('action.add')}}
+              v-btn(outlined, color="primary", @click="handleSearch") {{$t('action.search')}}
+          v-data-table(:headers="headers", :items="items", :options.sync="options", :server-items-length="itemsLength",
+            :footer-props="footer", :loading="load", multi-sort)
+            template(v-slot:item.isEnable="{ item }")
+              v-switch(:loading="item.loading", :disabled="item.disabled", v-model="item.isEnable",
+                :true-value="true", :false-value="false", :value="item.isEnable", @click.stop="handleDelete(item)",
+                :label="`${item.disabled === true? $t('action.wait') : item.isEnable ? $t('action.enable') : $t('action.disable') }`")
+            template(v-slot:item.action="{ item }")
+              v-tooltip(top)
+                template(v-slot:activator="{ on }")
+                  v-btn.mr-2(icon, x-small, fab, color="secondary", v-on="on", @click="handleView(item)")
+                    v-icon mdi-pencil
+                span {{$t('action.update')}}
     res-view(ref="view", :item="viewItem", @update="handleUpdate", @crate="handleSearch")
 </template>
 
@@ -57,6 +58,9 @@ export default class Res extends Mixins(TableMixin, FormValidateMixin) {
   }
 
   getPage (option) {
+    if (!option.hasOwnProperty('sort')) {
+      option = Object.assign(this.toPage(option), this.search)
+    }
     this.load = true
     resPage(option).then(res => {
       this.items = []
@@ -67,7 +71,10 @@ export default class Res extends Mixins(TableMixin, FormValidateMixin) {
         v['user'] = false
         this.items.push(v)
       })
-    }).finally(() => { this.load = false })
+      this.init = false
+    }).finally(() => {
+      this.load = false
+    })
   }
 
   handleAdd () {

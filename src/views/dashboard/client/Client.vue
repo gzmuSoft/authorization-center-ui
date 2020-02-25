@@ -3,13 +3,15 @@
     v-sheet.mx-auto(elevation="3")
       v-btn(color="accent", fab, fixed, dark, right, @click="handleAdd")
         v-icon mdi-plus
-      v-slide-group.pa-4(v-model="active", show-arrows)
-        v-slide-item(v-for="c in client", :key="c.id", v-slot:default="{ active, toggle }")
-          v-card.item-card.ma-4.d-flex.align-center.text-center(height="200", width="300",
-            @click="toggle", :color="active? 'secondary' : 'fourth'", dark)
-            v-badge.mx-auto(:color="c.isEnable? 'success' : 'error'",
-              :content="$t(`action.${c.isEnable?'enable':'disable'}`)")
-              .display-1.flex-grow-1.text-center {{c.name}}
+      v-slide-y-transition(mode="out-in")
+        skeleton-client.ma-4(v-if="init", :num="8")
+        v-slide-group.pa-4(v-else, v-model="active", show-arrows)
+          v-slide-item(v-for="c in client", :key="c.id", v-slot:default="{ active, toggle }")
+            v-card.item-card.ma-4.d-flex.align-center.text-center(height="200", width="300",
+              @click="toggle", :color="active? 'secondary' : 'fourth'", dark)
+              v-badge.mx-auto(:color="c.isEnable? 'success' : 'error'",
+                :content="$t(`action.${c.isEnable?'enable':'disable'}`)")
+                .display-1.flex-grow-1.text-center {{c.name}}
       v-expand-transition
         client-view.pa-10(v-if="edit", :item="view", @success="handleSuccess")
 </template>
@@ -18,13 +20,15 @@
 import { Component, Vue, Watch } from 'vue-property-decorator'
 import { client } from '@/api/client'
 import ClientView from './ClientView.vue'
+import SkeletonClient from '@/components/skeleton-loader/SkeletonClient.vue'
 @Component({
-  components: { ClientView }
+  components: { SkeletonClient, ClientView }
 })
 export default class Client extends Vue {
   private client = []
   private active = null
   private view = {}
+  private init = true
   private edit = false
   created () {
     this.initData()
@@ -36,6 +40,7 @@ export default class Client extends Vue {
         v.grantTypes = v.grantTypes.split(',')
         this.client.push(v)
       })
+      this.init = false
     })
   }
   @Watch('active')

@@ -4,6 +4,7 @@ export default class extends Vue {
   $refs : { form: any, view: any }
   protected items = []
   protected search = {}
+  protected init = true
   protected options = {
     sortBy: [ 'sort' ],
     sortDesc: [ false ],
@@ -17,6 +18,10 @@ export default class extends Vue {
   protected load = false
   protected itemsLength = -1
   protected viewItem: any = {}
+
+  created () {
+    this.getPage(this.options)
+  }
 
   @Watch('options')
   optionsChange (val) {
