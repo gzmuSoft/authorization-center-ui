@@ -94,7 +94,7 @@ import SkeletonTable from '@/components/skeleton-loader/SkeletonTable.vue'
 
 @Component({ components: { SkeletonTable, TableAdminUserView, StudentAdminImport, StudentAdminUserView: TableAdminUserView, StudentAdminView, DateMenu, CardHeader } })
 export default class StudentAdmin extends Mixins(FormValidateMixin, TableAdminMixin) {
-  private init = true
+  protected init = true
   get headers () {
     return [
       { text: this.$t('entity.student.name'), align: 'left', value: 'name' },
