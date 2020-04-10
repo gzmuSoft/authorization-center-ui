@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuetify from 'vuetify/lib'
-import zh from '@/locales/vuetify/zh'
-import en from '@/locales/vuetify/en'
+import zh from 'vuetify/src/locale/zh-Hans'
+import en from 'vuetify/src/locale/en'
 import colors from 'vuetify/lib/util/colors'
 
 Vue.use(Vuetify)
