@@ -24,4 +24,4 @@ jobs:
           KEY: ${{ secrets.SERVER_SSH_KEY }}
         with:
           source: "dist/*"
-          target: ${{ secrets.REMOTE_TARGET }}
+          target: "/root"
