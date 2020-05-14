@@ -7,10 +7,10 @@ const spinner = ora('正在发布到服务器...')
 let Client = require('ssh2').Client
 
 const server = {
-  user: '',
-  privateKey: '',
-  host: '',
-  path: ''
+  user: 'root',
+  privateKey: require('fs').readFileSync('/home/echo/公共/EchoCow'),
+  host: '118.24.1.170',
+  path: '/root/auth-center/ui'
 }
 
 let conn = new Client()
