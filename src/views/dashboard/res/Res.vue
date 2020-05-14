@@ -49,9 +49,9 @@ export default class Res extends Mixins(TableMixin, FormValidateMixin) {
       { text: this.$t('entity.res.describe'), align: 'left', value: 'describe' },
       { text: this.$t('entity.res.url'), align: 'left', value: 'url' },
       { text: this.$t('entity.res.method'), align: 'left', value: 'method' },
-      { text: this.$t('entity.res.name'), align: 'left', value: 'name' },
+      { text: this.$t('entity.base.name'), align: 'left', value: 'name' },
       { text: this.$t('entity.base.sort'), align: 'middle', value: 'sort' },
-      { text: this.$t('entity.res.remark'), align: 'left', value: 'remark' },
+      { text: this.$t('entity.base.remark'), align: 'left', value: 'remark' },
       { text: this.$t('entity.base.isEnable'), align: 'left', value: 'isEnable' },
       { text: this.$t('title.action'), align: 'center', value: 'action', sortable: false, width: '70px' }
     ]

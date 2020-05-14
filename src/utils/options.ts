@@ -4,7 +4,8 @@ export const resTypes = [
   { id: 0, name: i18n.t('entity.res.type0') },
   { id: 1, name: i18n.t('entity.res.type1') },
   { id: 2, name: i18n.t('entity.res.type2') },
-  { id: 3, name: i18n.t('entity.res.type3') }
+  { id: 3, name: i18n.t('entity.res.type3') },
+  { id: 4, name: i18n.t('entity.res.type4') }
 ]
 
 export const grantTypes = [

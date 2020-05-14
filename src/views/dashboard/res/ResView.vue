@@ -10,10 +10,16 @@
               v-icon mdi-close
           span {{$t("action.close")}}
       v-card-text
+        v-alert(dark, border="left", color="indigo", dismissible)
+          ul
+            li 菜单资源——前端菜单，名称为路由名称，路径为菜单名称，备注为菜单头。
+            li 请求资源——请求控制，名称、备注为空。
+            li 功能资源——前端路由，没有在菜单上，名称为路由名称，备注为空。
+            li 资源控制——资源操作，名称为资源描述，备注资源英文、方法为资源操作方式。
         v-form(ref="form")
           v-row
             v-col(cols="12", sm="6")
-              v-text-field(v-model="res.name", :label="$t('entity.res.name')", counter="30",
+              v-text-field(v-model="res.name", :label="$t('entity.base.name')", counter="30",
                 autofocus, single-line, :rules="[maxLength(30)]")
             v-col(cols="12", sm="6")
               v-text-field(v-model="res.url", :label="$t('entity.res.url')", counter="30",
@@ -25,7 +31,7 @@
               v-text-field(v-model="res.method", :label="$t('entity.res.method')", counter="30",
                 single-line, :rules="[required('entity.res.method'), maxLength(30)]")
             v-col(cols="12", sm="6")
-              v-text-field(v-model="res.remark", :label="$t('entity.res.remark')", counter="30",
+              v-text-field(v-model="res.remark", :label="$t('entity.base.remark')", counter="30",
                 single-line, :rules="[maxLength(30)]")
             v-col.pt-8.pb-0(cols="12", sm="6")
               v-slider(v-model="res.sort", :thumb-size="24", thumb-label)

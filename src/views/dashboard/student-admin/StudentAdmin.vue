@@ -76,7 +76,7 @@
               :label="`${item.disabled === true? $t('action.wait') : item.isEnable ? $t('action.enable') : $t('action.disable') }`")
     student-admin-view(ref="view", :item="viewItem", @update="handleUpdate", @create="handleSearch")
     table-admin-user-view(ref="user", :item="viewItem")
-    student-admin-import(ref="import")
+    student-admin-import(ref="import", v-if="permission.import")
 </template>
 
 <script lang="ts">

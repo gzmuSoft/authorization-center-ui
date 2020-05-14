@@ -259,8 +259,9 @@
       "type": "Resource Type",
       "type0": "All",
       "type1": "Menu",
-      "type2": "Resource",
-      "type3": "Route"
+      "type2": "Request Resource",
+      "type3": "Route",
+      "type4": "Resource Action"
     },
     "sysData": {
       "brief": "Brief"

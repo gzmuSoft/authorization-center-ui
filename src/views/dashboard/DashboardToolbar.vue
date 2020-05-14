@@ -26,7 +26,7 @@
         v-list
           v-list-item(link, :to="{name: 'system-setting'}")
             v-list-item-avatar
-              v-icon mdi-settings mdi-spin
+              v-icon mdi-cog mdi-spin
             v-list-item-content {{$t('setting.system')}}
           v-list-item(link, :to="{name: 'user-setting'}")
             v-list-item-avatar
