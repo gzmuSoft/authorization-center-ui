@@ -1,5 +1,5 @@
 export const baseURL = process.env.NODE_ENV === 'prod'
-  ? 'http://118.24.1.170:8889'
+  ? 'http://127.0.0.1:8889'
   : '/api'
 
 export const toolbars = {
