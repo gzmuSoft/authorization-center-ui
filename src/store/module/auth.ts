@@ -26,6 +26,9 @@ const state: AuthState = {
 const getters: GetterTree<AuthState, RootState> = {
   isLogin (state): Boolean {
     return state.accessToken !== null
+  },
+  isAdmin (state): Boolean {
+    return state.authorities.indexOf('ROLE_ADMIN') > -1
   }
 }
 

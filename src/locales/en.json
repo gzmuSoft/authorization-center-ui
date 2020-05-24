@@ -57,6 +57,36 @@
     "finished": "Finished"
   },
   "tip": {
+    "dashboard": {
+      "apiNumber": "Request Number",
+      "authorizationServerApiNumber": "Authorization Server Api Number",
+      "userSuccessLogin": "User Login Success Number",
+      "userFailureLogin": "User Login Failure Number",
+      "loginSuccess": "Login Success Number",
+      "loginFailure": "Login Failure Number",
+      "userCount": "User Number",
+      "studentCount": "Student Number",
+      "teacherCount": "Teacher Number",
+      "clientCount": "Client Number",
+      "roleCount": "Role Number",
+      "dateApi": "Request changes in the last 7 days",
+      "loginDateApi": "Login changes in the last 7 days",
+      "description": {
+        "apiNumber": "The total number of requests received by the authorization center",
+        "authorizationServerApiNumber": "The total number of requests received by the authorization server",
+        "userSuccessLogin": "The total number of successful logins of the current user",
+        "userFailureLogin": "The total number of current user login failures",
+        "loginSuccess": "The total number of successful logins for all users",
+        "loginFailure": "The total number of failed logins for all users",
+        "userCount": "Total number of current users",
+        "studentCount": "Total number of current students",
+        "teacherCount": "Current total number of teachers",
+        "clientCount": "The total number of existing clients",
+        "roleCount": "Current role total",
+        "dateApi": "Record the number of daily requests within seven days",
+        "loginDateApi": "Record the number of daily login requests within seven days"
+      }
+    },
     "noData": "No Data",
     "this": "This",
     "none": "Unfilled",

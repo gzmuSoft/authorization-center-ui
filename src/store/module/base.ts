@@ -11,7 +11,7 @@ export interface BaseState {
 }
 
 const state: BaseState = {
-  theme: true,
+  theme: false,
   drawer: false,
   locale: 'zh',
   imgView: {

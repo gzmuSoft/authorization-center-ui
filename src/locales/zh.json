@@ -57,6 +57,36 @@
     "finished": "完成"
   },
   "tip": {
+    "dashboard": {
+      "apiNumber": "总请求数量",
+      "authorizationServerApiNumber": "授权服务器总请求数量",
+      "userSuccessLogin": "登录成功次数",
+      "userFailureLogin": "登录失败次数",
+      "loginSuccess": "总登录成功次数",
+      "loginFailure": "总登录失败次数",
+      "userCount": "用户总数",
+      "studentCount": "学生总数",
+      "teacherCount": "教师总数",
+      "clientCount": "客户端总数",
+      "roleCount": "角色总数",
+      "dateApi": "近七日请求变化",
+      "loginDateApi": "近七日登录变化",
+      "description": {
+        "apiNumber": "授权中心收到的总请求数量",
+        "authorizationServerApiNumber": "授权服务器收到的总请求数量",
+        "userSuccessLogin": "当前用户登录成功总次数",
+        "userFailureLogin": "当前用户登录失败总次数",
+        "loginSuccess": "所有的用户登录成功总次数",
+        "loginFailure": "所有的用户登录失败总次数",
+        "userCount": "当前用户总数",
+        "studentCount": "当前学生总数",
+        "teacherCount": "当前教师总数",
+        "clientCount": "当前已经存在的客户端总数",
+        "roleCount": "当前角色总数",
+        "dateApi": "记录七天之内每日的请求数量",
+        "loginDateApi": "记录七天之内每日的登录请求数量"
+      }
+    },
     "noData": "暂无数据",
     "this": "此项",
     "none": "未填写",

@@ -1,10 +1,7 @@
 const CompressionWebpackPlugin = require('compression-webpack-plugin')
 const isProduction = process.env.NODE_ENV === 'prod'
 const cdn = {
-  css: [
-    'https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900',
-    'https://cdn.jsdelivr.net/npm/@mdi/font@latest/css/materialdesignicons.min.css'
-  ],
+  css: [],
   js: [
     'https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.min.js',
     'https://cdn.jsdelivr.net/npm/vue-router@3.2.0/dist/vue-router.min.js',
