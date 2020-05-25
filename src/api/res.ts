@@ -22,3 +22,10 @@ export const resDelete = (id) => {
     method: 'DELETE'
   })
 }
+
+export const resEnable = (id) => {
+  return authAxios.request({
+    url: `/res/${id}`,
+    method: 'POST'
+  })
+}

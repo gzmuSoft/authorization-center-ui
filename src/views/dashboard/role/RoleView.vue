@@ -61,14 +61,15 @@
                   v-text-field(v-model="role.remark", :label="$t('entity.base.remark')", counter="200",
                     autofocus, single-line, :rules="[maxLength(200)]")
     .text-right
-      v-btn(color="warning", outlined, @click="handleReset") {{$t("action.reset")}}
+      //v-btn(color="primary", outlined, @click="handleAdd") {{$t("action.addChildren")}}
+      v-btn.ml-4(color="warning", outlined, @click="handleReset") {{$t("action.reset")}}
       v-btn.ml-4(color="success", outlined, @click="handleSave", v-show="change", :loading="loading.save") {{$t("action.save")}}
 </template>
 
 <script lang="ts">
 import { Component, Prop, Mixins, Watch } from 'vue-property-decorator'
 import FormValidateMixin from '@/plugins/FormValidateMixin'
-import { roleUpdate } from '@/api/role'
+import { roleAdd, roleUpdate } from '@/api/role'
 
 @Component
 export default class RoleView extends Mixins(FormValidateMixin) {
@@ -89,21 +90,29 @@ export default class RoleView extends Mixins(FormValidateMixin) {
     return !this._.isEqual(this.role, this.default)
   }
 
-  handleSave () {
+  async handleSave () {
     if (!this.$refs.form.validate()) {
       this.$toast.warning(this.$t('tip.validate.complete'))
       return
     }
     this.loading.save = true
-    roleUpdate(this.role).then(() => {
+    try {
+      if (this.role.id === null) {
+        await roleUpdate(this.role)
+      } else {
+        await roleAdd(this.role)
+      }
       this.$toast.success(this.$t('tip.success'))
       this.$emit('success', this.role)
-    }).finally(() => {
+    } finally {
       this.loading.save = false
-    })
+    }
   }
   handleReset () {
     this.role = this._.cloneDeep(this.default)
+  }
+  handleAdd () {
+    this.$emit('add')
   }
 }
 </script>

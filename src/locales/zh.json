@@ -83,6 +83,10 @@
         "teacherCount": "当前教师总数",
         "clientCount": "当前已经存在的客户端总数",
         "roleCount": "当前角色总数",
+        "dateApi": "每当用户请求数据时，都会触发信息记录",
+        "loginDateApi": "每当用户进行登录时，都会触发信息记录"
+      },
+      "subTitle": {
         "dateApi": "记录七天之内每日的请求数量",
         "loginDateApi": "记录七天之内每日的登录请求数量"
       }

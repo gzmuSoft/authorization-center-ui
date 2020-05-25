@@ -1,16 +1,26 @@
 <template lang="pug">
   #center-index
+    v-menu(offset-y, top, :close-on-content-click="false", v-if="isAdmin")
+      template(v-slot:activator="{ on }")
+        v-btn(v-on="on", absolute, color="primary", bottom, right, dark, fab)
+          v-icon mdi-eye
+      v-card
+        v-card-text
+          v-checkbox(v-model="show", v-for="(value, key, index) in data", :key="key", :label="$t(`tip.dashboard.${key}`)"
+            :value="index", dense, :data-value="value")
     v-row
       template(v-for="chart in charts")
         v-col.my-3(cols="12", sm="6", :key="chart.title")
-          chart-card(:title="chart.title", :subTitle="chart.subTitle", :icon="chart.icon",
-            :description="chart.description", :value="chart.value", :labels="chart.labels",
-            :color="chart.color")
+          v-skeleton-loader.ma-3.mt-9(:loading="loading", type="card", transition="slide-y-transition")
+            chart-card(:title="$t(`tip.dashboard.${chart.name}`)", :subTitle="$t(`tip.dashboard.subTitle.${chart.name}`)", :icon="chart.icon",
+              :description="$t(`tip.dashboard.description.${chart.name}`)", :value="chart.value", :labels="chart.labels",
+              :color="chart.color")
       template(v-for="(value, key, index) in data")
         v-col.my-3(cols="12", sm="6", md="3", :key="key", v-if="show.indexOf(index) !== -1")
-          data-card(:iconColor="icons[index].iconColor",
-            :icon="icons[index].icon", :subTitle="$t(`tip.dashboard.${key}`)",
-            :main="`${value}`", :actionIcon="icons[index].icon", :action="$t(`tip.dashboard.description.${key}`)")
+          v-skeleton-loader.ma-3.mt-9(:loading="loading", type="image", :max-height="150", transition="slide-y-transition")
+            data-card(:iconColor="icons[index].iconColor",
+              :icon="icons[index].icon", :subTitle="$t(`tip.dashboard.${key}`)",
+              :main="`${value}`", :actionIcon="icons[index].icon", :action="$t(`tip.dashboard.description.${key}`)")
 </template>
 
 <script lang="ts">
@@ -25,6 +35,7 @@ export default class Index extends Vue {
   @Getter('isAdmin', { namespace }) protected isAdmin!: Boolean
   @State('isStudent', { namespace }) protected isStudent!: Boolean
   @State('isTeacher', { namespace }) protected isTeacher!: Boolean
+  loading = true
   show = [0, 1, 4, 5]
   icons = [
     { icon: 'mdi-football-australian', iconColor: 'light-blue darken-1' },
@@ -54,34 +65,33 @@ export default class Index extends Vue {
   }
   charts = [
     {
-      title: '近七日请求变化',
-      subTitle: '通过授权次数能够从另一方面反映出您系统的安全性',
+      name: 'dateApi',
       icon: 'mdi-star-face',
       color: 'success',
-      description: '每当登录、授权、鉴权的时候都会触发此请求',
       value: [],
       labels: []
     },
     {
-      title: '近七日登录变化',
-      subTitle: '通过授权次数能够从另一方面反映出您系统的安全性',
+      name: 'loginDateApi',
       icon: 'mdi-star-face',
       color: 'info',
-      description: '每当登录、授权、鉴权的时候都会触发此请求',
       value: [],
       labels: []
     }
   ]
-  created () {
+  async created () {
     if (this.isAdmin) this.show = [0, 1, 4, 5]
     else this.show = [2, 3, 7, 8]
-    dashboard().then(res => {
-      this.data = res.data
-    })
-    dashboardDate().then(res => {
-      this.chartDate(res.data.dateApi, 0)
-      this.chartDate(res.data.loginDateApi, 1)
-    })
+    try {
+      const [dashboardRes, dashboardDateRes] = await Promise.all([
+        dashboard(), dashboardDate()
+      ])
+      this.data = dashboardRes.data
+      this.chartDate(dashboardDateRes.data.dateApi, 0)
+      this.chartDate(dashboardDateRes.data.loginDateApi, 1)
+    } finally {
+      this.loading = false
+    }
   }
   chartDate (res, num) {
     let date = new Date()
@@ -92,11 +102,10 @@ export default class Index extends Vue {
       const month = (date.getMonth() + 1) < 10 ? `0${date.getMonth() + 1}` : `${date.getMonth() + 1}`
       const day = date.getDate()
       const key = `${year}-${month}-${day}`
-      console.log(key)
       this.charts[num].labels.unshift(key.substr(5))
       if (res.hasOwnProperty(key)) this.charts[num].value.unshift(res[key])
       else this.charts[num].value.unshift(0)
-      date = new Date(date - 1000 * 60 * 60 * 24)
+      date = new Date(date.valueOf() - 1000 * 60 * 60 * 24)
     }
   }
 }

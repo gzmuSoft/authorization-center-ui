@@ -88,5 +88,4 @@ export default class DataTable extends Mixins(TableMixin, FormValidateMixin) {
 </script>
 
 <style lang="stylus" scoped>
-
 </style>

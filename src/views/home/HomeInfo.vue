@@ -11,7 +11,7 @@
             v-flex(xs12, md4, v-for="(a, i) in information", :key="i")
               v-card.transparent(flat)
                 v-card-text.text-center
-                  v-icon.blue--text.text--lighten-2(style="font-size: 108px") {{a.icon}}
+                  v-icon(size="108px", :color="a.color") {{a.icon}}
                 v-card-title.layout.justify-center(primary-title)
                   .headline.text-center {{a.title}}
                 v-card-text {{a.content}}
@@ -25,9 +25,9 @@ import { Component, Vue } from 'vue-property-decorator'
 export default class HomeInfo extends Vue {
   protected get information () {
     return [
-      { icon: 'mdi-palette', title: this.$t('home.info.subTitle1'), content: this.$t('home.info.subTitle1Info') },
-      { icon: 'mdi-palette', title: this.$t('home.info.subTitle2'), content: this.$t('home.info.subTitle2Info') },
-      { icon: 'mdi-palette', title: this.$t('home.info.subTitle3'), content: this.$t('home.info.subTitle3Info') }
+      { icon: 'mdi-security', title: this.$t('home.info.subTitle1'), content: this.$t('home.info.subTitle1Info'), color: 'deep-purple' },
+      { icon: 'mdi-link', title: this.$t('home.info.subTitle2'), content: this.$t('home.info.subTitle2Info'), color: 'blue' },
+      { icon: 'mdi-dots-horizontal-circle', title: this.$t('home.info.subTitle3'), content: this.$t('home.info.subTitle3Info'), color: 'success' }
     ]
   }
 }

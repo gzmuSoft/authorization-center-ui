@@ -24,7 +24,7 @@
               v-list-item-subtitle {{email}}
         v-divider
         v-list
-          v-list-item(link, :to="{name: 'system-setting'}")
+          //v-list-item(link, :to="{name: 'system-setting'}")
             v-list-item-avatar
               v-icon mdi-cog mdi-spin
             v-list-item-content {{$t('setting.system')}}

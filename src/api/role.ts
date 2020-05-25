@@ -30,3 +30,14 @@ export const roleUpdate = (role) => {
     data: role
   })
 }
+
+/**
+ * Add role
+ */
+export const roleAdd = (role) => {
+  return authAxios.request({
+    url: '/role',
+    method: 'POST',
+    data: role
+  })
+}

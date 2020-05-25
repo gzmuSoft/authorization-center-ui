@@ -20,7 +20,7 @@
                   v-tab 基础信息
                   v-tab 资源信息
                   v-tab-item
-                    role-view(:default="active", @success="updateRole")
+                    role-view(:default="active", @success="updateRole", @add="handleAddChildren")
                   v-tab-item
                     role-res(:default="active")
 </template>
@@ -72,6 +72,12 @@ export default class Role extends Vue {
   }
   updateRole (item) {
     this.active = item
+  }
+  handleAddChildren () {
+    this.active = {
+      parent_id: this.active.id,
+      id: null
+    }
   }
 }
 </script>

@@ -38,7 +38,7 @@ import FormValidateMixin from '@/plugins/FormValidateMixin'
 import ResView from './ResView.vue'
 import { resTypes } from '@/utils/options'
 import { resPage } from '@/api/page'
-import { resDelete } from '@/api/res'
+import { resDelete, resEnable } from '@/api/res'
 
 @Component({ components: { CardHeader, ResView } })
 export default class Res extends Mixins(TableMixin, FormValidateMixin) {
@@ -90,16 +90,19 @@ export default class Res extends Mixins(TableMixin, FormValidateMixin) {
     }
   }
 
-  handleDelete (item) {
+  async handleDelete (item) {
     item.loading = 'success'
     item.disabled = true
     item.isEnable = !item.isEnable
-    resDelete(item.id)
-      .catch(() => { item.isEnable = !item.isEnable })
-      .finally(() => {
-        item.disabled = false
-        item.loading = false
-      })
+    try {
+      if (item.isEnable) await resEnable(item.id)
+      else resDelete(item.id)
+    } catch (e) {
+      item.isEnable = !item.isEnable
+    } finally {
+      item.disabled = false
+      item.loading = false
+    }
   }
 }
 </script>

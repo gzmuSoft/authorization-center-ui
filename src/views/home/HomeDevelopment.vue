@@ -4,7 +4,7 @@
       v-layout(column, align-center, justify-center)
         .headline.white--text.mb-4.text-center {{$t("home.info.developmentTitle")}}
         em {{$t("home.info.developmentInfo")}}
-        v-btn.mt-12(color="info", large, href="/")
+        v-btn.mt-12(color="info", large, href="https://gzmusoft.github.io/authorization-server/", target="_blank")
           | {{$t("base.documentation")}}
 </template>
 
