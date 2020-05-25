@@ -51,7 +51,7 @@
     "chalk": "^4.0.0",
     "compression-webpack-plugin": "^4.0.0",
     "eslint": "^5.16.0",
-    "eslint-plugin-vue": "^5.0.0",
+    "eslint-plugin-vue": "^6.2.2",
     "kind-of": "^6.0.3",
     "lint-staged": "^9.5.0",
     "minimist": "^1.2.5",
