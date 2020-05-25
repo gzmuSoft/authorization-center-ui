@@ -1,10 +1,10 @@
 <template lang="pug">
   #user-setting.mt-10
     v-row
-      v-col.setting-left(cols="12", md="8", v-if="isStudent || isTeacher")
+      v-col.setting-left(cols="12", md="8")
         user-setting-student(v-if="isStudent")
         user-setting-teacher(v-if="isTeacher")
-      v-col.mx-auto(cols="12", :md="isStudent === isStudent ? 12 : 4", :style="isStudent === isStudent ? 'max-width:500px': ''")
+      v-col(cols="12", md="4")
         user-setting-base.mx-auto
 </template>
 
