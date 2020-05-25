@@ -66,7 +66,8 @@ module.exports = {
       'enableInSFC': false
     },
     webpackBundleAnalyzer: {
-      openAnalyzer: false
+      openAnalyzer: false,
+      analyzerMode: 'static'
     }
   },
   productionSourceMap: false,
@@ -75,7 +76,7 @@ module.exports = {
     'vuex-module-decorators'
   ],
   devServer: {
-    port: 8081,
+    port: 8082,
     proxy: {
       '/api': {
         target: 'http://localhost:8889',
