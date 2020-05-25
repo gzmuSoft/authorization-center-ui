@@ -5,7 +5,6 @@ const cdn = {
   js: [
     'https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.min.js',
     'https://cdn.jsdelivr.net/npm/vue-router@3.2.0/dist/vue-router.min.js',
-    'https://cdn.jsdelivr.net/npm/xlsx@0.16.0/dist/xlsx.min.js',
     'https://cdn.jsdelivr.net/npm/lodash@4.17.15/lodash.min.js'
   ]
 }
@@ -52,7 +51,6 @@ module.exports = {
       config.externals = {
         'vue': 'Vue',
         'vue-router': 'VueRouter',
-        'xlsx': 'xlsx',
         'lodash': '_',
         'lodash-es': '_'
       }
