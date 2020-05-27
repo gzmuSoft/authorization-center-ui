@@ -23,7 +23,7 @@
     "uuid": "^3.4.0",
     "vue": "^2.6.10",
     "vue-class-component": "^7.2.3",
-    "vue-i18n": "^8.17.7",
+    "vue-i18n": "^8.18.0",
     "vue-property-decorator": "^8.4.2",
     "vue-router": "^3.2.0",
     "vue-toastification": "^1.7.1",
