@@ -11534,10 +11534,10 @@ ws@^7.0.0:
   resolved "https://registry.npm.taobao.org/ws/download/ws-7.3.0.tgz#4b2f7f219b3d3737bc1a2fbf145d825b94d38ffd"
   integrity sha1-Sy9/IZs9Nze8Gi+/FF2CW5TTj/0=
 
-xlsx@^0.15.6:
-  version "0.15.6"
-  resolved "https://registry.npm.taobao.org/xlsx/download/xlsx-0.15.6.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fxlsx%2Fdownload%2Fxlsx-0.15.6.tgz#461f841d6d9ea1a8375e2cd246bf23aece08a1d5"
-  integrity sha1-Rh+EHW2eoag3XizSRr8jrs4IodU=
+xlsx@^0.16.2:
+  version "0.16.2"
+  resolved "https://registry.yarnpkg.com/xlsx/-/xlsx-0.16.2.tgz#84043c36b76ddd776b3b49973530303b21894266"
+  integrity sha512-XTqOy7YpCUtGbvCYaCh1t1RsZ/y8cSCbZCOYtqqZ4/EmHkyv+/ghxmCvvR8yc4Tn5fhny+3j7voKwJaRlffNKA==
   dependencies:
     adler-32 "~1.2.0"
     cfb "^1.1.4"
