@@ -11050,10 +11050,10 @@ vue-i18n-extract@^1.0.2:
     is-valid-glob "^1.0.0"
     js-yaml "^3.13.1"
 
-vue-i18n@^8.0.0, vue-i18n@^8.17.7:
-  version "8.17.7"
-  resolved "https://registry.npm.taobao.org/vue-i18n/download/vue-i18n-8.17.7.tgz#d87e653e815a07f86e2c2dfe35261e6ea105c38a"
-  integrity sha1-2H5lPoFaB/huLC3+NSYebqEFw4o=
+vue-i18n@^8.0.0, vue-i18n@^8.19.0:
+  version "8.19.0"
+  resolved "https://registry.yarnpkg.com/vue-i18n/-/vue-i18n-8.19.0.tgz#4326ade6cba7e18b22030ac1a14c59864b6dfc43"
+  integrity sha512-jXPsvkmDMkwhjGQEDF6BgGsmJQLjIO1CXJQ1RjZRnU80kzRG+/+277ADFTulAPQSb0hUlrsp4VzEPdeO7lKcRA==
 
 vue-jest@^3.0.5:
   version "3.0.5"
