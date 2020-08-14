@@ -17,7 +17,7 @@
   "dependencies": {
     "axios": "^0.19.2",
     "core-js": "^3.6.5",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.20",
     "mavon-editor": "^2.9.0",
     "sockjs-client": "^1.4.0",
     "uuid": "^3.4.0",
